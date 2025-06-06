@@ -1,6 +1,6 @@
 'use client'; // 이 파일은 클라이언트 컴포넌트임을 명시
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react'; // useCallback 임포트
 import Image from 'next/image'; // Next.js Image 컴포넌트 사용
 
 // Chart.js 임포트 방식 변경 및 필요한 컴포넌트 등록
@@ -27,7 +27,7 @@ ChartJS.register(
 );
 
 import { db as initialDb } from '@/data/db'; // 데이터베이스 임포트
-import { Database, User, Sport, Class, CommunityPost } from '@/types'; // 타입 정의 임포트
+import { Database } from '@/types'; // 필요한 Database 타입만 임포트
 
 export default function Home() {
     const [database, setDatabase] = useState<Database>(initialDb); // db 상태 관리
@@ -35,122 +35,110 @@ export default function Home() {
     const [onboardingStep, setOnboardingStep] = useState(1);
     const [showBottomNav, setShowBottomNav] = useState(false);
     const chartRef = useRef<HTMLCanvasElement | null>(null); // Chart Canvas ref
-    const chartInstance = useRef<ChartJS | null>(null); // ChartJS 인스턴스 ref (타입 변경)
+    const chartInstance = useRef<ChartJS | null>(null); // ChartJS 인스턴스 ref
 
+    // 초기 온보딩 상태 설정 useEffect (한 번만 실행)
     useEffect(() => {
-      // // 개발/테스트 중에는 아래 localStorage 확인 로직을 주석 처리하거나 제거
-      // const hasCompletedOnboarding = localStorage.getItem('hasCompletedOnboarding');
-      // if (hasCompletedOnboarding === 'true') {
-      //     setCurrentPage('home');
-      //     setShowBottomNav(true);
-      //     const savedChoices = localStorage.getItem('onboardingChoices');
-      //     if (savedChoices) {
-      //         setDatabase(prevDb => ({
-      //             ...prevDb,
-      //             user: {
-      //                 ...prevDb.user,
-      //                 onboardingChoices: JSON.parse(savedChoices)
-      //             }
-      //         }));
-      //     }
-      // } else {
-      //     // 온보딩이 완료되지 않았다면 온보딩 페이지로 설정 (명시적으로)
-      //     setCurrentPage('onboarding');
-      //     setShowBottomNav(false); // 온보딩 중에는 하단 네비게이션 숨기기
-      // }
-      // 항상 온보딩으로 시작하려면 아래 두 줄만 남겨둡니다:
-      setCurrentPage('onboarding');
-      setShowBottomNav(false);
-  }, []);
+        // 개발/테스트 중에는 아래 localStorage 확인 로직을 주석 처리하거나 제거하는 것이 좋습니다.
+        // const hasCompletedOnboarding = localStorage.getItem('hasCompletedOnboarding');
+        // if (hasCompletedOnboarding === 'true') {
+        //     setCurrentPage('home');
+        //     setShowBottomNav(true);
+        //     const savedChoices = localStorage.getItem('onboardingChoices');
+        //     if (savedChoices) {
+        //         setDatabase(prevDb => ({
+        //             ...prevDb,
+        //             user: {
+        //                 ...prevDb.user,
+        //                 onboardingChoices: JSON.parse(savedChoices)
+        //             }
+        //         }));
+        //     }
+        // } else {
+        //     setCurrentPage('onboarding');
+        //     setShowBottomNav(false);
+        // }
+        // 항상 온보딩으로 시작하려면 아래 두 줄만 남겨둡니다:
+        setCurrentPage('onboarding');
+        setShowBottomNav(false);
+    }, []); // 빈 의존성 배열로 마운트 시 한 번만 실행되도록 설정
 
-    // 페이지가 변경될 때마다 데이터 렌더링 및 스크롤 상단 이동
-    useEffect(() => {
-        if (currentPage === 'home') {
-            renderRecommendations();
-            renderPopularClasses();
-            renderChart(); // Home 페이지로 전환될 때만 차트 렌더링
-        } else if (currentPage === 'community') {
-            renderCommunityPosts();
-        } else if (currentPage === 'classes') {
-            renderAllClasses();
-        }
-        window.scrollTo(0, 0); // 페이지 전환 시 스크롤 상단으로
-    }, [currentPage, database.user.onboardingChoices]); // onboardingChoices 변경 시 재렌더링
-
-    // Chart.js 렌더링 함수
-    const renderChart = () => {
-      if (chartRef.current) {
-          if (chartInstance.current) {
-              chartInstance.current.destroy(); // 이전 차트 인스턴스 파괴
-          }
+    // Chart.js 렌더링 함수 (useCallback으로 래핑)
+    const renderChart = useCallback(() => {
+        if (chartRef.current) {
+            if (chartInstance.current) {
+                chartInstance.current.destroy(); // 이전 차트 인스턴스 파괴
+            }
   
-          const ctx = chartRef.current.getContext('2d');
-          if (ctx) {
-              chartInstance.current = new ChartJS(ctx, {
-                  type: 'bar',
-                  data: {
-                      labels: ['커뮤니티 활성화', '이색 스포츠 다양성', '초보자 접근성', '정보의 깊이'],
-                      datasets: [{
-                          type: 'bar',
-                          label: 'SPIN',
-                          data: [9, 8, 9, 8.5],
-                          // ⭐ 여기 Chart.js 색상을 Tailwind 기본 orange-600의 RGBA로 변경 ⭐
-                          backgroundColor: 'rgba(234, 88, 12, 0.8)', // #EA580C의 RGBA
-                          borderColor: 'rgba(234, 88, 12, 1)',   // #EA580C의 RGBA
-                          borderWidth: 1
-                      }, {
-                          type: 'bar',
-                          label: '경쟁사 평균',
-                          data: [5, 7, 6, 5],
-                          backgroundColor: 'rgba(156, 163, 175, 0.6)', // Tailwind gray-500 유사
-                          borderColor: 'rgba(156, 163, 175, 1)',
-                          borderWidth: 1
-                      }]
-                  },
-                  options: {
-                      indexAxis: 'y',
-                      responsive: true,
-                      maintainAspectRatio: false,
-                      scales: {
-                          x: {
-                              beginAtZero: true,
-                              max: 10,
-                              grid: {
-                                  color: 'rgba(0, 0, 0, 0.05)'
-                              }
-                          },
-                          y: {
-                              grid: {
-                                  color: 'rgba(0, 0, 0, 0.05)'
-                              }
-                          }
-                      },
-                      plugins: {
-                          legend: {
-                              position: 'top',
-                              labels: {
-                                  font: {
-                                      size: 14,
-                                      weight: 'bold'
-                                  },
-                                  color: '#374151' // Tailwind gray-700 유사
-                              }
-                          },
-                          tooltip: {
-                              backgroundColor: 'rgba(0,0,0,0.7)',
-                              bodyColor: '#fff',
-                              titleColor: '#fff',
-                              bodyFont: { size: 14 },
-                              titleFont: { size: 16, weight: 'bold' },
-                              padding: 10,
-                              cornerRadius: 6
-                          }
-                      }
-                  }
-              });
-          }
-      }
-  };
+            const ctx = chartRef.current.getContext('2d');
+            if (ctx) {
+                chartInstance.current = new ChartJS(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['커뮤니티 활성화', '이색 스포츠 다양성', '초보자 접근성', '정보의 깊이'],
+                        datasets: [{
+                            type: 'bar',
+                            label: 'SPIN',
+                            data: [9, 8, 9, 8.5],
+                            backgroundColor: 'rgba(234, 88, 12, 0.8)', // Tailwind 기본 orange-600의 RGBA
+                            borderColor: 'rgba(234, 88, 12, 1)',
+                            borderWidth: 1
+                        }, {
+                            type: 'bar',
+                            label: '경쟁사 평균',
+                            data: [5, 7, 6, 5],
+                            backgroundColor: 'rgba(156, 163, 175, 0.6)', // Tailwind gray-500 유사
+                            borderColor: 'rgba(156, 163, 175, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        indexAxis: 'y',
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            x: {
+                                beginAtZero: true,
+                                max: 10,
+                                grid: {
+                                    color: 'rgba(0, 0, 0, 0.05)'
+                                }
+                            },
+                            y: {
+                                grid: {
+                                    color: 'rgba(0, 0, 0, 0.05)'
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                                labels: {
+                                    font: {
+                                        size: 14,
+                                        weight: 'bold'
+                                    },
+                                    color: '#374151'
+                                }
+                            },
+                            tooltip: {
+                                backgroundColor: 'rgba(0,0,0,0.7)',
+                                bodyColor: '#fff',
+                                titleColor: '#fff',
+                                bodyFont: { size: 14 },
+                                titleFont: { size: 16, weight: 'bold' },
+                                padding: 10,
+                                cornerRadius: 6
+                            }
+                        }
+                    }
+                });
+            }
+        }
+    }, []); // renderChart는 외부 스코프의 상태(database, chartRef 등)를 참조하지만,
+           // 해당 상태들이 변경될 때 renderChart 함수 자체가 변경될 필요는 없으므로 의존성 배열을 비워둡니다.
+           // Chart.js 인스턴스 생성은 chartRef와 database에 간접적으로 의존하지만,
+           // chartRef는 useRef로 관리되므로 변경되지 않고, database의 changes는 currentPage에 의해 트리거됩니다.
 
     // 온보딩 단계 전환
     const showOnboardingStep = (step: number) => {
@@ -184,8 +172,8 @@ export default function Home() {
         setCurrentPage(pageId);
     };
 
-    // 추천 스포츠 렌더링
-    const renderRecommendations = () => {
+    // 추천 스포츠 렌더링 (useCallback으로 래핑)
+    const renderRecommendations = useCallback(() => {
         const userChoices = database.user.onboardingChoices;
         const filteredSports = database.sports.filter(sport =>
             (!userChoices.intensity || sport.intensity === userChoices.intensity) &&
@@ -206,10 +194,10 @@ export default function Home() {
                 </div>
             </div>
         ));
-    };
+    }, [database.sports, database.user.onboardingChoices]); // database.sports와 database.user.onboardingChoices에 의존
 
-    // 인기 클래스 렌더링
-    const renderPopularClasses = () => {
+    // 인기 클래스 렌더링 (useCallback으로 래핑)
+    const renderPopularClasses = useCallback(() => {
         return database.classes.map((c, index) => (
             <div
                 key={c.id}
@@ -224,10 +212,10 @@ export default function Home() {
                 <span className="font-bold text-xl text-orange-600">{c.price}</span>
             </div>
         ));
-    };
+    }, [database.classes]); // database.classes에 의존
 
-    // 커뮤니티 게시글 렌더링
-    const renderCommunityPosts = () => {
+    // 커뮤니티 게시글 렌더링 (useCallback으로 래핑)
+    const renderCommunityPosts = useCallback(() => {
         return database.community.map((post, index) => (
             <div
                 key={post.id}
@@ -245,10 +233,10 @@ export default function Home() {
                 <p className="text-sm text-gray-500 mt-2">{post.author} <span className="mx-1">•</span> 댓글 {post.comments}</p>
             </div>
         ));
-    };
+    }, [database.community]); // database.community에 의존
 
-    // 모든 클래스 렌더링
-    const renderAllClasses = () => {
+    // 모든 클래스 렌더링 (useCallback으로 래핑)
+    const renderAllClasses = useCallback(() => {
         return database.classes.map((c, index) => (
             <div
                 key={c.id}
@@ -263,7 +251,23 @@ export default function Home() {
                 </div>
             </div>
         ));
-    };
+    }, [database.classes]); // database.classes에 의존
+
+    // 페이지 전환 및 차트 렌더링을 위한 useEffect
+    useEffect(() => {
+        if (currentPage === 'home') {
+            renderChart(); // home 페이지일 때만 차트 렌더링
+        }
+        window.scrollTo(0, 0); // 페이지 전환 시 스크롤 상단으로 이동
+    }, [
+        currentPage,
+        database.user.onboardingChoices, // 온보딩 선택에 따라 추천 스포츠가 달라지므로 의존성 추가
+        renderChart, // useCallback으로 래핑되었으므로 안전하게 추가
+        renderAllClasses, // useCallback으로 래핑되었으므로 안전하게 추가
+        renderCommunityPosts, // useCallback으로 래핑되었으므로 안전하게 추가
+        renderPopularClasses, // useCallback으로 래핑되었으므로 안전하게 추가
+        renderRecommendations // useCallback으로 래핑되었으므로 안전하게 추가
+    ]);
 
     return (
         <div id="app" className="max-w-lg mx-auto bg-white min-h-screen shadow-xl overflow-hidden relative">
@@ -272,8 +276,8 @@ export default function Home() {
                 <section id="page-onboarding" className={`page ${currentPage === 'onboarding' ? 'active' : ''}`}>
                 <div className="h-screen flex flex-col justify-center items-center p-8 text-center bg-gradient-to-br from-orange-600 to-red-600 text-white">
                         {onboardingStep === 1 && (
-                            <div id="onboarding-step-1">
-                                <h1 className="text-6xl font-extrabold mb-6 drop-shadow-lg animate-bounce-in">SPIN</h1>
+                            <div id="onboarding-step-1" className="animate-bounce-in">
+                                <h1 className="text-6xl font-extrabold mb-6 drop-shadow-lg">SPIN</h1>
                                 <p className="text-xl text-white mb-12 leading-relaxed drop-shadow-md">일상에 새로운 스핀을 더하다.<br/>당신의 특별한 움직임, SPIN에서 시작!</p>
                                 <button onClick={() => showOnboardingStep(2)} className="w-full bg-white text-orange-600 font-bold py-5 px-8 rounded-full shadow-2xl hover:shadow-3xl transform hover:-translate-y-2 transition duration-300 text-xl active:scale-95 border-b-4 border-orange-700 hover:border-orange-800">시작하기</button>
                             </div>
@@ -349,7 +353,7 @@ export default function Home() {
                 {/* Classes Section */}
                 <section id="page-classes" className={`page ${currentPage === 'classes' ? 'active' : ''} p-4`}>
                     <header className="py-5 border-b-2 border-gray-100 mb-6">
-                        <h1 className="text-3xl font-bold text-gray-800">클래스 & 여행</h1>
+                        <h1 className="text-3xl font-bold text-gray-800">클래스 &amp; 여행</h1> {/* '&'는 &amp;로 이스케이프 */}
                         <p className="text-gray-600 mt-2 leading-relaxed">전문가에게 직접 배우거나, 운동과 여행을 함께 즐겨보세요. SPIN이 검증한 수준 높은 클래스와 특별한 여행 상품이 준비되어 있습니다.</p>
                     </header>
                     <div id="all-classes" className="space-y-4 mt-6">
@@ -373,7 +377,7 @@ export default function Home() {
                         <h3 className="text-2xl font-bold mb-5 text-gray-800 border-l-4 border-orange-500 pl-3">나의 활동 기록</h3>
                         <div className="space-y-4">
                             <div className="bg-white p-5 rounded-xl shadow-md border border-gray-100 transform hover:scale-[1.01] transition duration-300 text-gray-800 active:scale-99">슬랙라이닝 클래스 수강 완료</div>
-                            <div className="bg-white p-5 rounded-xl shadow-md border border-gray-100 transform hover:scale-[1.01] transition duration-300 text-gray-800 active:scale-99">'주말 번개 트릭킹 모임' 참여</div>
+                            <div className="bg-white p-5 rounded-xl shadow-md border border-gray-100 transform hover:scale-[1.01] transition duration-300 text-gray-800 active:scale-99">&#39;주말 번개 트릭킹 모임&#39; 참여</div> {/* 작은따옴표는 &#39;으로 이스케이프 */}
                         </div>
                     </div>
                 </section>
