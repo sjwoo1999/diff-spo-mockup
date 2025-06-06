@@ -4,6 +4,27 @@
 
 /* 나머지 커스텀 CSS (body 스타일, .chart-container, 애니메이션 키프레임 등) */
 
+/* 여기! html 요소에 overflow-y: scroll; 추가 */
+html {
+  overflow-y: scroll; /* 세로 스크롤바를 항상 보이게 함 */
+  /* (선택 사항) 스크롤바 스타일링도 추가할 수 있습니다. */
+  /* 웹킷 기반 브라우저용 스크롤바 스타일 */
+  &::-webkit-scrollbar {
+    width: 8px; /* 스크롤바 너비 */
+  }
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1; /* 트랙 배경색 */
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #888; /* 스크롤바 색상 */
+    border-radius: 4px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555; /* 호버 시 스크롤바 색상 */
+  }
+}
+
+
 body {
     font-family: var(--font-noto-sans-kr), var(--font-inter), sans-serif; /* 폰트 변수 사용 */
     -webkit-tap-highlight-color: transparent;

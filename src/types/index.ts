@@ -1,23 +1,15 @@
-export interface User {
-    name: string;
-    onboardingChoices: {
-        preference?: 'solo' | 'group';
-        intensity?: 'low' | 'medium' | 'high';
-    };
-}
-
+// src/types/index.ts
 export interface Sport {
-    id: number;
+    id: string;
     name: string;
     tagline: string;
-    description: string;
+    image: string;
     intensity: 'low' | 'medium' | 'high';
     preference: 'solo' | 'group';
-    image: string;
 }
 
 export interface Class {
-    id: number;
+    id: string;
     name: string;
     instructor: string;
     location: string;
@@ -26,16 +18,24 @@ export interface Class {
 }
 
 export interface CommunityPost {
-    id: number;
-    category: '정보' | '모임' | '홍보';
+    id: string;
+    category: '정보' | '모임' | '자유';
     title: string;
     author: string;
     comments: number;
 }
 
+export interface User {
+    name: string;
+    onboardingChoices: {
+        preference: 'solo' | 'group' | null;
+        intensity: 'low' | 'medium' | 'high' | null;
+    };
+}
+
 export interface Database {
+    user: User;
     sports: Sport[];
     classes: Class[];
     community: CommunityPost[];
-    user: User;
 }
