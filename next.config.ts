@@ -1,3 +1,4 @@
+// next.config.js (전체 코드 다시 확인)
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
@@ -12,7 +13,19 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  /* config options here */
+  async rewrites() { // 이 부분이 정확히 있는지 확인
+    return [
+      {
+        source: '/login',
+        destination: '/auth/login',
+      },
+      {
+        source: '/login/onboarding',
+        destination: '/auth/login/onboarding',
+      },
+    ];
+  },
+  // ... 기타 설정이 있다면 여기에 계속
 };
 
 export default nextConfig;

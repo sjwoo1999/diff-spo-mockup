@@ -1,16 +1,52 @@
 // src/components/onboarding/OnboardingStep1.tsx
 import React from 'react';
+import { OnboardingStepWithNextProps } from '@/components/onboarding/OnboardingStepProps';
+import { Purpose } from '@/types'; // ✨ OnboardingChoices 임포트 제거
 
-interface OnboardingStep1Props {
-    showOnboardingStep: (step: number) => void;
-}
+const OnboardingStep1: React.FC<OnboardingStepWithNextProps> = ({ currentChoices, saveChoice, onNext }) => {
+    const purposes: Purpose[] = [
+        '다이어트', '체력 증진', '취미', '힐링', '경쟁',
+        '여행', '교류', '스트레스 해소', '상관 없음'
+    ];
 
-const OnboardingStep1: React.FC<OnboardingStep1Props> = ({ showOnboardingStep }) => {
+    const handlePurposeChange = (purpose: Purpose) => {
+        const newPurposes = currentChoices.purpose?.includes(purpose)
+            ? currentChoices.purpose.filter(p => p !== purpose)
+            : [...(currentChoices.purpose || []), purpose];
+        saveChoice('purpose', newPurposes);
+    };
+
     return (
-        <div id="onboarding-step-1" className="animate-bounce-in">
-            <h1 className="text-6xl font-extrabold mb-6 drop-shadow-lg">SPIN</h1>
-            <p className="text-xl text-white mb-12 leading-relaxed drop-shadow-md">일상에 새로운 스핀을 더하다.<br/>당신의 특별한 움직임, SPIN에서 시작!</p>
-            <button onClick={() => showOnboardingStep(2)} className="w-full bg-white text-orange-600 font-bold py-5 px-8 rounded-full shadow-2xl hover:shadow-3xl transform hover:-translate-y-2 transition duration-300 text-xl active:scale-95 border-b-4 border-orange-700 hover:border-orange-800">시작하기</button>
+        <div className="space-y-6">
+            <div>
+                <h3 className="text-xl font-semibold text-white mb-4">어떤 운동 목적을 가지고 계신가요?</h3>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                    {purposes.map((purpose) => (
+                        <button
+                            key={purpose}
+                            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors
+                                ${currentChoices.purpose?.includes(purpose)
+                                    ? 'bg-white text-orange-600 shadow-md'
+                                    : 'bg-white/30 text-white hover:bg-white/50'
+                                }`}
+                            onClick={() => handlePurposeChange(purpose)}
+                        >
+                            {purpose}
+                        </button>
+                    ))}
+                </div>
+            </div>
+
+            <div className="flex justify-end">
+                <button
+                    onClick={onNext}
+                    disabled={!currentChoices.purpose || currentChoices.purpose.length === 0}
+                    className="py-2 px-6 bg-white text-orange-600 rounded-lg font-semibold shadow-md
+                               disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100 transition-colors"
+                >
+                    다음
+                </button>
+            </div>
         </div>
     );
 };
