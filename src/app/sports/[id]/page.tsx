@@ -1,44 +1,50 @@
-// src/app/sports/[id]/page.tsx
-import { database } from '@/data/database';
-import { notFound } from 'next/navigation';
-import Image from 'next/image';
+'use client';
 
-interface Props {
-    params: { id: string };
+import { useRouter } from 'next/navigation';
+import { database } from '@/data/database';
+
+interface PageProps {
+    params: {
+        id: string;
+    };
 }
 
-const SportDetailPage = ({ params }: Props) => {
-    const sport = database.sports.find((s) => s.id === params.id);
+export default function Page({ params }: PageProps) {
+    const router = useRouter();
+    const { id } = params;
+
+    // id로 해당 스포츠 찾기
+    const sport = database.sports.find((sport) => sport.id === id);
 
     if (!sport) {
-        notFound(); // 없는 id면 404
+        return (
+            <main className="flex flex-col justify-center items-center min-h-screen text-center p-8">
+                <h1 className="text-2xl font-bold text-red-600 mb-4">스포츠를 찾을 수 없습니다 😢</h1>
+                <button
+                    onClick={() => router.back()}
+                    className="px-6 py-3 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition"
+                >
+                    돌아가기
+                </button>
+            </main>
+        );
     }
 
     return (
-        <main className="flex flex-col flex-grow min-h-0 mx-auto max-w-[512px] overflow-y-auto p-4 sm:p-6 md:p-8">
-            <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-6">
-                {sport.name} 상세 정보
-            </h1>
+        <main className="flex flex-col items-center justify-center min-h-screen text-center p-8">
+            <h1 className="text-3xl font-bold text-gray-800 mb-6">{sport.name}</h1>
+            <p className="text-gray-600 text-base mb-4">{sport.description}</p>
+            <p className="text-sm text-gray-500 mb-1">💪 강도: {sport.intensity}</p>
+            <p className="text-sm text-gray-500 mb-1">👥 선호도: {sport.preference}</p>
+            <p className="text-sm text-gray-500 mb-1">💰 비용: {sport.cost}</p>
+            <p className="text-sm text-gray-500 mb-1">🏠 장소: {sport.locationPreference}</p>
 
-            <Image
-                src={sport.imageUrl}
-                alt={sport.name}
-                width={600}
-                height={400}
-                className="rounded-xl mb-6 object-cover w-full h-64"
-            />
-
-            <p className="text-gray-700 text-base mb-6">{sport.description}</p>
-
-            <div className="bg-white rounded-xl shadow p-5 space-y-2 text-sm text-gray-600">
-                <p>💪 강도: {sport.intensity}</p>
-                <p>👥 선호도: {sport.preference}</p>
-                <p>💰 비용: {sport.cost}</p>
-                <p>🏠 장소: {sport.locationPreference}</p>
-                {sport.ageGroup && <p>👶 연령대: {sport.ageGroup.join(', ')}</p>}
-            </div>
+            <button
+                onClick={() => router.push('/classes')}
+                className="mt-6 px-6 py-3 bg-gradient-to-r from-orange-400 to-pink-500 text-white font-semibold rounded-lg hover:scale-105 transition"
+            >
+                관련 클래스 보러 가기
+            </button>
         </main>
     );
-};
-
-export default SportDetailPage;
+}
