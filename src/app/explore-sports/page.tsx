@@ -12,7 +12,7 @@ const ExploreSportsPage = () => {
     const router = useRouter();
 
     return (
-        <main className="flex flex-col flex-grow min-h-0 mx-auto max-w-[512px] overflow-y-auto p-4 sm:p-6 md:p-8 bg-gradient-to-b from-gray-50 to-white">
+        <main className="flex flex-col flex-grow min-h-screen justify-center items-center mx-auto max-w-[512px] overflow-y-auto p-4 sm:p-6 md:p-8 bg-gradient-to-b from-gray-50 to-white">
             <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-4">이색 스포츠 탐색</h1>
             <p className="text-gray-600 mb-6 text-sm sm:text-base">
                 카드를 넘기면서 다양한 이색 스포츠를 탐색해보세요!

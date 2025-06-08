@@ -22,7 +22,7 @@ export const database: Database = {
             ageGroup: ['20대', '30대', '40대'],
             locationPreference: '실외',
             availableTime: ['주말'],
-            imageUrl: '/images/paragliding.jpg',
+            imageUrl: '/images/paragliding.webp',
             description: '산 정상에서 활공하며 하늘을 나는 레포츠.',
         },
         {
@@ -35,7 +35,7 @@ export const database: Database = {
             ageGroup: ['10대', '20대', '30대'],
             locationPreference: '실외',
             availableTime: ['주말'],
-            imageUrl: '/images/luge.jpg',
+            imageUrl: '/images/luge.png',
             description: '무동력 썰매로 경사로를 빠르게 내려오는 스포츠.',
         },
         {
@@ -87,7 +87,7 @@ export const database: Database = {
             ageGroup: ['30대', '40대', '50대 이상'],
             locationPreference: '실외',
             availableTime: ['주말'],
-            imageUrl: '/images/hot_air_balloon.jpg',
+            imageUrl: '/images/hot_air_balloon.png',
             description: '열기구를 타고 하늘 위에서 풍경을 감상하는 체험.',
         },
         {
@@ -113,7 +113,7 @@ export const database: Database = {
             ageGroup: ['20대', '30대', '40대'],
             locationPreference: '실외',
             availableTime: ['주말'],
-            imageUrl: '/images/zipline.jpg',
+            imageUrl: '/images/zipline.webp',
             description: '와이어 케이블을 타고 공중을 활강하는 레포츠.',
         },
         {
@@ -126,7 +126,7 @@ export const database: Database = {
             ageGroup: ['20대', '30대', '40대'],
             locationPreference: '실외',
             availableTime: ['주말'],
-            imageUrl: '/images/surfing.jpg',
+            imageUrl: '/images/surfing.jpeg',
             description: '파도나 바람을 이용해 보드 위를 달리는 수상 스포츠.',
         },
         {
@@ -237,7 +237,7 @@ export const database: Database = {
             ageGroup: ['10대', '20대', '30대'],
             locationPreference: '실외',
             availableTime: ['평일 오후', '주말'],
-            imageUrl: '/images/skateboard.jpg',
+            imageUrl: '/images/skateboard.jpeg',
             description: '도심 전용 파크, 공원에서 즐기는 보드 스포츠.',
         },
         // 18️⃣ 인라인롤러
@@ -349,7 +349,7 @@ export const database: Database = {
             ageGroup: ['20대', '30대', '40대'],
             locationPreference: '실내',
             availableTime: ['평일 오후', '주말'],
-            imageUrl: '/images/fencing.jpg',
+            imageUrl: '/images/fencing.avif',
             description: '검을 사용한 빠른 반응 스포츠.',
         },
         // 26️⃣ 추크볼
@@ -363,7 +363,7 @@ export const database: Database = {
             ageGroup: ['10대', '20대', '30대'],
             locationPreference: '실내',
             availableTime: ['평일 오후', '주말'],
-            imageUrl: '/images/tchoukball.jpg',
+            imageUrl: '/images/tchoukball.jpeg',
             description: '핸드볼과 배구가 결합된 뉴스포츠.',
         },
         // 27️⃣ 킥복싱
@@ -377,7 +377,7 @@ export const database: Database = {
             ageGroup: ['20대', '30대'],
             locationPreference: '실내',
             availableTime: ['평일 오후', '주말'],
-            imageUrl: '/images/kickboxing.jpg',
+            imageUrl: '/images/kickboxing.webp',
             description: '킥과 펀치가 결합된 격투 스포츠.',
         },
         // 28️⃣ 팔씨름
@@ -391,7 +391,7 @@ export const database: Database = {
             ageGroup: ['10대', '20대', '30대'],
             locationPreference: '실내',
             availableTime: ['주말'],
-            imageUrl: '/images/arm_wrestling.jpg',
+            imageUrl: '/images/arm_wrestling.webp',
             description: '팔 힘을 겨루는 스포츠.',
         },
         // 29️⃣ 궁도(국궁)
@@ -405,7 +405,7 @@ export const database: Database = {
             ageGroup: ['20대', '30대', '40대'],
             locationPreference: '실외',
             availableTime: ['주말'],
-            imageUrl: '/images/korean_archery.jpg',
+            imageUrl: '/images/korean_archery.webp',
             description: '한국 전통 활쏘기 스포츠.',
         },
         // 30️⃣ 한궁
@@ -475,7 +475,7 @@ export const database: Database = {
             ageGroup: ['20대', '30대', '40대', '50대 이상'],
             locationPreference: '실내',
             availableTime: ['평일 오전', '주말'],
-            imageUrl: '/images/aquabike.jpg',
+            imageUrl: '/images/aquabike.png',
             description: '물속에서 자전거를 타는 운동.',
         },
         // 35️⃣ 슬랙라인
@@ -489,7 +489,7 @@ export const database: Database = {
             ageGroup: ['10대', '20대', '30대'],
             locationPreference: '실외',
             availableTime: ['주말'],
-            imageUrl: '/images/slackline.jpg',
+            imageUrl: '/images/slackline.jpeg',
             description: '줄 위에서 균형 잡는 스포츠.',
         },
         // 36️⃣ 트램폴린 점프
@@ -531,7 +531,7 @@ export const database: Database = {
             ageGroup: ['20대', '30대'],
             locationPreference: '실내',
             availableTime: ['주말'],
-            imageUrl: '/images/archery_cafe.jpg',
+            imageUrl: '/images/archery_cafe.jpeg',
             description: '실내에서 양궁 및 사격 체험.',
         },
         // 39️⃣ 실내 스크린 스포츠
@@ -573,7 +573,7 @@ export const database: Database = {
             ageGroup: ['10대', '20대', '30대'],
             locationPreference: '실내',
             availableTime: ['주말'],
-            imageUrl: '/images/indoor_rodeo.jpg',
+            imageUrl: '/images/indoor_rodeo.jpeg',
             description: '기계 말을 타며 균형감각을 기르는 체험.',
         },
         // 42️⃣ 실내 스키/스노보드
@@ -601,7 +601,7 @@ export const database: Database = {
             ageGroup: ['10대', '20대', '30대'],
             locationPreference: '실외',
             availableTime: ['주말'],
-            imageUrl: '/images/water_wrestling.jpg',
+            imageUrl: '/images/water_wrestling.jpeg',
             description: '물 위에서 하는 씨름형 레포츠.',
         },
         // 44️⃣ 미끄러운 기둥 건너기
@@ -615,7 +615,7 @@ export const database: Database = {
             ageGroup: ['10대', '20대'],
             locationPreference: '실외',
             availableTime: ['주말'],
-            imageUrl: '/images/slippery_pole.jpg',
+            imageUrl: '/images/slippery_pole.webp',
             description: '물 위에 설치된 미끄러운 기둥을 건너는 체험.',
         },
         // 45️⃣ 보물찾기(드론 이벤트)
@@ -699,7 +699,7 @@ export const database: Database = {
             ageGroup: ['10대', '20대', '30대', '40대'],
             locationPreference: '실내',
             availableTime: ['주말'],
-            imageUrl: '/images/indoor_pingpong.jpg',
+            imageUrl: '/images/indoor_pingpong.webp',
             description: '체육관에서 즐기는 탁구 및 배드민턴.',
         },
 
