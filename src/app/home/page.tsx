@@ -1,5 +1,3 @@
-// src/app/home/page.tsx
-
 'use client';
 
 import React, { useState, useEffect } from 'react';
@@ -18,18 +16,16 @@ type PageType = 'home' | 'classes' | 'community' | 'my' | 'store';
 
 const HomePage: React.FC = () => {
     const [activePage, setActivePage] = useState<PageType>('home');
-    const [userOnboardingChoices, setUserOnboardingChoices] = useState<OnboardingChoices>(
-        {
-            purpose: [],
-            ageGroup: [],
-            availableTime: [],
-            intensity: undefined,
-            preference: undefined,
-            cost: undefined,
-            physicalLimitations: undefined,
-            locationPreference: undefined,
-        }
-    );
+    const [userOnboardingChoices, setUserOnboardingChoices] = useState<OnboardingChoices>({
+        purpose: [],
+        ageGroup: [],
+        availableTime: [],
+        intensity: undefined,
+        preference: undefined,
+        cost: undefined,
+        physicalLimitations: undefined,
+        locationPreference: undefined,
+    });
     const [recommendedSportsList, setRecommendedSportsList] = useState<Sport[]>([]);
 
     useEffect(() => {
@@ -40,7 +36,7 @@ const HomePage: React.FC = () => {
     }, []);
 
     useEffect(() => {
-        const filtered = database.sports.filter(sport => {
+        const filtered = database.sports.filter((sport) => {
             let matches = true;
 
             if (userOnboardingChoices.intensity && sport.intensity !== userOnboardingChoices.intensity) {
@@ -52,7 +48,7 @@ const HomePage: React.FC = () => {
 
             if (userOnboardingChoices.purpose && userOnboardingChoices.purpose.length > 0) {
                 if (sport.purpose) {
-                    const hasMatchingPurpose = userOnboardingChoices.purpose.some(choicePurpose =>
+                    const hasMatchingPurpose = userOnboardingChoices.purpose.some((choicePurpose) =>
                         sport.purpose!.includes(choicePurpose)
                     );
                     if (!hasMatchingPurpose) {
@@ -69,7 +65,7 @@ const HomePage: React.FC = () => {
 
             if (userOnboardingChoices.ageGroup && userOnboardingChoices.ageGroup.length > 0) {
                 if (sport.ageGroup) {
-                    const hasMatchingAgeGroup = userOnboardingChoices.ageGroup.some(choiceAge =>
+                    const hasMatchingAgeGroup = userOnboardingChoices.ageGroup.some((choiceAge) =>
                         sport.ageGroup!.includes(choiceAge)
                     );
                     if (!hasMatchingAgeGroup) {
@@ -80,14 +76,18 @@ const HomePage: React.FC = () => {
                 }
             }
 
-            if (userOnboardingChoices.locationPreference && sport.locationPreference !== userOnboardingChoices.locationPreference && userOnboardingChoices.locationPreference !== '상관 없음') {
+            if (
+                userOnboardingChoices.locationPreference &&
+                sport.locationPreference !== userOnboardingChoices.locationPreference &&
+                userOnboardingChoices.locationPreference !== '상관 없음'
+            ) {
                 matches = false;
             }
 
             if (userOnboardingChoices.availableTime && userOnboardingChoices.availableTime.length > 0) {
                 if (!userOnboardingChoices.availableTime.includes('언제든')) {
                     if (sport.availableTime) {
-                        const hasMatchingTime = userOnboardingChoices.availableTime.some(choiceTime =>
+                        const hasMatchingTime = userOnboardingChoices.availableTime.some((choiceTime) =>
                             sport.availableTime!.includes(choiceTime)
                         );
                         if (!hasMatchingTime) {
@@ -98,14 +98,15 @@ const HomePage: React.FC = () => {
                     }
                 }
             }
+
             return matches;
         });
+
         setRecommendedSportsList(filtered);
     }, [userOnboardingChoices]);
 
     const renderPageContent = () => {
-        // 모든 페이지에 적용될 공통 패딩 클래스를 정의
-        const commonPagePaddingClass = "p-4 sm:p-6 md:p-8"; // 현재 대부분 페이지에 적용된 클래스
+        const commonPagePaddingClass = 'p-4 sm:p-6 md:p-8';
 
         switch (activePage) {
             case 'home':
@@ -129,134 +130,71 @@ const HomePage: React.FC = () => {
                         </div>
                     </div>
                 );
+
             case 'classes':
                 return (
                     <div className={`page active ${commonPagePaddingClass} overflow-y-auto`}>
-                        <PageHeader title="클래스 & 여행" description="SPIN과 함께라면 당신의 취향을 찾아 더욱 풍부한 경험을 누릴 수 있습니다." />
+                        <PageHeader
+                            title="클래스 & 여행"
+                            description="SPIN과 함께라면 당신의 취향을 찾아 더욱 풍부한 경험을 누릴 수 있습니다."
+                        />
                         <div className="mt-6">
                             <AllClasses classes={database.classes} />
                         </div>
-                        <div className="mt-8 text-center">
-                            <button className="bg-gray-200 text-gray-800 px-6 py-3 rounded-lg font-semibold hover:bg-gray-300 transition-colors duration-200 text-sm sm:text-base">
-                                더 다양한 클래스 보기
-                            </button>
-                        </div>
                     </div>
                 );
+
             case 'community':
                 return (
                     <div className={`page active ${commonPagePaddingClass} overflow-y-auto`}>
-                        <PageHeader title="커뮤니티" description="SPIN 회원들과 소통하고 정보를 공유하며 새로운 경험을 나누세요!" />
+                        <PageHeader
+                            title="커뮤니티"
+                            description="SPIN 회원들과 소통하고 정보를 공유하며 새로운 경험을 나누세요!"
+                        />
                         <div className="mt-6">
                             <CommunityPosts posts={database.community} />
                         </div>
-                        <div className="mt-8 text-center">
-                            <button className="bg-gray-200 text-gray-800 px-6 py-3 rounded-lg font-semibold hover:bg-gray-300 transition-colors duration-200 text-sm sm:text-base">
-                                더 많은 게시글 보기
-                            </button>
-                        </div>
                     </div>
                 );
+
             case 'my':
                 return (
-                    // 이 div에서 mx-auto와 max-w-[512px]를 제거했습니다.
-                    // 부모인 main 태그가 이미 너비 제한과 중앙 정렬을 처리합니다.
                     <div className={`page active ${commonPagePaddingClass} overflow-y-auto`}>
                         <PageHeader title="마이페이지" description="SPIN과 함께한 당신의 기록과 활동을 관리해보세요." />
 
-                        <div className="bg-white rounded-xl shadow-lg p-5 sm:p-6 mb-6 mt-6 flex items-center">
-                            <div className="w-16 h-16 sm:w-20 sm:h-20 bg-orange-200 rounded-full flex items-center justify-center text-orange-700 font-bold text-2xl sm:text-3xl mr-4 sm:mr-6">
-                                MY
-                            </div>
-                            <div>
-                                <h2 className="text-xl sm:text-2xl font-bold text-gray-800">{database.user.name}스핀</h2>
-                                <p className="text-gray-600 text-sm sm:text-base">
-                                    {database.user.gender === 'male' ? '남성' : database.user.gender === 'female' ? '여성' : '기타'} | {database.user.dateOfBirth} | {database.user.phoneNumber}
-                                </p>
+                        <div className="bg-white rounded-xl shadow-lg p-5 sm:p-6">
+                            <div className="flex items-center">
+                                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-orange-200 rounded-full flex items-center justify-center text-orange-700 font-bold text-2xl sm:text-3xl mr-4 sm:mr-6">
+                                    MY
+                                </div>
+                                <div className="flex-1"> {/* ✅ flex-1 추가 */}
+                                    <h2 className="text-xl sm:text-2xl font-bold text-gray-800">{database.user.name}스핀</h2>
+                                    <p className="text-gray-600 text-sm sm:text-base">
+                                        {database.user.gender === 'male'
+                                            ? '남성'
+                                            : database.user.gender === 'female'
+                                            ? '여성'
+                                            : '기타'}{' '}
+                                        | {database.user.dateOfBirth} | {database.user.phoneNumber}
+                                    </p>
+                                </div>
                             </div>
                         </div>
 
-                        {/* 나의 활동 기록 섹션 */}
-                        <section className="bg-white rounded-xl shadow-lg p-5 sm:p-6 mb-6">
+                        <section className="bg-white rounded-xl shadow-lg p-5 sm:p-6">
                             <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-4">나의 활동 기록</h3>
                             <ul className="space-y-3 text-gray-700 text-sm sm:text-base">
                                 <li className="flex justify-between items-center py-2 border-b border-gray-100 last:border-b-0">
                                     <span>클라이밍 강습 1-1회 완료</span>
                                     <span className="text-orange-500 font-semibold">2025.05.20</span>
                                 </li>
-                                <li className="flex justify-between items-center py-2 border-b border-gray-100 last:border-b-0">
-                                    <span>커뮤니티 게시글 3개 작성</span>
-                                    <span className="text-orange-500 font-semibold">진행 중</span>
-                                </li>
-                                <li className="flex justify-between items-center py-2 border-b border-gray-100 last:border-b-0">
-                                    <span>좋아하는 클래스 5개 저장</span>
-                                    <span className="text-orange-500 font-semibold">진행 중</span>
-                                </li>
-                            </ul>
-                        </section>
-
-                        {/* 설정 및 약관 섹션 */}
-                        <section className="bg-white rounded-xl shadow-lg p-5 sm:p-6 mb-6">
-                            <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-4">설정 및 약관</h3>
-                            <ul className="space-y-3 text-gray-700 text-sm sm:text-base">
-                                <li className="flex justify-between items-center py-2 border-b border-gray-100 last:border-b-0">
-                                    <span>개인정보 처리방침</span>
-                                    <button className="text-blue-500 hover:underline" onClick={() => {
-                                        localStorage.removeItem('isLoggedIn');
-                                        localStorage.removeItem('hasCompletedOnboarding');
-                                        localStorage.removeItem('onboardingChoices');
-                                        localStorage.removeItem('agreedToTerms');
-                                        window.location.href = '/auth/login';
-                                    }}>
-                                        보기
-                                    </button>
-                                </li>
-                                <li className="flex justify-between items-center py-2 border-b border-gray-100 last:border-b-0">
-                                    <span>이용약관</span>
-                                    <button className="text-blue-500 hover:underline" onClick={() => {
-                                        if (window.confirm('정말로 회원 탈퇴하시겠습니까? 모든 데이터가 삭제됩니다.')) {
-                                            localStorage.clear();
-                                            window.location.href = '/auth/login';
-                                        }
-                                    }}>
-                                        보기
-                                    </button>
-                                </li>
-                            </ul>
-                        </section>
-
-                        {/* 기타 정보 섹션 */}
-                        <section className="bg-white rounded-xl shadow-lg p-5 sm:p-6">
-                            <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-4">기타</h3>
-                            <ul className="space-y-3 text-gray-700 text-sm sm:text-base">
-                                <li className="py-2">
-                                    <button className="text-red-500 hover:underline" onClick={() => {
-                                        localStorage.removeItem('isLoggedIn');
-                                        localStorage.removeItem('hasCompletedOnboarding');
-                                        localStorage.removeItem('onboardingChoices');
-                                        localStorage.removeItem('agreedToTerms');
-                                        window.location.href = '/auth/login';
-                                    }}>
-                                        로그아웃
-                                    </button>
-                                </li>
-                                <li className="py-2">
-                                    <button className="text-red-500 hover:underline" onClick={() => {
-                                        if (window.confirm('정말로 회원 탈퇴하시겠습니까? 모든 데이터가 삭제됩니다.')) {
-                                            localStorage.clear();
-                                            window.location.href = '/auth/login';
-                                        }
-                                    }}>
-                                        회원 탈퇴
-                                    </button>
-                                </li>
                             </ul>
                         </section>
                     </div>
                 );
+
             case 'store':
                 return (
-                    // store 페이지도 commonPagePaddingClass를 사용하도록 변경
                     <section id="page-store" className={`page active ${commonPagePaddingClass} overflow-y-auto`}>
                         <PageHeader
                             title="스핀 상점"
@@ -300,21 +238,21 @@ const HomePage: React.FC = () => {
                                 </a>
                             ))}
                         </div>
-                        <button className="w-full mt-6 py-3 bg-gray-100 text-gray-700 font-semibold rounded-lg hover:bg-gray-200 transition active:scale-98">
-                            더 많은 상품 보기
-                        </button>
                     </section>
                 );
+
             default:
                 return null;
         }
     };
 
     return (
-        <main className="relative flex flex-col min-h-screen mx-auto max-w-[512px]">
-            {renderPageContent()}
+        <>
+            <main className="flex flex-col flex-grow min-h-0 mx-auto max-w-[512px] overflow-y-auto">
+                {renderPageContent()}
+            </main>
             <BottomNav activePage={activePage} setActivePage={setActivePage} />
-        </main>
+        </>
     );
 };
 

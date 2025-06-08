@@ -1,14 +1,12 @@
-/* src/app/globals.css */
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* html 태그에 스크롤바와 전체 화면 배경색 설정 */
 html {
-  overflow-y: scroll; /* 세로 스크롤바를 항상 보이게 함 */
-  height: 100%; /* ✨ html의 높이를 뷰포트 전체로 설정 */
-  background-color: black; /* ✨ 최상위 요소인 html에 검은색 배경을 지정 */
+  overflow-y: scroll;
+  height: 100%;
+  background-color: black;
 }
 
 body {
@@ -18,28 +16,31 @@ body {
     color: #1A1A1A;
     margin: 0;
     padding: 0;
-    min-height: 100%; /* ✨ body의 최소 높이를 html과 동일하게 설정 */
-    display: flex; /* ✨ body를 flex 컨테이너로 만들어 자식 요소 정렬에 용이하게 함 */
-    flex-direction: column; /* ✨ 수직 정렬 */
-    background-color: black; /* ✨ body에도 검은색 배경을 다시 한번 지정하여 확실하게 만듦 */
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: black;
 }
 
-/* 스크롤바 스타일링 (동일) */
+/* 스크롤바 스타일링 */
 html::-webkit-scrollbar {
   width: 8px;
 }
+
 html::-webkit-scrollbar-track {
   background: #f1f1f1;
 }
+
 html::-webkit-scrollbar-thumb {
   background: #888;
   border-radius: 4px;
 }
+
 html::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
 
-/* chart-container는 변경 없음 */
+/* chart-container는 유지 */
 .chart-container {
     position: relative;
     width: 100%;
@@ -50,59 +51,99 @@ html::-webkit-scrollbar-thumb:hover {
     max-height: 400px;
 }
 
-/* .page 및 .page.active 클래스 수정 (최상위 페이지 컨테이너 역할) */
+/* 최종 수정된 .page.active */
 .page {
     display: none;
 }
-.page.active {
-    display: block;
-    background-color: white; /* 가운데 화면의 배경색을 흰색으로 설정 */
-    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.5); /* 그림자 추가로 양옆 검은색 배경과 구분 */
-    border-radius: 0.5rem; /* 모서리를 둥글게 */
 
-    /* ✨ 콘텐츠 높이 설정 및 BottomNav와의 간격 조정 */
-    flex-grow: 1; /* ✨ 남은 공간을 채우도록 함 (body가 flex-direction: column일 때) */
-    min-height: calc(100vh - 3.5rem); /* 최소한 뷰포트 높이에서 BottomNav만큼 제외한 높이 */
-    padding-bottom: calc(3.5rem + 1rem); /* BottomNav 높이 (h-14=3.5rem) + 하단 여백 (1rem) */
+.page.active {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 auto;
+    min-height: 0;
+    background-color: white;
+    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 0.5rem;
+    padding: 1.5rem; /* ✅ 전체 padding 추가 */
+    padding-bottom: calc(3.5rem + 1rem);
 }
 
-/* 미디어 쿼리: sm (640px) 이상일 때 BottomNav 높이가 h-16 (4rem)으로 바뀌므로 반영 */
 @media (min-width: 640px) {
     .page.active {
-        padding-bottom: calc(4rem + 1rem); /* BottomNav (h-16=4rem) + 하단 여백 (1rem) */
-        min-height: calc(100vh - 4rem);
+        padding-bottom: calc(4rem + 1rem);
+        min-height: 0;
     }
 }
 
-/* .bottom-nav-icon 클래스 (동일) */
+/* bottom-nav-icon */
 .bottom-nav-icon {
     width: 28px;
     height: 28px;
 }
 
-/* 기존 애니메이션 클래스들은 그대로 유지 */
-.fade-in { animation: fadeIn 0.5s ease-in-out; }
+/* 기존 애니메이션 유지 */
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes bounceIn {
-    0% { opacity: 0; transform: scale(0.3) translateY(50px); }
-    50% { opacity: 1; transform: scale(1.1) translateY(-10px); }
-    70% { transform: scale(0.9) translateY(5px); }
-    100% { transform: scale(1) translateY(0); }
+    0% {
+        opacity: 0;
+        transform: scale(0.3) translateY(50px);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.1) translateY(-10px);
+    }
+    70% {
+        transform: scale(0.9) translateY(5px);
+    }
+    100% {
+        transform: scale(1) translateY(0);
+    }
 }
-.animate-bounce-in { animation: bounceIn 1s ease-out forwards; }
+
+.animate-bounce-in {
+    animation: bounceIn 1s ease-out forwards;
+}
 
 @keyframes slideIn {
-    0% { opacity: 0; transform: translateX(-100%); }
-    100% { opacity: 1; transform: translateX(0); }
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
-.animate-slide-in { animation: slideIn 0.8s ease-out forwards; }
+
+.animate-slide-in {
+    animation: slideIn 0.8s ease-out forwards;
+}
 
 @keyframes popIn {
-    0% { opacity: 0; transform: scale(0.8); }
-    100% { opacity: 1; transform: scale(1); }
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
-.animate-pop-in { animation: popIn 0.6s ease-out forwards; }
+
+.animate-pop-in {
+    animation: popIn 0.6s ease-out forwards;
+}
