@@ -104,10 +104,13 @@ const HomePage: React.FC = () => {
     }, [userOnboardingChoices]);
 
     const renderPageContent = () => {
+        // 모든 페이지에 적용될 공통 패딩 클래스를 정의
+        const commonPagePaddingClass = "p-4 sm:p-6 md:p-8"; // 현재 대부분 페이지에 적용된 클래스
+
         switch (activePage) {
             case 'home':
                 return (
-                    <div className="page active p-4 sm:p-6 md:p-8 overflow-y-auto">
+                    <div className={`page active ${commonPagePaddingClass} overflow-y-auto`}>
                         <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-4 sm:mb-6">SPIN 홈</h1>
                         <p className="text-gray-600 text-sm sm:text-base mb-6 sm:mb-8">
                             {userOnboardingChoices.preference === '개인' && '혼자서 즐기기 좋은'}
@@ -128,7 +131,7 @@ const HomePage: React.FC = () => {
                 );
             case 'classes':
                 return (
-                    <div className="page active p-4 sm:p-6 md:p-8 overflow-y-auto">
+                    <div className={`page active ${commonPagePaddingClass} overflow-y-auto`}>
                         <PageHeader title="클래스 & 여행" description="SPIN과 함께라면 당신의 취향을 찾아 더욱 풍부한 경험을 누릴 수 있습니다." />
                         <div className="mt-6">
                             <AllClasses classes={database.classes} />
@@ -142,7 +145,7 @@ const HomePage: React.FC = () => {
                 );
             case 'community':
                 return (
-                    <div className="page active p-4 sm:p-6 md:p-8 overflow-y-auto">
+                    <div className={`page active ${commonPagePaddingClass} overflow-y-auto`}>
                         <PageHeader title="커뮤니티" description="SPIN 회원들과 소통하고 정보를 공유하며 새로운 경험을 나누세요!" />
                         <div className="mt-6">
                             <CommunityPosts posts={database.community} />
@@ -156,8 +159,9 @@ const HomePage: React.FC = () => {
                 );
             case 'my':
                 return (
-                    // ⭐ 이 div는 이제 max-w나 mx-auto를 가지지 않습니다. ⭐
-                    <div className="page active p-4 sm:p-6 md:p-8 overflow-y-auto">
+                    // 이 div에서 mx-auto와 max-w-[512px]를 제거했습니다.
+                    // 부모인 main 태그가 이미 너비 제한과 중앙 정렬을 처리합니다.
+                    <div className={`page active ${commonPagePaddingClass} overflow-y-auto`}>
                         <PageHeader title="마이페이지" description="SPIN과 함께한 당신의 기록과 활동을 관리해보세요." />
 
                         <div className="bg-white rounded-xl shadow-lg p-5 sm:p-6 mb-6 mt-6 flex items-center">
@@ -197,15 +201,26 @@ const HomePage: React.FC = () => {
                             <ul className="space-y-3 text-gray-700 text-sm sm:text-base">
                                 <li className="flex justify-between items-center py-2 border-b border-gray-100 last:border-b-0">
                                     <span>개인정보 처리방침</span>
-                                    <a href="/privacy-policy" className="text-blue-500 hover:underline">
+                                    <button className="text-blue-500 hover:underline" onClick={() => {
+                                        localStorage.removeItem('isLoggedIn');
+                                        localStorage.removeItem('hasCompletedOnboarding');
+                                        localStorage.removeItem('onboardingChoices');
+                                        localStorage.removeItem('agreedToTerms');
+                                        window.location.href = '/auth/login';
+                                    }}>
                                         보기
-                                    </a>
+                                    </button>
                                 </li>
                                 <li className="flex justify-between items-center py-2 border-b border-gray-100 last:border-b-0">
                                     <span>이용약관</span>
-                                    <a href="/terms-of-service" className="text-blue-500 hover:underline">
+                                    <button className="text-blue-500 hover:underline" onClick={() => {
+                                        if (window.confirm('정말로 회원 탈퇴하시겠습니까? 모든 데이터가 삭제됩니다.')) {
+                                            localStorage.clear();
+                                            window.location.href = '/auth/login';
+                                        }
+                                    }}>
                                         보기
-                                    </a>
+                                    </button>
                                 </li>
                             </ul>
                         </section>
@@ -241,8 +256,8 @@ const HomePage: React.FC = () => {
                 );
             case 'store':
                 return (
-                    // ⭐ 여기도 max-w-[512px] mx-auto 제거 ⭐
-                    <section id="page-store" className="page active p-4 overflow-y-auto">
+                    // store 페이지도 commonPagePaddingClass를 사용하도록 변경
+                    <section id="page-store" className={`page active ${commonPagePaddingClass} overflow-y-auto`}>
                         <PageHeader
                             title="스핀 상점"
                             description="이색 스포츠 장비, 의류 및 관련 상품을 만나보세요. 파트너십을 통해 엄선된 상품을 제공합니다."
@@ -296,7 +311,6 @@ const HomePage: React.FC = () => {
     };
 
     return (
-        // ⭐ 이 main 태그에만 전체 앱의 최대 너비 제한을 적용합니다. ⭐
         <main className="relative flex flex-col min-h-screen mx-auto max-w-[512px]">
             {renderPageContent()}
             <BottomNav activePage={activePage} setActivePage={setActivePage} />
