@@ -25,6 +25,11 @@ const HomePageContent: React.FC<HomePageContentProps> = ({ recommendedSportsList
 
     return (
         <div className={`page active ${commonPadding} overflow-y-auto`}>
+            <PageHeader
+                title="SPIN 홈"
+                description="이색 스포츠와 클래스를 추천해 드려요!"
+                className="mb-6"
+            />
             <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-4 sm:mb-6">SPIN 홈</h1>
             <p className="text-gray-600 text-sm sm:text-base mb-6 sm:mb-8">
                 {userOnboardingChoices.preference === '개인' && '혼자서 즐기기 좋은'}
