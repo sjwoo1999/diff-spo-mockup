@@ -11,6 +11,7 @@ import PageHeader from '@/components/common/PageHeader';
 import AllClasses from '@/components/classes/AllClasses';
 import CommunityPosts from '@/components/community/CommunityPosts';
 import Image from 'next/image';
+import MyPage from '@/components/my/MyPageContent';
 
 type PageType = 'home' | 'classes' | 'community' | 'my' | 'store';
 
@@ -157,43 +158,14 @@ const HomePage: React.FC = () => {
                     </div>
                 );
 
-            case 'my':
-                return (
-                    <div className={`page active ${commonPagePaddingClass} overflow-y-auto`}>
-                        <PageHeader title="마이페이지" description="SPIN과 함께한 당신의 기록과 활동을 관리해보세요." />
-
-                        <div className="bg-white rounded-xl shadow-lg p-5 sm:p-6">
-                            <div className="flex items-center">
-                                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-orange-200 rounded-full flex items-center justify-center text-orange-700 font-bold text-2xl sm:text-3xl mr-4 sm:mr-6">
-                                    MY
-                                </div>
-                                <div className="flex-1"> {/* ✅ flex-1 추가 */}
-                                    <h2 className="text-xl sm:text-2xl font-bold text-gray-800">{database.user.name}스핀</h2>
-                                    <p className="text-gray-600 text-sm sm:text-base">
-                                        {database.user.gender === 'male'
-                                            ? '남성'
-                                            : database.user.gender === 'female'
-                                            ? '여성'
-                                            : '기타'}{' '}
-                                        | {database.user.dateOfBirth} | {database.user.phoneNumber}
-                                    </p>
-                                </div>
-                            </div>
+                case 'my':
+                    return (
+                        <div className="page active overflow-y-auto">
+                            <MyPage database={database} />
                         </div>
-
-                        <section className="bg-white rounded-xl shadow-lg p-5 sm:p-6">
-                            <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-4">나의 활동 기록</h3>
-                            <ul className="space-y-3 text-gray-700 text-sm sm:text-base">
-                                <li className="flex justify-between items-center py-2 border-b border-gray-100 last:border-b-0">
-                                    <span>클라이밍 강습 1-1회 완료</span>
-                                    <span className="text-orange-500 font-semibold">2025.05.20</span>
-                                </li>
-                            </ul>
-                        </section>
-                    </div>
-                );
-
-            case 'store':
+                    );
+                
+                case 'store':
                 return (
                     <section id="page-store" className={`page active ${commonPagePaddingClass} overflow-y-auto`}>
                         <PageHeader
