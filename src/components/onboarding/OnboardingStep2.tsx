@@ -1,6 +1,6 @@
 // src/components/onboarding/OnboardingStep2.tsx
 import React from 'react';
-import { OnboardingStepWithPrevNextProps } from '@/components/onboarding/OnboardingStepProps'; // ✨ OnboardingStep2Props 대신 OnboardingStepWithPrevNextProps 임포트
+import { OnboardingStepWithPrevNextProps } from '@/types/OnboardingStepProps'; // ✨ OnboardingStep2Props 대신 OnboardingStepWithPrevNextProps 임포트
 import { IntensityLevel, PreferenceType, CostLevel, AgeGroup, LocationPreference, AvailableTime, PhysicalLimitations } from '@/types'; // 필요한 타입들 임포트
 
 // OnboardingStep2Props 대신 OnboardingStepWithPrevNextProps를 사용

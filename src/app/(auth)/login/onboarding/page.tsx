@@ -34,7 +34,7 @@ const OnboardingPage: React.FC = () => {
             } 
             // 온보딩 완료했으면 홈으로
             else if (hasCompletedOnboarding === 'true') {
-                router.replace('/home');
+                router.replace('/main');
             }
             // 그 외 (로그인 O, 약관 동의 O, 온보딩 미완료) -> 현재 온보딩 페이지 유지
         }
@@ -44,14 +44,14 @@ const OnboardingPage: React.FC = () => {
         const success = await completeOnboarding();
         if (success) {
             localStorage.setItem('hasCompletedOnboarding', 'true'); // 온보딩 완료 상태 저장
-            router.push('/home');
+            router.push('/main');
         }
     }, [completeOnboarding, router]);
 
     const handleSkipAdditionalQuestions = useCallback(async () => {
         await skipOptionalQuestions();
         localStorage.setItem('hasCompletedOnboarding', 'true'); // 건너뛰면 완료한 것으로 간주
-        router.push('/home');
+        router.push('/main');
     }, [skipOptionalQuestions, router]);
 
     const renderStepContent = () => {

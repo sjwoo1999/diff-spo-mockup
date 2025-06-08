@@ -21,8 +21,9 @@ const BottomNav: React.FC<BottomNavProps> = ({ activePage, setActivePage }) => {
                         className={`flex flex-col items-center p-1 sm:p-2 text-xs sm:text-sm font-medium ${activePage === 'home' ? 'text-orange-600' : 'text-gray-500 hover:text-orange-600'}`}
                         onClick={() => setActivePage('home')}
                     >
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-5 h-5 sm:w-6 sm:h-6 mb-1">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12m-4.5 9V9.75a2.25 2.25 0 0 0-2.25-2.25H15M12 18.75l-3-3m0 0-3 3m3-3v6m-9-6h12a2.25 2.25 0 0 0 2.25-2.25V6.75a2.25 2.25 0 0 0-2.25-2.25H6.75A2.25 2.25 0 0 0 4.5 6.75v12a2.25 2.25 0 0 0 2.25 2.25Z" />
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 sm:w-6 sm:h-6 mb-1">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M3 9.75L12 4l9 5.75v8.25A2.25 2.25 0 0 1 18.75 21H5.25A2.25 2.25 0 0 1 3 18V9.75z" />
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M9 21V12h6v9" />
                         </svg>
                         홈
                     </button>
@@ -43,19 +44,19 @@ const BottomNav: React.FC<BottomNavProps> = ({ activePage, setActivePage }) => {
                         className={`flex flex-col items-center p-1 sm:p-2 text-xs sm:text-sm font-medium ${activePage === 'community' ? 'text-orange-600' : 'text-gray-500 hover:text-orange-600'}`}
                         onClick={() => setActivePage('community')}
                     >
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-5 h-5 sm:w-6 sm:h-6 mb-1">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M18 18.75a4.5 4.5 0 0 0-4.5-4.5H13.5a4.5 4.5 0 0 0-4.5 4.5M12 10.5a3 3 0 1 1 0-6 3 3 0 0 1 0 6ZM6 20.25a6 6 0 0 1 12 0H6Z" />
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 sm:w-6 sm:h-6 mb-1">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M18 18.75a4.5 4.5 0 0 0-4.5-4.5m-3 0a4.5 4.5 0 0 0-4.5 4.5M18 18.75H6m12 0v.75a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3v-.75m9-12.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
                         </svg>
                         커뮤니티
                     </button>
                 </li>
-                 <li>
+                <li>
                     <button
                         className={`flex flex-col items-center p-1 sm:p-2 text-xs sm:text-sm font-medium ${activePage === 'store' ? 'text-orange-600' : 'text-gray-500 hover:text-orange-600'}`}
                         onClick={() => setActivePage('store')}
                     >
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 sm:w-6 sm:h-6 mb-1">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 21v-7.5m-3 0v7.5m0-7.5H9M6.75 15.75h3V21L3 18.75m11.25-10.5H21m-4.5 4.5H21M3 5.25h2.25a2.25 2.25 0 0 1 2.25 2.25v2.25M6.75 15.75h-3V5.25A2.25 2.25 0 0 1 6 3h3.375c.621 0 1.125.504 1.125 1.125v3.625M4.5 15.75h4.5m-3-6h6m-3-6H15.75m-6 6h.008v.008H9m0 0h.008v.008H9m0 0h.008v.008H9m0 0h.008v.008H9M9 15.75h-.008v-.008H9m0 0h-.008v-.008H9m0 0h-.008v-.008H9m0 0h-.008v-.008H9" />
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 sm:w-6 sm:h-6 mb-1">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 9V6.75A4.5 4.5 0 0 0 12 2.25v0a4.5 4.5 0 0 0-4.5 4.5V9M4.5 9h15M4.5 9v10.5A2.25 2.25 0 0 0 6.75 21h10.5a2.25 2.25 0 0 0 2.25-2.25V9M4.5 9h15" />
                         </svg>
                         상점
                     </button>

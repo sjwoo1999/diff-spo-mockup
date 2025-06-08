@@ -1,4 +1,3 @@
-// src/components/my/MyPage.tsx
 'use client';
 
 import React from 'react';
@@ -10,40 +9,38 @@ interface MyPageProps {
     database: Database;
 }
 
-const MyPage: React.FC<MyPageProps> = ({ database }) => {
+const MyPageContent: React.FC<MyPageProps> = ({ database }) => {
     const user = database.user;
     const router = useRouter();
 
-    // 개인정보 처리방침 페이지로 이동하는 함수
     const handlePrivacyPolicyClick = () => {
-        router.push('/privacy-policy'); // ⭐ 실제 경로로 변경 필요 ⭐
+        router.push('/privacy-policy');
     };
 
-    // 이용약관 페이지로 이동하는 함수
     const handleTermsOfServiceClick = () => {
-        router.push('/terms-of-service'); // ⭐ 실제 경로로 변경 필요 ⭐
+        router.push('/terms-of-service');
     };
 
-    // 로그아웃 함수 (예시)
     const handleLogout = () => {
-        // 실제 로그아웃 로직 구현 (예: 토큰 삭제, 세션 종료 등)
         console.log('로그아웃 되었습니다.');
-        router.push('/login'); // 로그아웃 후 로그인 페이지로 이동 (예시)
+        router.push('/login');
     };
 
-    // 회원 탈퇴 함수 (예시)
     const handleAccountDeletion = () => {
-        // 실제 회원 탈퇴 로직 구현
         if (window.confirm('정말로 회원 탈퇴하시겠습니까? 모든 데이터가 삭제됩니다.')) {
             console.log('회원 탈퇴가 완료되었습니다.');
-            router.push('/signup'); // 회원 탈퇴 후 회원가입 페이지로 이동 (예시)
+            router.push('/signup');
         }
     };
 
     return (
-        <div className="p-4 sm:p-6 md:p-8 max-w-[512px] mx-auto">
+        <section
+            id="page-my"
+            className="page active w-full max-w-[512px] mx-auto p-4 sm:p-6 md:p-8 overflow-y-auto min-h-screen flex flex-col"
+        >
             <PageHeader title="마이페이지" description="SPIN과 함께한 당신의 기록과 활동을 관리해보세요." />
 
+            {/* 유저 프로필 */}
             <div className="bg-white rounded-xl shadow-lg p-5 sm:p-6 mb-6 mt-6 flex items-center">
                 <div className="w-16 h-16 sm:w-20 sm:h-20 bg-orange-200 rounded-full flex items-center justify-center text-orange-700 font-bold text-2xl sm:text-3xl mr-4 sm:mr-6">
                     MY
@@ -57,7 +54,7 @@ const MyPage: React.FC<MyPageProps> = ({ database }) => {
             </div>
 
             {/* 나의 활동 기록 섹션 */}
-            <section className="bg-white rounded-xl shadow-lg p-5 sm:p-6 mb-6">
+            <div className="bg-white rounded-xl shadow-lg p-5 sm:p-6 mb-6">
                 <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-4">나의 활동 기록</h3>
                 <ul className="space-y-3 text-gray-700 text-sm sm:text-base">
                     <li className="flex justify-between items-center py-2 border-b border-gray-100 last:border-b-0">
@@ -73,10 +70,10 @@ const MyPage: React.FC<MyPageProps> = ({ database }) => {
                         <span className="text-orange-500 font-semibold">진행 중</span>
                     </li>
                 </ul>
-            </section>
+            </div>
 
             {/* 설정 및 약관 섹션 */}
-            <section className="bg-white rounded-xl shadow-lg p-5 sm:p-6 mb-6">
+            <div className="bg-white rounded-xl shadow-lg p-5 sm:p-6 mb-6">
                 <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-4">설정 및 약관</h3>
                 <ul className="space-y-3 text-gray-700 text-sm sm:text-base">
                     <li className="flex justify-between items-center py-2 border-b border-gray-100 last:border-b-0">
@@ -98,10 +95,10 @@ const MyPage: React.FC<MyPageProps> = ({ database }) => {
                         </button>
                     </li>
                 </ul>
-            </section>
+            </div>
 
             {/* 기타 정보 섹션 */}
-            <section className="bg-white rounded-xl shadow-lg p-5 sm:p-6">
+            <div className="bg-white rounded-xl shadow-lg p-5 sm:p-6">
                 <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-4">기타</h3>
                 <ul className="space-y-3 text-gray-700 text-sm sm:text-base">
                     <li className="py-2">
@@ -115,9 +112,9 @@ const MyPage: React.FC<MyPageProps> = ({ database }) => {
                         </button>
                     </li>
                 </ul>
-            </section>
-        </div>
+            </div>
+        </section>
     );
 };
 
-export default MyPage;
+export default MyPageContent;

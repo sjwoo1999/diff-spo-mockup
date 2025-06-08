@@ -1,6 +1,6 @@
 // src/components/onboarding/OnboardingStep1.tsx
 import React from 'react';
-import { OnboardingStepWithNextProps } from '@/components/onboarding/OnboardingStepProps';
+import { OnboardingStepWithNextProps } from '@/types/OnboardingStepProps';
 import { Purpose } from '@/types'; // ✨ OnboardingChoices 임포트 제거
 
 const OnboardingStep1: React.FC<OnboardingStepWithNextProps> = ({ currentChoices, saveChoice, onNext }) => {
