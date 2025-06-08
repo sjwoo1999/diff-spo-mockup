@@ -1,4 +1,5 @@
-// src/components/home/HomePageContent.tsx
+'use client';
+
 import React from 'react';
 import PageHeader from '@/components/common/PageHeader';
 import RecommendedSports from '@/components/home/RecommendedSports';
@@ -6,6 +7,7 @@ import ComparatorChart from '@/components/home/ComparatorChart';
 import PopularClasses from '@/components/home/PopularClasses';
 import { Sport, OnboardingChoices } from '@/types';
 import { database } from '@/data/database';
+import { useRouter } from 'next/navigation'; // ⭐ 추가
 
 interface HomePageContentProps {
     recommendedSportsList: Sport[];
@@ -13,7 +15,13 @@ interface HomePageContentProps {
 }
 
 const HomePageContent: React.FC<HomePageContentProps> = ({ recommendedSportsList, userOnboardingChoices }) => {
+    const router = useRouter(); // ⭐ 추가
     const commonPadding = 'p-4 sm:p-6 md:p-8';
+
+    // ⭐ 탐색 페이지로 이동하는 핸들러
+    const handleExploreClick = () => {
+        router.push('/explore-sports');
+    };
 
     return (
         <div className={`page active ${commonPadding} overflow-y-auto`}>
@@ -24,7 +32,7 @@ const HomePageContent: React.FC<HomePageContentProps> = ({ recommendedSportsList
                 {userOnboardingChoices.preference === '상관 없음' && '다양한'} 스포츠를 추천해 드려요!
             </p>
 
-            <RecommendedSports sports={recommendedSportsList} />
+            <RecommendedSports sports={recommendedSportsList} onExploreClick={handleExploreClick} />
 
             <div className="mt-8">
                 <ComparatorChart recommendedSports={recommendedSportsList} />

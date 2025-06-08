@@ -1,4 +1,4 @@
-// src/components/common/PageHeader.tsx (예상 경로)
+// src/components/common/PageHeader.tsx
 
 import React from 'react';
 
@@ -6,12 +6,15 @@ interface PageHeaderProps {
     title: string;
     description: string;
     className?: string; // className 속성 추가
+    as?: 'h1' | 'h2' | 'h3'; // ⭐ 추가: heading level flexibility
 }
 
-const PageHeader: React.FC<PageHeaderProps> = ({ title, description, className }) => {
+const PageHeader: React.FC<PageHeaderProps> = ({ title, description, className, as = 'h2' }) => {
+    const HeadingTag = as; // 동적 heading tag
+
     return (
-        <div className={`text-center ${className}`}> {/* className 적용 */}
-            <h2 className="text-3xl font-bold text-gray-800 mb-2">{title}</h2>
+        <div className={`text-center max-w-xl mx-auto ${className}`}>
+            <HeadingTag className="text-3xl font-bold text-gray-800 mb-2">{title}</HeadingTag>
             <p className="text-gray-600 text-lg">{description}</p>
         </div>
     );
