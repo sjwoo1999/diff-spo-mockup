@@ -1,4 +1,5 @@
 'use client'
+import { useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { database } from '@/data/database';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -7,9 +8,19 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/effect-coverflow';
 import Image from 'next/image';
+import SwiperCore from 'swiper';
 
 const ExploreSportsPage = () => {
     const router = useRouter();
+    const swiperRef = useRef<SwiperCore | null>(null);
+
+    const handleRandomClick = () => {
+        if (swiperRef.current) {
+            const totalSlides = database.sports.length;
+            const randomIndex = Math.floor(Math.random() * totalSlides);
+            swiperRef.current.slideTo(randomIndex);
+        }
+    };
 
     return (
         <main className="flex flex-col flex-grow min-h-screen justify-center items-center mx-auto max-w-[512px] overflow-y-auto p-4 sm:p-6 md:p-8 bg-gradient-to-b from-gray-50 to-white">
@@ -18,10 +29,19 @@ const ExploreSportsPage = () => {
                 카드를 넘기면서 다양한 이색 스포츠를 탐색해보세요!
             </p>
 
+            {/* 🎲 랜덤 버튼 */}
+            <button
+                onClick={handleRandomClick}
+                className="mb-6 px-6 py-3 bg-blue-500 text-white font-semibold rounded-lg hover:scale-105 transition"
+            >
+                🎲 랜덤 스포츠 보기
+            </button>
+
             <Swiper
                 modules={[Navigation, EffectCoverflow]}
                 navigation
                 effect="coverflow"
+                onSwiper={(swiper) => { swiperRef.current = swiper; }} // 💥 Swiper 인스턴스 저장
                 coverflowEffect={{
                     rotate: 30,
                     stretch: 0,
