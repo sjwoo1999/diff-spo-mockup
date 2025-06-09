@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { database } from '@/data/database';
@@ -23,10 +23,11 @@ const ExploreSportsPage = () => {
     };
 
     return (
-        <main className="flex flex-col flex-grow min-h-screen justify-center items-center mx-auto max-w-[512px] overflow-y-auto p-4 sm:p-6 md:p-8 bg-gradient-to-b from-gray-50 to-white">
+        <main className="relative flex flex-col items-center mx-auto w-full max-w-[512px] min-h-screen p-4 sm:p-6 md:p-8 bg-gradient-to-b from-gray-50 to-white overflow-y-auto">
+            {/* ⬅️ Back Button */}
             <button
                 onClick={() => router.back()}
-                className="absolute top-4 left-1/2 -translate-x-[240px] z-30 flex items-center gap-2 px-3 py-1.5 bg-[#FF7A00] text-white text-xs rounded-full shadow hover:bg-[#e96a00] transition-all duration-200"
+                className="absolute top-4 left-4 z-30 flex items-center gap-2 px-3 py-1.5 bg-[#FF7A00] text-white text-xs rounded-full shadow hover:bg-[#e96a00] transition-all duration-200"
                 aria-label="이전 페이지로 이동"
             >
                 <svg
@@ -41,73 +42,82 @@ const ExploreSportsPage = () => {
                 </svg>
                 <span className="hidden sm:inline">이전</span>
             </button>
-            
-            <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-4">이색 스포츠 탐색</h1>
-            <p className="text-gray-600 mb-6 text-sm sm:text-base">
-                카드를 넘기면서 다양한 이색 스포츠를 탐색해보세요!
+
+            {/* 타이틀 및 설명 */}
+            <h1 className="mt-12 text-xl sm:text-2xl md:text-3xl font-bold text-center text-gray-800">
+                이색 스포츠 탐색
+            </h1>
+            <p className="mt-2 text-center text-gray-600 text-sm sm:text-base">
+                카드를 넘기며 다양한 이색 스포츠를 알아보세요!
             </p>
 
             {/* 🎲 랜덤 버튼 */}
             <button
                 onClick={handleRandomClick}
-                className="mb-6 px-6 py-3 bg-[#FF7A00] text-white font-semibold rounded-lg hover:scale-105 transition"
+                className="mt-6 mb-4 px-5 py-2 bg-[#FF7A00] text-white text-sm sm:text-base font-semibold rounded-full hover:scale-105 transition"
             >
                 🎲 랜덤 스포츠 보기
             </button>
 
-            <Swiper
-                modules={[Navigation, EffectCoverflow]}
-                navigation
-                effect="coverflow"
-                onSwiper={(swiper) => { swiperRef.current = swiper; }} // 💥 Swiper 인스턴스 저장
-                coverflowEffect={{
-                    rotate: 30,
-                    stretch: 0,
-                    depth: 100,
-                    modifier: 1,
-                    slideShadows: true,
-                }}
-                spaceBetween={30}
-                slidesPerView={1.2}
-                centeredSlides
-                loop
-                grabCursor={true}
-                className="w-full"
-            >
-                {database.sports.map((sport) => (
-                    <SwiperSlide key={sport.id}>
-                        <div className="bg-white rounded-3xl shadow-2xl p-6 flex flex-col items-center text-center transition-transform duration-300">
-                            <Image
-                                src={sport.imageUrl}
-                                alt={sport.name}
-                                width={400}
-                                height={300}
-                                className="rounded-xl mb-4 object-cover w-full h-64"
-                            />
-                            <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2">
-                                {sport.name}
-                            </h2>
-                            <p className="text-gray-600 text-sm sm:text-base mb-4">
-                                {sport.description}
-                            </p>
+            {/* Swiper */}
+            <div className="w-full">
+                <Swiper
+                    modules={[Navigation, EffectCoverflow]}
+                    navigation
+                    effect="coverflow"
+                    onSwiper={(swiper) => { swiperRef.current = swiper; }}
+                    coverflowEffect={{
+                        rotate: 30,
+                        stretch: 0,
+                        depth: 100,
+                        modifier: 1,
+                        slideShadows: true,
+                    }}
+                    spaceBetween={16}
+                    slidesPerView={1.1}
+                    centeredSlides
+                    loop
+                    grabCursor
+                    className="w-full"
+                >
+                    {database.sports.map((sport) => (
+                        <SwiperSlide key={sport.id}>
+                            <div className="bg-white rounded-3xl shadow-xl p-4 sm:p-6 flex flex-col items-center text-center transition-transform duration-300">
+                                <div className="relative w-full h-60 sm:h-64 mb-4">
+                                    <Image
+                                        src={sport.imageUrl}
+                                        alt={sport.name}
+                                        fill
+                                        className="rounded-xl object-cover"
+                                    />
+                                </div>
 
-                            <div className="text-sm text-gray-500 space-y-1">
-                                <p>💪 강도: {sport.intensity}</p>
-                                <p>👥 선호도: {sport.preference}</p>
-                                <p>💰 비용: {sport.cost}</p>
-                                <p>🏠 장소: {sport.locationPreference}</p>
+                                <h2 className="text-lg sm:text-xl font-bold text-gray-800 mb-2">
+                                    {sport.name}
+                                </h2>
+
+                                <p className="text-gray-600 text-sm sm:text-base mb-4">
+                                    {sport.description}
+                                </p>
+
+                                <div className="text-xs sm:text-sm text-gray-500 space-y-1">
+                                    <p>💪 강도: {sport.intensity}</p>
+                                    <p>👥 선호도: {sport.preference}</p>
+                                    <p>💰 비용: {sport.cost}</p>
+                                    <p>🏠 장소: {sport.locationPreference}</p>
+                                </div>
+
+                                <button
+                                    onClick={() => router.push('/classes')}
+                                    className="mt-6 w-full px-5 py-2 bg-gradient-to-r from-orange-400 to-pink-500 text-white text-sm font-semibold rounded-lg hover:scale-105 transition"
+                                >
+                                    관련 클래스 보러 가기
+                                </button>
                             </div>
-
-                            <button
-                                onClick={() => router.push('/classes')}
-                                className="mt-6 px-6 py-3 bg-gradient-to-r from-orange-400 to-pink-500 text-white font-semibold rounded-lg hover:scale-105 transition"
-                            >
-                                관련 클래스 보러 가기
-                            </button>
-                        </div>
-                    </SwiperSlide>
-                ))}
-            </Swiper>
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
+            </div>
         </main>
     );
 };
