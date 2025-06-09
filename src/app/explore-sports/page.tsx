@@ -26,7 +26,7 @@ const ExploreSportsPage = () => {
         <main className="flex flex-col flex-grow min-h-screen justify-center items-center mx-auto max-w-[512px] overflow-y-auto p-4 sm:p-6 md:p-8 bg-gradient-to-b from-gray-50 to-white">
             <button
                 onClick={() => router.back()}
-                className="absolute top-4 left-4 z-30 flex items-center gap-2 px-2 py-1.5 bg-white/80 backdrop-blur-md border border-gray-200 text-gray-600 text-xs rounded-full shadow hover:bg-white hover:text-gray-800 transition-all duration-200"
+                className="absolute top-4 left-1/2 -translate-x-[240px] z-30 flex items-center gap-2 px-3 py-1.5 bg-[#FF7A00] text-white text-xs rounded-full shadow hover:bg-[#e96a00] transition-all duration-200"
                 aria-label="이전 페이지로 이동"
             >
                 <svg
