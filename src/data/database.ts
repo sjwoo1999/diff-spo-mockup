@@ -1,6 +1,6 @@
 // src/data/database.ts
 
-import { Sport, ClassItem, CommunityPost, StoreItem, User } from '@/types';
+import { Sport, ClassItem, CommunityPost, StoreItem, User, CommunityPostWithLikes } from '@/types';
 
 interface Database {
     sports: Sport[];
@@ -707,18 +707,42 @@ export const database: Database = {
 
     classes: [
         {
-            id: 'class1',
-            title: '초보자 클라이밍 강습',
-            type: '클라이밍',
-            instructor: '김스핀',
-            price: 50000,
-            duration: '2시간',
-            imageUrl: '/images/sports/class_climbing.jpg',
-            rating: 4.8,
-            reviews: 120,
-            location: '강남 클라이밍 짐',
+          id: 'class1',
+          title: '초보자 클라이밍 강습',
+          type: '클라이밍',
+          instructor: '김스핀',
+          price: 50000,
+          duration: '2시간',
+          imageUrl: '/images/class/climbing.jpg',
+          rating: 4.8,
+          reviews: 120,
+          location: '강남 클라이밍 짐',
         },
-    ],
+        {
+          id: 'class2',
+          title: '요가 베이직: 유연성 향상',
+          type: '요가',
+          instructor: '이다솜',
+          price: 35000,
+          duration: '1시간 30분',
+          imageUrl: '/images/class/yoga.jpg',
+          rating: 4.7,
+          reviews: 89,
+          location: '홍대 요가 스튜디오',
+        },
+        {
+          id: 'class3',
+          title: '주말 러닝 모임 (5km)',
+          type: '러닝',
+          instructor: '팀 러너스',
+          price: 10000,
+          duration: '1시간',
+          imageUrl: '/images/class/running.jpg',
+          rating: 4.9,
+          reviews: 200,
+          location: '한강 반포지구',
+        },
+      ],
 
     community: [
         {
@@ -742,6 +766,7 @@ export const database: Database = {
                 },
             ],
             category: '후기',
+            likes: 18,
         },
         {
             id: 'post2',
@@ -758,6 +783,7 @@ export const database: Database = {
                 },
             ],
             category: '질문',
+            likes: 5,
         },
         {
             id: 'post3',
@@ -767,6 +793,7 @@ export const database: Database = {
             createdAt: '2025-06-05 19:00:00',
             comments: [],
             category: '질문',
+            likes: 10,
         },
         {
             id: 'post4',
@@ -784,6 +811,7 @@ export const database: Database = {
             ],
             externalLink: 'https://example.com/surfing-terms',
             category: '정보',
+            likes: 8,
         },
         {
             id: 'post5',
@@ -800,9 +828,9 @@ export const database: Database = {
                 },
             ],
             category: '자유',
-        },
+            likes: 5,
+        }
     ],
-    
 
     storeItems: [
         {
@@ -847,4 +875,6 @@ export const database: Database = {
         hasCompletedOnboarding: true,
         hasAgreedToTerms: true,
     },
+} satisfies {
+    community: CommunityPostWithLikes[];
 };

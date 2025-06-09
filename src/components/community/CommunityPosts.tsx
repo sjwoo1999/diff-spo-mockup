@@ -1,77 +1,56 @@
 import React from 'react';
 import Link from 'next/link';
-import { CommunityPost } from '@/types';
+import { CommunityPostWithLikes } from '@/types';
 
 interface CommunityPostsProps {
-    posts: CommunityPost[];
+  posts: CommunityPostWithLikes[];
 }
 
 const CommunityPosts: React.FC<CommunityPostsProps> = ({ posts }) => {
+  if (posts.length === 0) {
     return (
-        <div className="space-y-4"> {/* 각 게시글 사이에 간격 */}
-            {posts.map((post) => (
-                <Link
-                    key={post.id}
-                    href={`/community/${post.id}`}
-                    className="block" // block 처리해주면 hover 영역 문제 없음
-                >
-                    <div
-                        className="bg-white rounded-lg shadow-md p-4 sm:p-5 cursor-pointer hover:shadow-lg transition-all duration-200 border border-gray-100"
-                    >
-                        <div className="flex justify-between items-center mb-2">
-                            {/* 카테고리 뱃지 */}
-                            <span
-                                className={`text-xs sm:text-sm font-semibold px-2 py-1 rounded-full
-                                    ${
-                                        post.category === '후기' ? 'text-orange-600 bg-orange-100' :
-                                        post.category === '질문' ? 'text-blue-600 bg-blue-100' :
-                                        post.category === '정보' ? 'text-green-600 bg-green-100' :
-                                        'text-gray-600 bg-gray-100'
-                                    }
-                                `}
-                            >
-                                {post.category}
-                            </span>
-
-                            {/* 작성일 */}
-                            <span className="text-gray-500 text-xs sm:text-sm">
-                                {post.createdAt.split(' ')[0]}
-                            </span>
-                        </div>
-
-                        {/* 제목 */}
-                        <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2">
-                            {post.title}
-                        </h3>
-
-                        {/* 본문 일부 */}
-                        <p className="text-gray-600 text-sm sm:text-base mb-4 line-clamp-2">
-                            {post.content}
-                        </p>
-
-                        {/* 작성자 + 댓글 수 */}
-                        <div className="flex justify-between items-center text-gray-500 text-xs sm:text-sm mt-2">
-                            <span>작성자: {post.author}</span>
-                            <span>댓글: {post.comments.length}</span>
-                        </div>
-
-                        {/* 외부 링크 (있을 때만) */}
-                        {post.externalLink && (
-                            <a
-                                href={post.externalLink}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-blue-500 hover:underline text-sm mt-3 block"
-                                onClick={(e) => e.stopPropagation()} // 링크 클릭 시 상위 링크 방지
-                            >
-                                원문 보기
-                            </a>
-                        )}
-                    </div>
-                </Link>
-            ))}
-        </div>
+      <p className="text-center text-gray-500 text-sm py-12">
+        해당 카테고리에 게시글이 없습니다.
+      </p>
     );
+  }
+
+  return (
+    <div className="space-y-4">
+      {posts.map((post) => (
+        <Link href={`/community/${post.id}`} key={post.id}>
+          <div
+            className="bg-white rounded-xl p-4 sm:p-5 shadow-md hover:shadow-lg transition cursor-pointer
+              border border-gray-100"
+          >
+            {/* 상단 정보 */}
+            <div className="flex items-center gap-3 mb-3">
+              <img
+                src="/images/profiles/default_user.png"
+                alt="작성자"
+                className="w-9 h-9 rounded-full object-cover"
+              />
+              <div>
+                <p className="text-sm font-semibold text-gray-800">{post.author}</p>
+                <p className="text-xs text-gray-400">{post.createdAt.split(' ')[0]} · {post.category}</p>
+              </div>
+            </div>
+
+            {/* 제목 & 내용 */}
+            <h2 className="text-base sm:text-lg font-bold text-gray-800 line-clamp-2">{post.title}</h2>
+            <p className="text-sm text-gray-600 mt-1 line-clamp-3">{post.content}</p>
+
+            {/* 하단 정보 */}
+            <div className="flex justify-between items-center mt-4 text-xs text-gray-500">
+              <span>❤️ {post.likes} 공감</span>
+              <span>💬 {post.comments.length} 댓글</span>
+            </div>
+          </div>
+          <br/>
+        </Link>
+      ))}
+    </div>
+  );
 };
 
 export default CommunityPosts;

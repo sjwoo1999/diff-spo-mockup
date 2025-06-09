@@ -48,6 +48,11 @@ export interface CommunityPost {
     category: string; // 후기 / 질문 / 정보 / 자유
 }
 
+// 임시 UI 확장용 타입
+export type CommunityPostWithLikes = CommunityPost & {
+    likes: number;
+};
+
 export interface Comment {
     id: string;
     author: string;
