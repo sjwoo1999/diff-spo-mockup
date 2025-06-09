@@ -147,3 +147,12 @@ html::-webkit-scrollbar-thumb:hover {
 .animate-pop-in {
     animation: popIn 0.6s ease-out forwards;
 }
+
+/* Swiper 네비게이션 버튼 스타일 덮어쓰기 */
+
+/* Swiper 내부 아이콘 (▶︎, ◀︎) 색상 */
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  color: #ffffff00;
+  font-size: 5px; /* 필요시 조절 */
+}
