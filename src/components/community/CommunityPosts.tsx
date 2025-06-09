@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { CommunityPostWithLikes } from '@/types';
+import Image from 'next/image';
 
 interface CommunityPostsProps {
   posts: CommunityPostWithLikes[];
@@ -25,9 +26,11 @@ const CommunityPosts: React.FC<CommunityPostsProps> = ({ posts }) => {
           >
             {/* 상단 정보 */}
             <div className="flex items-center gap-3 mb-3">
-              <img
+              <Image
                 src="/images/profiles/default_user.png"
                 alt="작성자"
+                width={36}
+                height={36}
                 className="w-9 h-9 rounded-full object-cover"
               />
               <div>

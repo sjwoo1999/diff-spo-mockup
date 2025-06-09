@@ -15,7 +15,7 @@ const CommunityPageContent: React.FC<CommunityPageContentProps> = ({ posts }) =>
       ? posts
       : posts.filter((post) => post.category === selectedCategory);
 
-  const categoryList = ['전체', '후기', '질문', '정보'];
+  const categoryList: Array<'전체' | '후기' | '질문' | '정보'> = ['전체', '후기', '질문', '정보'];
 
   return (
     <div className="space-y-6 px-4 sm:px-6 md:px-8">
@@ -33,7 +33,7 @@ const CommunityPageContent: React.FC<CommunityPageContentProps> = ({ posts }) =>
         {categoryList.map((category) => (
           <button
             key={category}
-            onClick={() => setSelectedCategory(category as any)}
+            onClick={() => setSelectedCategory(category)}
             className={`px-4 py-1.5 text-sm rounded-full border transition-all
               ${
                 selectedCategory === category
