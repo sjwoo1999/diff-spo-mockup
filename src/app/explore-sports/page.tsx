@@ -26,24 +26,20 @@ const ExploreSportsPage = () => {
         <main className="flex flex-col flex-grow min-h-screen justify-center items-center mx-auto max-w-[512px] overflow-y-auto p-4 sm:p-6 md:p-8 bg-gradient-to-b from-gray-50 to-white">
             <button
                 onClick={() => router.back()}
-                className="absolute top-4 left-4 flex items-center gap-1.5 px-3 py-1.5 bg-white/80 backdrop-blur-sm border border-gray-200 text-gray-700 text-sm rounded-md shadow-sm hover:bg-white transition"
+                className="absolute top-4 left-4 z-30 flex items-center gap-2 px-2 py-1.5 bg-white/80 backdrop-blur-md border border-gray-200 text-gray-600 text-xs rounded-full shadow hover:bg-white hover:text-gray-800 transition-all duration-200"
                 aria-label="이전 페이지로 이동"
             >
-                {/* SVG 아이콘 */}
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={2}
+                    stroke="currentColor"
                     className="h-4 w-4"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
                 >
-                    <path
-                        fillRule="evenodd"
-                        d="M12.293 15.707a1 1 0 010-1.414L15.586 11H4a1 1 0 110-2h11.586l-3.293-3.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z"
-                        clipRule="evenodd"
-                    />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
                 </svg>
-
-                <span>이전</span>
+                <span className="hidden sm:inline">이전</span>
             </button>
             
             <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-4">이색 스포츠 탐색</h1>
