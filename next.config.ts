@@ -25,7 +25,9 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-  // ... 기타 설정이 있다면 여기에 계속
+  experimental: {
+    typedRoutes: false,
+  }
 };
 
 export default nextConfig;
