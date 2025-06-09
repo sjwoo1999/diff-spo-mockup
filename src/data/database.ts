@@ -727,7 +727,7 @@ export const database: Database = {
             id: 'store1',
             name: '클라이밍 가방 굿초크 보스턴백',
             description: '튼튼하고 넉넉한 수납공간의 클라이밍용 보스턴백.',
-            image: '/images/store/Climbing_Bag.jpg', // 저장한 이미지 경로
+            image: '/images/store/Climbing_Bag.png', // 저장한 이미지 경로
             price: '19,900원', // 예시 가격 (실제 페이지에서 확인해서 넣으면 더 정확)
             vendorName: '굿초크', // 브랜드명 또는 판매자명 (가능하면 페이지 참고)
             externalPurchaseLink: 'https://www.coupang.com/vp/products/8414041721?itemId=24330414741&vendorItemId=91346041230',
@@ -737,7 +737,7 @@ export const database: Database = {
             id: 'store2',
             name: '트로이 다이나믹 핑거 클라이밍 테이프, 5개',
             description: '손가락 보호용 클라이밍 테이프 세트 (5개입), 클라이밍과 스포츠 테이핑에 적합.',
-            image: '/images/store/Climbing_Finger_Tape.jpg',
+            image: '/images/store/Climbing_Finger_Tape.png',
             price: '7,900원',
             vendorName: '트로이',
             externalPurchaseLink: 'https://www.coupang.com/vp/products/8219802802?itemId=23622794826&vendorItemId=90662874172',
@@ -747,7 +747,7 @@ export const database: Database = {
             id: 'store3',
             name: '언더바 무광 오토바이헬멧 U-02',
             description: 'ATV 및 바이크 스포츠에 적합한 경량 무광 오토바이 헬멧.',
-            image: '/images/store/ATV_Helmet.jpg',
+            image: '/images/store/ATV_Helmet.png',
             price: '89,000원',
             vendorName: '언더바',
             externalPurchaseLink: 'https://www.coupang.com/vp/products/6740269711?itemId=15733082482&vendorItemId=82947039155',
