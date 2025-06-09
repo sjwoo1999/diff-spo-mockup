@@ -42,10 +42,17 @@ export interface CommunityPost {
     title: string;
     content: string;
     author: string;
-    createdAt: string; // "YYYY-MM-DD HH:MM:SS" 형식이라고 가정
-    comments: number; // 댓글 수
-    externalLink?: string; // 원문 링크 (선택 사항)
-    category: string;
+    createdAt: string; // "YYYY-MM-DD HH:MM:SS"
+    comments: Comment[];
+    externalLink?: string;
+    category: string; // 후기 / 질문 / 정보 / 자유
+}
+
+export interface Comment {
+    id: string;
+    author: string;
+    content: string;
+    createdAt: string;
 }
 
 // ----------------------------------------------------
