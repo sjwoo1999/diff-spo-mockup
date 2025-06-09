@@ -22,7 +22,7 @@ export const database: Database = {
             ageGroup: ['20대', '30대', '40대'],
             locationPreference: '실외',
             availableTime: ['주말'],
-            imageUrl: '/images/paragliding.webp',
+            imageUrl: '/images/sports/paragliding.webp',
             description: '산 정상에서 활공하며 하늘을 나는 레포츠.',
         },
         {
@@ -35,7 +35,7 @@ export const database: Database = {
             ageGroup: ['10대', '20대', '30대'],
             locationPreference: '실외',
             availableTime: ['주말'],
-            imageUrl: '/images/luge.png',
+            imageUrl: '/images/sports/luge.png',
             description: '무동력 썰매로 경사로를 빠르게 내려오는 스포츠.',
         },
         {
@@ -48,7 +48,7 @@ export const database: Database = {
             ageGroup: ['10대', '20대', '30대', '40대'],
             locationPreference: '실내',
             availableTime: ['평일 오후', '주말'],
-            imageUrl: '/images/climbing.jpg',
+            imageUrl: '/images/sports/climbing.jpg',
             description: '인공 암벽을 오르며 전신 운동을 즐기는 스포츠.',
         },
         {
@@ -61,7 +61,7 @@ export const database: Database = {
             ageGroup: ['10대', '20대', '30대'],
             locationPreference: '실외',
             availableTime: ['주말'],
-            imageUrl: '/images/kart_racing.jpg',
+            imageUrl: '/images/sports/kart_racing.jpg',
             description: '실제 서킷에서 카트를 타고 속도감을 즐기는 레이싱.',
         },
         {
@@ -74,7 +74,7 @@ export const database: Database = {
             ageGroup: ['20대', '30대', '40대'],
             locationPreference: '실외',
             availableTime: ['주말'],
-            imageUrl: '/images/atv.jpg',
+            imageUrl: '/images/sports/atv.jpg',
             description: '오프로드에서 사륜 오토바이를 타는 모험 스포츠.',
         },
         {
@@ -87,7 +87,7 @@ export const database: Database = {
             ageGroup: ['30대', '40대', '50대 이상'],
             locationPreference: '실외',
             availableTime: ['주말'],
-            imageUrl: '/images/hot_air_balloon.png',
+            imageUrl: '/images/sports/hot_air_balloon.png',
             description: '열기구를 타고 하늘 위에서 풍경을 감상하는 체험.',
         },
         {
@@ -100,7 +100,7 @@ export const database: Database = {
             ageGroup: ['10대', '20대', '30대'],
             locationPreference: '실외',
             availableTime: ['주말'],
-            imageUrl: '/images/paintball.jpg',
+            imageUrl: '/images/sports/paintball.jpg',
             description: '팀 단위로 페인트볼 총을 쏘며 미션을 수행하는 스포츠.',
         },
         {
@@ -113,7 +113,7 @@ export const database: Database = {
             ageGroup: ['20대', '30대', '40대'],
             locationPreference: '실외',
             availableTime: ['주말'],
-            imageUrl: '/images/zipline.webp',
+            imageUrl: '/images/sports/zipline.webp',
             description: '와이어 케이블을 타고 공중을 활강하는 레포츠.',
         },
         {
@@ -126,7 +126,7 @@ export const database: Database = {
             ageGroup: ['20대', '30대', '40대'],
             locationPreference: '실외',
             availableTime: ['주말'],
-            imageUrl: '/images/surfing.jpeg',
+            imageUrl: '/images/sports/surfing.jpeg',
             description: '파도나 바람을 이용해 보드 위를 달리는 수상 스포츠.',
         },
         {
@@ -139,7 +139,7 @@ export const database: Database = {
             ageGroup: ['10대', '20대', '30대', '40대', '50대 이상'],
             locationPreference: '실외',
             availableTime: ['주말'],
-            imageUrl: '/images/disc_golf.jpg',
+            imageUrl: '/images/sports/disc_golf.jpg',
             description: '플라잉디스크를 골대에 던져 넣는 골프형 스포츠.',
         },
         // 11️⃣ 피클볼
@@ -153,7 +153,7 @@ export const database: Database = {
             ageGroup: ['10대', '20대', '30대', '40대', '50대 이상'],
             locationPreference: '실내',
             availableTime: ['평일 오후', '주말'],
-            imageUrl: '/images/pickleball.jpg',
+            imageUrl: '/images/sports/pickleball.jpg',
             description: '테니스·배드민턴·탁구의 장점을 결합한 스포츠.',
         },
         // 12️⃣ 빠델(Padel)
@@ -167,7 +167,7 @@ export const database: Database = {
             ageGroup: ['20대', '30대', '40대'],
             locationPreference: '실내',
             availableTime: ['평일 오후', '주말'],
-            imageUrl: '/images/padel.jpg',
+            imageUrl: '/images/sports/padel.jpg',
             description: '유리벽 코트에서 2인 1조로 하는 라켓 스포츠.',
         },
         // 13️⃣ 인공 암벽장
@@ -181,7 +181,7 @@ export const database: Database = {
             ageGroup: ['20대', '30대', '40대'],
             locationPreference: '실내',
             availableTime: ['평일 오후', '주말'],
-            imageUrl: '/images/indoor_climbing.jpg',
+            imageUrl: '/images/sports/indoor_climbing.jpg',
             description: '실내외에서 인공 암벽을 오르는 스포츠.',
         },
         // 14️⃣ 카약/카누
@@ -195,7 +195,7 @@ export const database: Database = {
             ageGroup: ['20대', '30대', '40대'],
             locationPreference: '실외',
             availableTime: ['주말'],
-            imageUrl: '/images/kayak.jpg',
+            imageUrl: '/images/sports/kayak.jpg',
             description: '강이나 호수에서 카약을 타고 즐기는 수상 스포츠.',
         },
         // 15️⃣ SUP(스탠드업 패들보드)
@@ -209,7 +209,7 @@ export const database: Database = {
             ageGroup: ['20대', '30대', '40대'],
             locationPreference: '실외',
             availableTime: ['주말'],
-            imageUrl: '/images/sup.jpg',
+            imageUrl: '/images/sports/sup.jpg',
             description: '보드 위에 서서 노를 젓는 수상 스포츠.',
         },
         // 16️⃣ 웨이크보드
@@ -223,7 +223,7 @@ export const database: Database = {
             ageGroup: ['20대', '30대'],
             locationPreference: '실외',
             availableTime: ['주말'],
-            imageUrl: '/images/wakeboard.jpg',
+            imageUrl: '/images/sports/wakeboard.jpg',
             description: '모터보트가 끄는 보드 위에서 다양한 기술을 선보이는 스포츠.',
         },
         // 17️⃣ 스케이트보드
@@ -237,7 +237,7 @@ export const database: Database = {
             ageGroup: ['10대', '20대', '30대'],
             locationPreference: '실외',
             availableTime: ['평일 오후', '주말'],
-            imageUrl: '/images/skateboard.jpeg',
+            imageUrl: '/images/sports/skateboard.jpeg',
             description: '도심 전용 파크, 공원에서 즐기는 보드 스포츠.',
         },
         // 18️⃣ 인라인롤러
@@ -251,7 +251,7 @@ export const database: Database = {
             ageGroup: ['10대', '20대', '30대'],
             locationPreference: '실외',
             availableTime: ['평일 오후', '주말'],
-            imageUrl: '/images/inline_skating.jpg',
+            imageUrl: '/images/sports/inline_skating.jpg',
             description: '도심, 공원에서 인라인 타기.',
         },
         // 19️⃣ 세팍타크로
@@ -265,7 +265,7 @@ export const database: Database = {
             ageGroup: ['20대', '30대'],
             locationPreference: '실내',
             availableTime: ['평일 오후', '주말'],
-            imageUrl: '/images/sepak_takraw.jpg',
+            imageUrl: '/images/sports/sepak_takraw.jpg',
             description: '발로 하는 배구, 등나무 공을 사용하는 스포츠.',
         },
         // 20️⃣ 주짓수
@@ -279,7 +279,7 @@ export const database: Database = {
             ageGroup: ['20대', '30대', '40대'],
             locationPreference: '실내',
             availableTime: ['평일 오후', '주말'],
-            imageUrl: '/images/bjj.jpg',
+            imageUrl: '/images/sports/bjj.jpg',
             description: '그라운드 중심의 격투 스포츠.',
         },
         // 21️⃣ 크라쉬(씨름 유사 격투)
@@ -293,7 +293,7 @@ export const database: Database = {
             ageGroup: ['20대', '30대'],
             locationPreference: '실내',
             availableTime: ['평일 오후', '주말'],
-            imageUrl: '/images/krash.jpg',
+            imageUrl: '/images/sports/krash.jpg',
             description: '몽골 전통 레슬링, 힘과 기술이 결합된 스포츠.',
         },
         // 22️⃣ 우슈(쿵푸)
@@ -307,7 +307,7 @@ export const database: Database = {
             ageGroup: ['10대', '20대', '30대'],
             locationPreference: '실내',
             availableTime: ['평일 오후', '주말'],
-            imageUrl: '/images/wushu.jpg',
+            imageUrl: '/images/sports/wushu.jpg',
             description: '중국 무술, 다양한 무기 및 맨손 기술.',
         },
         // 23️⃣ 드래곤보트
@@ -321,7 +321,7 @@ export const database: Database = {
             ageGroup: ['20대', '30대'],
             locationPreference: '실외',
             availableTime: ['주말'],
-            imageUrl: '/images/dragon_boat.jpg',
+            imageUrl: '/images/sports/dragon_boat.jpg',
             description: '여러 명이 팀을 이루어 노를 저어 경주하는 스포츠.',
         },
         // 24️⃣ 씨름
@@ -335,7 +335,7 @@ export const database: Database = {
             ageGroup: ['10대', '20대', '30대'],
             locationPreference: '실외',
             availableTime: ['주말'],
-            imageUrl: '/images/ssireum.jpg',
+            imageUrl: '/images/sports/ssireum.jpg',
             description: '한국 전통 레슬링 스포츠.',
         },
         // 25️⃣ 펜싱
@@ -349,7 +349,7 @@ export const database: Database = {
             ageGroup: ['20대', '30대', '40대'],
             locationPreference: '실내',
             availableTime: ['평일 오후', '주말'],
-            imageUrl: '/images/fencing.avif',
+            imageUrl: '/images/sports/fencing.avif',
             description: '검을 사용한 빠른 반응 스포츠.',
         },
         // 26️⃣ 추크볼
@@ -363,7 +363,7 @@ export const database: Database = {
             ageGroup: ['10대', '20대', '30대'],
             locationPreference: '실내',
             availableTime: ['평일 오후', '주말'],
-            imageUrl: '/images/tchoukball.jpeg',
+            imageUrl: '/images/sports/tchoukball.jpeg',
             description: '핸드볼과 배구가 결합된 뉴스포츠.',
         },
         // 27️⃣ 킥복싱
@@ -377,7 +377,7 @@ export const database: Database = {
             ageGroup: ['20대', '30대'],
             locationPreference: '실내',
             availableTime: ['평일 오후', '주말'],
-            imageUrl: '/images/kickboxing.webp',
+            imageUrl: '/images/sports/kickboxing.webp',
             description: '킥과 펀치가 결합된 격투 스포츠.',
         },
         // 28️⃣ 팔씨름
@@ -391,7 +391,7 @@ export const database: Database = {
             ageGroup: ['10대', '20대', '30대'],
             locationPreference: '실내',
             availableTime: ['주말'],
-            imageUrl: '/images/arm_wrestling.webp',
+            imageUrl: '/images/sports/arm_wrestling.webp',
             description: '팔 힘을 겨루는 스포츠.',
         },
         // 29️⃣ 궁도(국궁)
@@ -405,7 +405,7 @@ export const database: Database = {
             ageGroup: ['20대', '30대', '40대'],
             locationPreference: '실외',
             availableTime: ['주말'],
-            imageUrl: '/images/korean_archery.webp',
+            imageUrl: '/images/sports/korean_archery.webp',
             description: '한국 전통 활쏘기 스포츠.',
         },
         // 30️⃣ 한궁
@@ -419,7 +419,7 @@ export const database: Database = {
             ageGroup: ['50대 이상'],
             locationPreference: '실내',
             availableTime: ['평일 오후', '주말'],
-            imageUrl: '/images/hankung.jpg',
+            imageUrl: '/images/sports/hankung.jpg',
             description: '다트와 투호를 결합한 뉴스포츠.',
         },
         // 31️⃣ 패드민턴
@@ -433,7 +433,7 @@ export const database: Database = {
             ageGroup: ['10대', '20대', '30대', '40대'],
             locationPreference: '실내',
             availableTime: ['평일 오후', '주말'],
-            imageUrl: '/images/padelminton.jpg',
+            imageUrl: '/images/sports/padelminton.jpg',
             description: '탁구와 배드민턴이 결합된 뉴스포츠.',
         },
         // 32️⃣ 플라잉요가
@@ -447,7 +447,7 @@ export const database: Database = {
             ageGroup: ['20대', '30대', '40대'],
             locationPreference: '실내',
             availableTime: ['평일 오전', '주말'],
-            imageUrl: '/images/flying_yoga.jpg',
+            imageUrl: '/images/sports/flying_yoga.jpg',
             description: '천에 몸을 맡기고 공중에서 하는 요가.',
         },
         // 33️⃣ 번지 피트니스
@@ -461,7 +461,7 @@ export const database: Database = {
             ageGroup: ['20대', '30대'],
             locationPreference: '실내',
             availableTime: ['평일 오후', '주말'],
-            imageUrl: '/images/bungee_fitness.jpg',
+            imageUrl: '/images/sports/bungee_fitness.jpg',
             description: '번지 로프에 매달려 운동하는 피트니스.',
         },
         // 34️⃣ 아쿠아바이크
@@ -475,7 +475,7 @@ export const database: Database = {
             ageGroup: ['20대', '30대', '40대', '50대 이상'],
             locationPreference: '실내',
             availableTime: ['평일 오전', '주말'],
-            imageUrl: '/images/aquabike.png',
+            imageUrl: '/images/sports/aquabike.png',
             description: '물속에서 자전거를 타는 운동.',
         },
         // 35️⃣ 슬랙라인
@@ -489,7 +489,7 @@ export const database: Database = {
             ageGroup: ['10대', '20대', '30대'],
             locationPreference: '실외',
             availableTime: ['주말'],
-            imageUrl: '/images/slackline.jpeg',
+            imageUrl: '/images/sports/slackline.jpeg',
             description: '줄 위에서 균형 잡는 스포츠.',
         },
         // 36️⃣ 트램폴린 점프
@@ -503,7 +503,7 @@ export const database: Database = {
             ageGroup: ['10대', '20대', '30대'],
             locationPreference: '실내',
             availableTime: ['주말'],
-            imageUrl: '/images/trampoline_jump.jpg',
+            imageUrl: '/images/sports/trampoline_jump.jpg',
             description: '실내 트램폴린 파크에서 점프.',
         },
         // 37️⃣ 실내 스카이다이빙
@@ -517,7 +517,7 @@ export const database: Database = {
             ageGroup: ['20대', '30대'],
             locationPreference: '실내',
             availableTime: ['주말'],
-            imageUrl: '/images/indoor_skydiving.jpg',
+            imageUrl: '/images/sports/indoor_skydiving.jpg',
             description: '윈드터널에서 공중부양을 체험하는 스포츠.',
         },
         // 38️⃣ 실내 양궁/사격 카페
@@ -531,7 +531,7 @@ export const database: Database = {
             ageGroup: ['20대', '30대'],
             locationPreference: '실내',
             availableTime: ['주말'],
-            imageUrl: '/images/archery_cafe.jpeg',
+            imageUrl: '/images/sports/archery_cafe.jpeg',
             description: '실내에서 양궁 및 사격 체험.',
         },
         // 39️⃣ 실내 스크린 스포츠
@@ -545,7 +545,7 @@ export const database: Database = {
             ageGroup: ['20대', '30대', '40대'],
             locationPreference: '실내',
             availableTime: ['주말'],
-            imageUrl: '/images/screen_sports.jpg',
+            imageUrl: '/images/sports/screen_sports.jpg',
             description: '스크린 골프, 스크린 야구 등 실내 스포츠 체험.',
         },
         // 40️⃣ 실내 컬링
@@ -559,7 +559,7 @@ export const database: Database = {
             ageGroup: ['20대', '30대', '40대'],
             locationPreference: '실내',
             availableTime: ['주말'],
-            imageUrl: '/images/indoor_curling.jpg',
+            imageUrl: '/images/sports/indoor_curling.jpg',
             description: '실내 컬링 체험.',
         },
         // 41️⃣ 실내 승마(로데오 머신)
@@ -573,7 +573,7 @@ export const database: Database = {
             ageGroup: ['10대', '20대', '30대'],
             locationPreference: '실내',
             availableTime: ['주말'],
-            imageUrl: '/images/indoor_rodeo.jpeg',
+            imageUrl: '/images/sports/indoor_rodeo.jpeg',
             description: '기계 말을 타며 균형감각을 기르는 체험.',
         },
         // 42️⃣ 실내 스키/스노보드
@@ -587,7 +587,7 @@ export const database: Database = {
             ageGroup: ['10대', '20대', '30대'],
             locationPreference: '실내',
             availableTime: ['주말'],
-            imageUrl: '/images/indoor_ski.jpg',
+            imageUrl: '/images/sports/indoor_ski.jpg',
             description: '실내 인공 슬로프에서 사계절 스키/보드 체험.',
         },
         // 43️⃣ 워터 레슬링
@@ -601,7 +601,7 @@ export const database: Database = {
             ageGroup: ['10대', '20대', '30대'],
             locationPreference: '실외',
             availableTime: ['주말'],
-            imageUrl: '/images/water_wrestling.jpeg',
+            imageUrl: '/images/sports/water_wrestling.jpeg',
             description: '물 위에서 하는 씨름형 레포츠.',
         },
         // 44️⃣ 미끄러운 기둥 건너기
@@ -615,7 +615,7 @@ export const database: Database = {
             ageGroup: ['10대', '20대'],
             locationPreference: '실외',
             availableTime: ['주말'],
-            imageUrl: '/images/slippery_pole.webp',
+            imageUrl: '/images/sports/slippery_pole.webp',
             description: '물 위에 설치된 미끄러운 기둥을 건너는 체험.',
         },
         // 45️⃣ 보물찾기(드론 이벤트)
@@ -629,7 +629,7 @@ export const database: Database = {
             ageGroup: ['10대', '20대', '30대'],
             locationPreference: '실외',
             availableTime: ['주말'],
-            imageUrl: '/images/drone_treasure.jpg',
+            imageUrl: '/images/sports/drone_treasure.jpg',
             description: '드론을 활용한 보물찾기 이벤트.',
         },
         // 46️⃣ 플라잉디스크(얼티밋)
@@ -643,7 +643,7 @@ export const database: Database = {
             ageGroup: ['10대', '20대', '30대'],
             locationPreference: '실외',
             availableTime: ['주말'],
-            imageUrl: '/images/ultimate_frisbee.jpg',
+            imageUrl: '/images/sports/ultimate_frisbee.jpg',
             description: '원반 던지기 팀 스포츠.',
         },
         // 47️⃣ 에어로빅/줌바/댄스 스포츠
@@ -657,7 +657,7 @@ export const database: Database = {
             ageGroup: ['20대', '30대', '40대'],
             locationPreference: '실내',
             availableTime: ['평일 오후', '주말'],
-            imageUrl: '/images/aerobic_dance.jpg',
+            imageUrl: '/images/sports/aerobic_dance.jpg',
             description: '음악에 맞춰 신나게 움직이는 피트니스.',
         },
         // 48️⃣ e스포츠
@@ -671,7 +671,7 @@ export const database: Database = {
             ageGroup: ['10대', '20대', '30대'],
             locationPreference: '실내',
             availableTime: ['평일 오후', '주말'],
-            imageUrl: '/images/esports.jpg',
+            imageUrl: '/images/sports/esports.jpg',
             description: '게임 대회 및 PC방에서 즐기는 e스포츠.',
         },
         // 49️⃣ 실내 볼링
@@ -685,7 +685,7 @@ export const database: Database = {
             ageGroup: ['20대', '30대', '40대'],
             locationPreference: '실내',
             availableTime: ['주말'],
-            imageUrl: '/images/bowling.jpg',
+            imageUrl: '/images/sports/bowling.jpg',
             description: '볼링장에서 즐기는 실내 스포츠.',
         },
         // 50️⃣ 실내 탁구/배드민턴
@@ -699,7 +699,7 @@ export const database: Database = {
             ageGroup: ['10대', '20대', '30대', '40대'],
             locationPreference: '실내',
             availableTime: ['주말'],
-            imageUrl: '/images/indoor_pingpong.webp',
+            imageUrl: '/images/sports/indoor_pingpong.webp',
             description: '체육관에서 즐기는 탁구 및 배드민턴.',
         },
 
@@ -713,7 +713,7 @@ export const database: Database = {
             instructor: '김스핀',
             price: 50000,
             duration: '2시간',
-            imageUrl: '/images/class_climbing.jpg',
+            imageUrl: '/images/sports/class_climbing.jpg',
             rating: 4.8,
             reviews: 120,
             location: '강남 클라이밍 짐',
@@ -722,7 +722,38 @@ export const database: Database = {
 
     community: [],
 
-    storeItems: [],
+    storeItems: [
+        {
+            id: 'store1',
+            name: '클라이밍 가방 굿초크 보스턴백',
+            description: '튼튼하고 넉넉한 수납공간의 클라이밍용 보스턴백.',
+            image: '/images/store/Climbing_Bag.jpg', // 저장한 이미지 경로
+            price: '₩35,000', // 예시 가격 (실제 페이지에서 확인해서 넣으면 더 정확)
+            vendorName: '굿초크', // 브랜드명 또는 판매자명 (가능하면 페이지 참고)
+            externalPurchaseLink: 'https://www.coupang.com/vp/products/8414041721?itemId=24330414741&vendorItemId=91346041230',
+            isAffiliateLink: true,
+        },
+        {
+            id: 'store2',
+            name: '트로이 다이나믹 핑거 클라이밍 테이프, 5개',
+            description: '손가락 보호용 클라이밍 테이프 세트 (5개입), 클라이밍과 스포츠 테이핑에 적합.',
+            image: '/images/store/Climbing_Finger_Tape.jpg',
+            price: '₩12,000',
+            vendorName: '트로이',
+            externalPurchaseLink: 'https://www.coupang.com/vp/products/8219802802?itemId=23622794826&vendorItemId=90662874172',
+            isAffiliateLink: true,
+        },
+        {
+            id: 'store3',
+            name: '언더바 무광 오토바이헬멧 U-02',
+            description: 'ATV 및 바이크 스포츠에 적합한 경량 무광 오토바이 헬멧.',
+            image: '/images/store/ATV_Helmet.jpg',
+            price: '₩45,000',
+            vendorName: '언더바',
+            externalPurchaseLink: 'https://www.coupang.com/vp/products/6740269711?itemId=15733082482&vendorItemId=82947039155',
+            isAffiliateLink: true,
+        },        
+    ],
 
     user: {
         id: 'user1',
