@@ -3,7 +3,7 @@
 
 import { useParams, useRouter } from 'next/navigation';
 import { database } from '@/data/database';
-import Image from 'next/image';
+// import Image from 'next/image';
 
 const CommunityPostPage = () => {
     const router = useRouter();
