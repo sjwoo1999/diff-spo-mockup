@@ -50,7 +50,7 @@ const ExploreSportsPage = () => {
             {/* 🎲 랜덤 버튼 */}
             <button
                 onClick={handleRandomClick}
-                className="mb-6 px-6 py-3 bg-blue-500 text-white font-semibold rounded-lg hover:scale-105 transition"
+                className="mb-6 px-6 py-3 bg-[#FF7A00] text-white font-semibold rounded-lg hover:scale-105 transition"
             >
                 🎲 랜덤 스포츠 보기
             </button>
