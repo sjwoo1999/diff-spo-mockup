@@ -1,46 +1,92 @@
-// src/app/privacy-policy/page.tsx
 'use client';
 
 import React from 'react';
 
 const PrivacyPolicyPage: React.FC = () => {
-    return (
-        <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-8">
-            <div className="bg-white rounded-lg shadow-xl p-8 max-w-2xl w-full text-center">
-                <h1 className="text-3xl font-bold text-gray-800 mb-6">개인정보 처리방침</h1>
-                <p className="text-gray-700 text-lg mb-4">
-                    SPIN은 사용자 여러분의 개인정보를 소중하게 생각하며,
-                    관련 법규를 준수하여 개인정보를 보호하고 있습니다.
-                </p>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                    본 개인정보 처리방침은 SPIN이 개인정보를 수집, 이용, 보관, 파기하는 과정에서
-                    준수해야 할 사항들을 규정합니다. 서비스 이용을 위해 제공되는 개인정보는
-                    오직 서비스 제공 목적을 위해서만 사용되며, 동의 없이 제3자에게 제공되지 않습니다.
-                    보다 자세한 내용은 아래에서 확인하실 수 있습니다.
-                </p>
-                {/* 실제 개인정보 처리방침 내용을 여기에 추가합니다. */}
-                <div className="mt-8 text-left text-gray-600 text-sm space-y-2">
-                    <h2 className="font-semibold text-gray-800">1. 개인정보의 수집 및 이용 목적</h2>
-                    <p>SPIN은 서비스 제공 및 개선, 맞춤형 콘텐츠 제공, 이용자 식별 등을 위해 최소한의 개인정보를 수집합니다.</p>
-                    <h2 className="font-semibold text-gray-800">2. 수집하는 개인정보의 항목</h2>
-                    <p>회원가입 시 이름, 이메일, 전화번호 등을 수집할 수 있으며, 서비스 이용 과정에서 선호도 정보 등이 추가로 수집될 수 있습니다.</p>
-                    <h2 className="font-semibold text-gray-800">3. 개인정보의 보유 및 이용 기간</h2>
-                    <p>원칙적으로 개인정보 수집 및 이용 목적 달성 시, 또는 회원 탈퇴 시 지체없이 파기합니다. 다만, 관계 법령에 따라 보관할 필요가 있는 경우 해당 기간 동안 보관합니다.</p>
-                    <h2 className="font-semibold text-gray-800">4. 개인정보의 파기 절차 및 방법</h2>
-                    <p>전자적 파일 형태로 저장된 개인정보는 기록을 재생할 수 없는 기술적 방법을 사용하여 삭제하며, 종이 문서에 기록된 개인정보는 분쇄하거나 소각하여 파기합니다.</p>
-                    <h2 className="font-semibold text-gray-800">5. 개인정보보호책임자</h2>
-                    <p>SPIN은 개인정보 처리에 관한 업무를 총괄하고 개인정보 처리와 관련한 이용자의 불만처리 및 피해구제 등을 위하여 다음과 같이 개인정보보호책임자를 지정하고 있습니다.</p>
-                    <p className="mt-2">책임자: [담당자 이름]<br/>연락처: [연락처]</p>
-                </div>
-                <button
-                    className="mt-10 px-6 py-3 bg-orange-600 text-white font-semibold rounded-lg shadow-md hover:bg-orange-700 transition"
-                    onClick={() => window.history.back()} // 뒤로 가기 버튼
-                >
-                    뒤로 가기
-                </button>
-            </div>
+  return (
+    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-8">
+      <div className="bg-white rounded-lg shadow-xl p-8 max-w-2xl w-full text-center">
+        <h1 className="text-3xl font-bold text-black mb-6">개인정보 처리방침</h1>
+        <p className="text-gray-700 text-base mb-4">
+          Diff-Spo(이하 &quot;서비스&quot;)는 이용자의 개인정보를 중요시하며, 「개인정보 보호법」 등 관련 법령에 따라 이용자의 개인정보를 보호하고 있습니다.
+        </p>
+
+        <div className="mt-6 text-left text-gray-700 text-sm leading-relaxed space-y-4">
+          <div>
+            <h2 className="font-semibold text-black">1. 수집하는 개인정보 항목</h2>
+            <p>현재 Diff-Spo는 이용자의 개인정보를 직접 수집하지 않습니다.<br />
+            단, 서비스 품질 개선 및 버그 추적 등을 위한 목적으로 서버 로그를 통해 일부 정보가 수집될 수 있습니다.</p>
+          </div>
+
+          <div>
+            <h2 className="font-semibold text-black">2. 개인정보 수집 및 이용 목적</h2>
+            <p>수집된 정보는 서비스 품질 개선 및 버그 추적을 위해 사용됩니다.</p>
+          </div>
+
+          <div>
+            <h2 className="font-semibold text-black">3. 개인정보 보유 및 이용 기간</h2>
+            <p>서버 로그를 통해 수집된 정보는 서비스 종료 시까지 보관됩니다.</p>
+          </div>
+
+          <div>
+            <h2 className="font-semibold text-black">4. 개인정보의 제3자 제공</h2>
+            <p>현재 이용자의 개인정보를 외부에 제공하지 않습니다.</p>
+          </div>
+
+          <div>
+            <h2 className="font-semibold text-black">5. 개인정보 처리 위탁</h2>
+            <p>현재 제3자에게 개인정보 처리를 위탁하지 않습니다.</p>
+          </div>
+
+          <div>
+            <h2 className="font-semibold text-black">6. 개인정보 보호를 위한 기술적·관리적 조치</h2>
+            <p>개인정보를 직접 수집하지 않으므로 관련 조치는 제한적이나, 서버 보안 및 접근 제한 등을 통해 로그 정보의 안전성을 확보하고 있습니다.</p>
+          </div>
+
+          <div>
+            <h2 className="font-semibold text-black">7. 정보주체의 권리와 행사 방법</h2>
+            <p>이용자는 이메일 문의를 통해 본인의 정보 열람, 수정, 삭제 요청을 할 수 있습니다.</p>
+          </div>
+
+          <div>
+            <h2 className="font-semibold text-black">8. 쿠키 사용 여부 및 관리 방법</h2>
+            <p>현재 서비스에서는 쿠키를 사용하지 않습니다.</p>
+          </div>
+
+          <div>
+            <h2 className="font-semibold text-black">9. 만 14세 미만 아동의 개인정보</h2>
+            <p>현재 만 14세 미만 아동의 개인정보 수집에 대한 별도 절차는 마련되어 있지 않습니다.</p>
+          </div>
+
+          <div>
+            <h2 className="font-semibold text-black">10. 개인정보 보호 책임자 및 문의처</h2>
+            <p>개인정보 관련 문의는 이메일을 통해 접수하실 수 있으며, 관련된 책임자 정보는 추후 필요 시 명시될 수 있습니다.</p>
+          </div>
+
+          <div>
+            <h2 className="font-semibold text-black">11. 법적 근거 및 관할권</h2>
+            <p>본 방침은 대한민국 「개인정보 보호법」을 준수합니다.</p>
+          </div>
+
+          <div>
+            <h2 className="font-semibold text-black">12. 방침 변경에 대한 고지</h2>
+            <p>본 개인정보처리방침은 변경될 수 있으며, 변경 시 서비스 내 공지사항을 통해 고지됩니다.</p>
+          </div>
+
+          <p className="text-gray-500 text-xs mt-4 text-right">
+            시행일: 2025년 6월 10일
+          </p>
         </div>
-    );
+
+        <button
+          onClick={() => window.history.back()}
+          className="mt-10 px-6 py-3 bg-primary text-white font-semibold rounded-lg shadow-md hover:bg-primary-dark transition"
+        >
+          뒤로 가기
+        </button>
+      </div>
+    </div>
+  );
 };
 
 export default PrivacyPolicyPage;

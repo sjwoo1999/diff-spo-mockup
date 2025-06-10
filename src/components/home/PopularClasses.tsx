@@ -14,7 +14,7 @@ const PopularClasses: React.FC<PopularClassesProps> = ({ classes }) => {
 
     return (
         <section className="mb-8 mx-auto max-w-[512px]">
-            <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4">인기 클래스</h2>
+            <h2 className="text-xl sm:text-2xl font-bold text-black mb-4">인기 클래스</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {topClasses.map((cls) => (
                     <Link href="/classes" key={cls.id}>
@@ -26,9 +26,9 @@ const PopularClasses: React.FC<PopularClassesProps> = ({ classes }) => {
                                 height={400}
                                 className="w-full h-32 object-cover rounded-md mb-2 sm:h-40 lg:h-48"
                             />
-                            <h3 className="text-lg font-semibold text-gray-800 mb-1">{cls.title}</h3>
-                            <p className="text-gray-600 text-sm mb-2">{cls.instructor} - {cls.type}</p>
-                            <p className="text-orange-600 font-bold mt-auto">{cls.price.toLocaleString()}원</p>
+                            <h3 className="text-lg font-semibold text-black mb-1">{cls.title}</h3>
+                            <p className="text-neutral-dark text-sm mb-2">{cls.instructor} - {cls.type}</p>
+                            <p className="text-primary font-bold mt-auto">{cls.price.toLocaleString()}원</p>
                         </div>
                     </Link>
                 ))}

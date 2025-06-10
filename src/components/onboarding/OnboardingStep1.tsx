@@ -1,7 +1,8 @@
-// src/components/onboarding/OnboardingStep1.tsx
+'use client';
+
 import React from 'react';
 import { OnboardingStepWithNextProps } from '@/types/OnboardingStepProps';
-import { Purpose } from '@/types'; // ✨ OnboardingChoices 임포트 제거
+import { Purpose } from '@/types';
 
 const OnboardingStep1: React.FC<OnboardingStepWithNextProps> = ({ currentChoices, saveChoice, onNext }) => {
     const purposes: Purpose[] = [
@@ -26,7 +27,7 @@ const OnboardingStep1: React.FC<OnboardingStepWithNextProps> = ({ currentChoices
                             key={purpose}
                             className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors
                                 ${currentChoices.purpose?.includes(purpose)
-                                    ? 'bg-white text-orange-600 shadow-md'
+                                    ? 'bg-white text-primary shadow-md'
                                     : 'bg-white/30 text-white hover:bg-white/50'
                                 }`}
                             onClick={() => handlePurposeChange(purpose)}
@@ -41,7 +42,7 @@ const OnboardingStep1: React.FC<OnboardingStepWithNextProps> = ({ currentChoices
                 <button
                     onClick={onNext}
                     disabled={!currentChoices.purpose || currentChoices.purpose.length === 0}
-                    className="py-2 px-6 bg-white text-orange-600 rounded-lg font-semibold shadow-md
+                    className="py-2 px-6 bg-white text-primary rounded-lg font-semibold shadow-md
                                disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100 transition-colors"
                 >
                     다음

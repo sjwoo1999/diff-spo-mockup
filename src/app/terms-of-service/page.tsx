@@ -1,96 +1,117 @@
-// src/app/terms-of-service/page.tsx
 'use client';
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 const TermsOfServicePage: React.FC = () => {
-    const router = useRouter();
-    const [agreed, setAgreed] = useState(false);
+  const router = useRouter();
+  const [agreed, setAgreed] = useState(false);
 
-    const handleAgree = () => {
-        localStorage.setItem('agreedToTerms', 'true');
-        // ✨ 이제 Rewrites 규칙에 따라 /login/onboarding으로 이동합니다.
-        router.replace('/login/onboarding');
-    };
+  const handleAgree = () => {
+    localStorage.setItem('agreedToTerms', 'true');
+    router.replace('/login/onboarding');
+  };
 
-    return (
-        <div className="min-h-screen p-4 flex flex-col items-center justify-center bg-gradient-to-br from-orange-100 to-red-100">
-            <div className="bg-white rounded-xl shadow-lg p-6 w-full max-w-lg">
-                <h1 className="text-2xl font-bold text-gray-800 mb-4 text-center">이용약관</h1>
-                <p className="text-gray-600 text-sm text-center mb-6">
-                    SPIN 서비스를 이용하기 위해서는 약관에 동의해야 합니다.
-                </p>
+  return (
+    <div className="min-h-screen p-4 flex flex-col items-center justify-center bg-gradient-to-br from-primary-light to-primary">
+      <div className="bg-white rounded-xl shadow-lg p-6 w-full max-w-3xl">
+        <h1 className="text-2xl font-bold text-black mb-4 text-center">이용약관</h1>
+        <p className="text-gray-600 text-sm text-center mb-6">
+          Diff-Spo 서비스를 이용하기 위해서는 약관에 동의해야 합니다.
+        </p>
 
-                <div className="h-64 overflow-y-auto border border-gray-200 p-4 rounded-md text-gray-700 text-sm leading-relaxed mb-4">
-                    {/* ... (이용약관 내용) ... */}
-                    <h2 className="font-semibold text-base mb-2">제 1조 (목적)</h2>
-                    <p>본 약관은 SPIN 서비스(이하 &quot;서비스&quot;)를 이용함에 있어 회사와 이용자의 권리, 의무 및 책임사항을 규정함을 목적으로 합니다.</p>
-                    <br />
-                    <h2 className="font-semibold text-base mb-2">제 2조 (정의)</h2>
-                    <p>
-                        ① &quot;서비스&quot;라 함은 회사가 제공하는 모든 SPIN 관련 서비스를 의미합니다.<br />
-                        ② &quot;이용자&quot;라 함은 본 약관에 따라 서비스를 이용하는 회원을 의미합니다.<br />
-                        ③ &quot;회원&quot;이라 함은 서비스를 이용하기 위해 회사와 이용계약을 체결한 자를 의미합니다.
-                    </p>
-                    <br />
-                    <h2 className="font-semibold text-base mb-2">제 3조 (약관의 효력 및 변경)</h2>
-                    <p>
-                        ① 본 약관은 서비스 웹사이트에 게시하거나 기타 방법으로 이용자에게 공지함으로써 효력이 발생합니다.<br />
-                        ② 회사는 관련 법령을 위배하지 않는 범위 내에서 본 약관을 개정할 수 있습니다.<br />
-                        ③ 변경된 약관은 공지 후 7일 이내에 효력이 발생하며, 이용자가 이의를 제기하지 않으면 동의한 것으로 간주됩니다.
-                    </p>
-                    <br />
-                    <h2 className="font-semibold text-base mb-2">제 4조 (서비스 이용)</h2>
-                    <p>
-                        ① 서비스는 연중무휴 1일 24시간 제공을 원칙으로 합니다.<br />
-                        ② 회사는 서비스 제공을 위해 필요한 경우 점검 시간을 가질 수 있습니다.<br />
-                        ③ 서비스 이용에 대한 자세한 사항은 서비스 안내 페이지를 참고하시기 바랍니다.
-                    </p>
-                    <br />
-                    <h2 className="font-semibold text-base mb-2">제 5조 (이용자의 의무)</h2>
-                    <p>
-                        ① 이용자는 서비스 이용에 필요한 정보를 정확하게 제공해야 합니다.<br />
-                        ② 이용자는 관련 법령 및 본 약관을 준수해야 합니다.<br />
-                        ③ 이용자는 타인의 권리를 침해하거나 불법적인 행위를 하지 않아야 합니다.
-                    </p>
-                    <br />
-                    <h2 className="font-semibold text-base mb-2">제 6조 (개인정보 보호)</h2>
-                    <p>회사는 이용자의 개인정보를 관련 법령에 따라 보호합니다. 개인정보 보호에 대한 상세 내용은 &quot;개인정보 처리방침&quot;을 따릅니다.</p>
-                    <br />
-                    <h2 className="font-semibold text-base mb-2">제 7조 (계약 해지 및 서비스 이용 제한)</h2>
-                    <p>회사는 이용자가 본 약관을 위반하는 경우 서비스 이용을 제한하거나 계약을 해지할 수 있습니다.</p>
-                    <br />
-                    <h2 className="font-semibold text-base mb-2">제 8조 (손해배상)</h2>
-                    <p>이용자가 본 약관을 위반하여 회사에 손해를 입힌 경우, 이용자는 그 손해를 배상해야 합니다.</p>
-                    <br />
-                    <h2 className="font-semibold text-base mb-2">제 9조 (분쟁 해결)</h2>
-                    <p>본 약관과 관련하여 분쟁이 발생할 경우, 회사의 본사 소재지를 관할하는 법원을 합의 관할 법원으로 합니다.</p>
-                    <br />
-                    <p className="text-gray-500 text-xs text-center">부칙: 이 약관은 2025년 6월 7일부터 시행됩니다.</p>
-                </div>
-                <div className="flex items-center justify-center mb-6">
-                    <input
-                        type="checkbox"
-                        id="agreeTerms"
-                        className="mr-2 h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300 rounded"
-                        checked={agreed}
-                        onChange={(e) => setAgreed(e.target.checked)}
-                    />
-                    <label htmlFor="agreeTerms" className="text-gray-700 text-base font-medium">이용약관에 동의합니다.</label>
-                </div>
-                <button
-                    onClick={handleAgree}
-                    disabled={!agreed}
-                    className={`w-full py-3 rounded-lg font-bold text-white transition-colors duration-300 shadow-md ${
-                        agreed ? 'bg-orange-600 hover:bg-orange-700' : 'bg-gray-300 cursor-not-allowed'
-                    }`}
-                >
-                    다음
-                </button>
-            </div>
+        <div className="h-[500px] overflow-y-auto border border-gray-200 p-4 rounded-md text-black text-sm leading-relaxed mb-4 space-y-4">
+          <h2 className="font-semibold text-base">제1조. 정의</h2>
+          <p>
+            “회사”란 Diff-Spo라는 명칭으로 서비스를 제공하는 사업자를 말합니다.
+            “서비스”란 회사가 운영하는 웹사이트 및 관련 콘텐츠 큐레이션 기능 전반을 의미합니다.
+            “이용자”란 본 약관에 따라 서비스를 이용하는 자를 말합니다.
+          </p>
+
+          <h2 className="font-semibold text-base">제2조. 이용자 자격</h2>
+          <p>
+            서비스 이용에 연령 제한은 없으나, 법적 행위가 포함되는 기능이 향후 추가될 경우 관련 법령에 따라 연령 제한이 적용될 수 있습니다.
+          </p>
+
+          <h2 className="font-semibold text-base">제3조. 서비스의 제공 및 변경</h2>
+          <p>
+            회사는 이색 스포츠 관련 콘텐츠를 선별 및 제공하며, 콘텐츠는 회사가 직접 선정하거나 신뢰할 수 있는 외부 소스를 기반으로 합니다.
+          </p>
+
+          <h2 className="font-semibold text-base">제4조. 서비스 이용의 제한</h2>
+          <p>
+            회사는 다음 각 호에 해당하는 경우 사전 통지 없이 서비스 이용을 제한, 중단하거나 자격을 박탈할 수 있습니다: 
+            불법 행위, 타인 권리 침해, 서비스 운영 방해 등
+          </p>
+
+          <h2 className="font-semibold text-base">제5조. 지적재산권</h2>
+          <p>
+            서비스에 포함된 모든 콘텐츠는 회사 또는 해당 저작권자의 자산이며, 무단 이용을 금합니다.
+          </p>
+
+          <h2 className="font-semibold text-base">제6조. 개인정보 보호</h2>
+          <p>
+            현재 회사는 개인정보를 수집하지 않으며, 향후 수집 시 별도 고지합니다.
+          </p>
+
+          <h2 className="font-semibold text-base">제7조. 제3자 서비스</h2>
+          <p>
+            현재 제3자 API 및 로그인은 사용되지 않으며, 추후 적용 시 별도 고지합니다.
+          </p>
+
+          <h2 className="font-semibold text-base">제8조. 책임의 제한</h2>
+          <p>
+            회사는 콘텐츠의 정확성이나 서비스 안정성을 보장하지 않으며, "있는 그대로" 서비스를 제공합니다.
+          </p>
+
+          <h2 className="font-semibold text-base">제9조. 사용자 콘텐츠</h2>
+          <p>
+            현재는 사용자 콘텐츠를 수집하지 않으며, 추후 도입 시 정책에 추가될 예정입니다.
+          </p>
+
+          <h2 className="font-semibold text-base">제10조. 약관의 변경</h2>
+          <p>
+            회사는 필요 시 본 약관을 변경할 수 있으며, 고지를 통해 안내합니다.
+          </p>
+
+          <h2 className="font-semibold text-base">제11조. 관할 및 준거법</h2>
+          <p>
+            본 약관은 대한민국 법률에 따르며, 분쟁은 서울중앙지방법원을 관할 법원으로 합니다.
+          </p>
+
+          <h2 className="font-semibold text-base">제12조. 기타 조항</h2>
+          <p>
+            본 약관 일부 조항이 무효되더라도 전체 효력에는 영향을 미치지 않습니다.
+          </p>
+
+          <p className="text-xs text-gray-500 text-center">시행일: 2025년 6월 10일</p>
         </div>
-    );
+
+        <div className="flex items-center justify-center mb-6">
+          <input
+            type="checkbox"
+            id="agreeTerms"
+            className="mr-2 h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
+            checked={agreed}
+            onChange={(e) => setAgreed(e.target.checked)}
+          />
+          <label htmlFor="agreeTerms" className="text-gray-700 text-base font-medium">
+            이용약관에 동의합니다.
+          </label>
+        </div>
+
+        <button
+          onClick={handleAgree}
+          disabled={!agreed}
+          className={`w-full py-3 rounded-lg font-bold text-white transition-colors duration-300 shadow-md ${
+            agreed ? 'bg-primary hover:bg-primary-dark' : 'bg-gray-300 cursor-not-allowed'
+          }`}
+        >
+          다음
+        </button>
+      </div>
+    </div>
+  );
 };
 
 export default TermsOfServicePage;

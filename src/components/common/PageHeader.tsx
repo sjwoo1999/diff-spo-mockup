@@ -1,18 +1,23 @@
-// src/components/common/PageHeader.tsx
-
 import React from 'react';
 
 interface PageHeaderProps {
     title: string;
     description: string;
-    className?: string; // className 속성 추가
-    as?: 'h1' | 'h2' | 'h3'; // ⭐ 추가: heading level flexibility
+    className?: string;
+    as?: 'h1' | 'h2' | 'h3';
     titleColor?: string;
     descriptionColor?: string;
 }
 
-const PageHeader: React.FC<PageHeaderProps> = ({ title, description, className, as = 'h2', titleColor= 'text-gray-800', descriptionColor='text-gray-600', }) => {
-    const HeadingTag = as; // 동적 heading tag
+const PageHeader: React.FC<PageHeaderProps> = ({
+    title,
+    description,
+    className,
+    as = 'h2',
+    titleColor = 'text-black', // 변경됨
+    descriptionColor = 'text-neutral-dark', // 변경됨
+}) => {
+    const HeadingTag = as;
 
     return (
         <div className={`text-center max-w-xl mx-auto ${className}`}>

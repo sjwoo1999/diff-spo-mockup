@@ -1,104 +1,77 @@
 'use client';
-import React, { useEffect, useCallback } from 'react';
+
+import React, { useEffect, useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import useOnboarding from '@/hooks/useOnboarding';
-
-import OnboardingStep1 from '@/components/onboarding/OnboardingStep1';
-import OnboardingStep2 from '@/components/onboarding/OnboardingStep2';
+import OnboardingSurvey from '@/components/onboarding/OnboardingSurvey';
 
 const OnboardingPage: React.FC = () => {
-    const router = useRouter();
-    const {
-        onboardingStep,
-        onboardingChoices,
-        saveOnboardingChoice,
-        nextStep,
-        prevStep,
-        completeOnboarding,
-        skipOptionalQuestions,
-    } = useOnboarding();
+  const router = useRouter();
+  const {
+    completeOnboarding,
+    skipOptionalQuestions,
+  } = useOnboarding();
 
-    useEffect(() => {
-        if (typeof window !== 'undefined') {
-            const isLoggedIn = localStorage.getItem('isLoggedIn'); // 로그인 상태도 확인
-            const hasCompletedOnboarding = localStorage.getItem('hasCompletedOnboarding');
-            const hasAgreedToTerms = localStorage.getItem('agreedToTerms'); // 'hasAgreedToTerms' 대신 'agreedToTerms' 사용 확인
+  // ✅ 상태로 관리 (null: 초기 상태, true/false는 판단 완료)
+  const [hasCompleted, setHasCompleted] = useState<null | boolean>(null);
 
-            // 로그인 안 됐으면 로그인 페이지로
-            if (isLoggedIn !== 'true') {
-                router.replace('/auth/login');
-            } 
-            // 약관 동의 안 됐으면 약관 페이지로 (올바른 경로 사용)
-            else if (hasAgreedToTerms !== 'true') {
-                router.replace('/terms-of-service'); // ✨ 이 부분을 수정했습니다!
-            } 
-            // 온보딩 완료했으면 홈으로
-            else if (hasCompletedOnboarding === 'true') {
-                router.replace('/main');
-            }
-            // 그 외 (로그인 O, 약관 동의 O, 온보딩 미완료) -> 현재 온보딩 페이지 유지
-        }
-    }, [router]); // router는 의존성 배열에 있어야 합니다.
+  const handleComplete = useCallback(async () => {
+    const success = await completeOnboarding();
+    if (success) {
+      localStorage.setItem('hasCompletedOnboarding', 'true');
+      router.push('/main');
+    }
+  }, [completeOnboarding, router]);
 
-    const handleCompleteOnboarding = useCallback(async () => {
-        const success = await completeOnboarding();
-        if (success) {
-            localStorage.setItem('hasCompletedOnboarding', 'true'); // 온보딩 완료 상태 저장
-            router.push('/main');
-        }
-    }, [completeOnboarding, router]);
+  const handleSkip = useCallback(async () => {
+    await skipOptionalQuestions();
+    localStorage.setItem('hasCompletedOnboarding', 'true');
+    router.push('/main');
+  }, [skipOptionalQuestions, router]);
 
-    const handleSkipAdditionalQuestions = useCallback(async () => {
-        await skipOptionalQuestions();
-        localStorage.setItem('hasCompletedOnboarding', 'true'); // 건너뛰면 완료한 것으로 간주
-        router.push('/main');
-    }, [skipOptionalQuestions, router]);
+  // ✅ 최초 접근 시 상태 확인
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const isLoggedIn = localStorage.getItem('isLoggedIn');
+      const hasAgreedToTerms = localStorage.getItem('agreedToTerms');
+      const completed = localStorage.getItem('hasCompletedOnboarding');
 
-    const renderStepContent = () => {
-        const commonProps = {
-            currentChoices: onboardingChoices,
-            saveChoice: saveOnboardingChoice,
-        };
+      if (isLoggedIn !== 'true') {
+        router.replace('/auth/login');
+        return;
+      }
 
-        switch (onboardingStep) {
-            case 1:
-                return <OnboardingStep1 {...commonProps} onNext={nextStep} />;
-            case 2:
-                return (
-                    <OnboardingStep2
-                        {...commonProps}
-                        onNext={nextStep}
-                        onPrev={prevStep}
-                        onSkipOptional={handleSkipAdditionalQuestions}
-                    />
-                );
-            default:
-                // 온보딩 단계가 2를 초과하면 자동으로 완료 처리
-                return <p className="text-white">온보딩 완료 중...</p>;
-        }
-    };
+      if (hasAgreedToTerms !== 'true') {
+        router.replace('/terms-of-service');
+        return;
+      }
 
-    const totalSteps = 2; // 총 온보딩 단계 수
+      // 상태 판단
+      if (completed === 'true') {
+        setHasCompleted(true);
+      } else {
+        setHasCompleted(false);
+      }
+    }
+  }, [router]);
 
-    useEffect(() => {
-        // 온보딩 단계가 총 단계를 초과하면 완료 처리
-        if (onboardingStep > totalSteps) {
-            handleCompleteOnboarding();
-        }
-    }, [onboardingStep, totalSteps, handleCompleteOnboarding]);
+  // ✅ 리다이렉션 (hasCompleted === true일 때만)
+  useEffect(() => {
+    if (hasCompleted === true) {
+      router.replace('/main');
+    }
+  }, [hasCompleted, router]);
 
+  // ✅ 초기 상태일 때 렌더링 보류 (로딩 스피너 대체 가능)
+  if (hasCompleted === null) return null;
 
-    return (
-        <div className="page active p-4 sm:p-6 md:p-8 flex flex-col justify-between items-center text-center overflow-y-auto flex-grow bg-gradient-to-br from-orange-600 to-red-600 text-white min-h-screen">
-            <h1 className="text-2xl sm:text-3xl font-bold mt-4 mb-8">
-                SPIN 온보딩 ({onboardingStep}/{totalSteps})
-            </h1>
-            <div className="flex-grow w-full max-w-lg mx-auto flex flex-col justify-center items-center">
-                {renderStepContent()}
-            </div>
-            {/* 하단 네비게이션 또는 버튼이 있다면 여기에 추가 */}
-        </div>
-    );
+  // ✅ 온보딩 진행
+  return (
+    <OnboardingSurvey
+      onSurveyComplete={handleComplete}
+      onSkipOptional={handleSkip}
+    />
+  );
 };
 
 export default OnboardingPage;

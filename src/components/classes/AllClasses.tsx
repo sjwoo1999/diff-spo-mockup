@@ -28,9 +28,9 @@ const AllClasses: React.FC<AllClassesProps> = ({ classes }) => {
                             height={400}
                             className="w-full h-40 object-cover rounded-md mb-3 sm:h-48 lg:h-56"
                         />
-                        <h3 className="text-lg font-semibold text-gray-800 mb-1">{cls.title}</h3>
-                        <p className="text-gray-600 text-sm mb-2">{cls.instructor} | {cls.type}</p>
-                        <p className="text-orange-600 font-bold mt-auto">{cls.price.toLocaleString()}원</p>
+                        <h3 className="text-lg font-semibold text-black mb-1">{cls.title}</h3>
+                        <p className="text-neutral-dark text-sm mb-2">{cls.instructor} | {cls.type}</p>
+                        <p className="text-primary font-bold mt-auto">{cls.price.toLocaleString()}원</p>
                     </div>
                 ))}
             </div>

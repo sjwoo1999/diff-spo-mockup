@@ -4,12 +4,10 @@ import React, { useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { database } from '@/data/database';
 import { CommunityPost } from '@/types';
-import BottomNav from '@/components/common/BottomNav';
 
 const CommunityPostPage = () => {
   const router = useRouter();
   const { id } = useParams<{ id: string }>();
-
   const post = database.community.find((p) => p.id === id) as CommunityPost | undefined;
 
   const [likes, setLikes] = useState(post?.likes ?? 0);
@@ -28,7 +26,7 @@ const CommunityPostPage = () => {
         <p>해당 게시글을 찾을 수 없습니다.</p>
         <button
           onClick={() => router.back()}
-          className="mt-4 px-4 py-2 bg-gray-200 rounded hover:bg-gray-300"
+          className="mt-4 px-4 py-2 bg-neutral-light rounded hover:bg-neutral"
         >
           뒤로 가기
         </button>
@@ -40,17 +38,17 @@ const CommunityPostPage = () => {
     <main className="max-w-[512px] mx-auto p-6">
       <button
         onClick={() => router.back()}
-        className="text-sm text-orange-600 mb-4 hover:underline"
+        className="text-sm text-primary mb-4 hover:underline"
       >
         ← 커뮤니티 목록으로
       </button>
 
-      <div className="bg-white rounded-lg shadow-md p-6 border border-gray-100">
+      <div className="bg-white rounded-lg shadow-md p-6 border border-neutral">
         <div className="flex justify-between items-center mb-2">
           <span
             className={`text-xs font-semibold px-2 py-1 rounded-full
               ${
-                post.category === '후기' ? 'text-orange-600 bg-orange-100' :
+                post.category === '후기' ? 'text-primary bg-primary/10' :
                 post.category === '질문' ? 'text-blue-600 bg-blue-100' :
                 post.category === '정보' ? 'text-green-600 bg-green-100' :
                 'text-gray-600 bg-gray-100'
@@ -61,11 +59,11 @@ const CommunityPostPage = () => {
           <span className="text-gray-500 text-xs">{post.createdAt.split(' ')[0]}</span>
         </div>
 
-        <h1 className="text-2xl font-bold text-gray-800 mb-2">{post.title}</h1>
+        <h1 className="text-2xl font-bold text-black mb-2">{post.title}</h1>
 
         <div className="flex items-center justify-between mb-4">
           <span className="text-sm text-gray-600">
-            ❤️ {likes}명이 이 글에 공감했어요
+            💜 {likes}명이 이 글에 공감했어요
           </span>
           <button
             onClick={handleLike}
@@ -73,7 +71,7 @@ const CommunityPostPage = () => {
             className={`text-sm ${
               liked
                 ? 'text-gray-400 cursor-default'
-                : 'text-orange-600 hover:underline'
+                : 'text-primary hover:underline'
             }`}
           >
             {liked ? '공감 완료' : '공감하기'}
@@ -89,14 +87,14 @@ const CommunityPostPage = () => {
             href={post.externalLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-500 hover:underline text-sm block mb-6"
+            className="text-primary hover:underline text-sm block mb-6"
           >
             원문 보기
           </a>
         )}
 
         <div className="border-t pt-4">
-          <h2 className="text-lg font-semibold text-gray-800 mb-3">
+          <h2 className="text-lg font-semibold text-black mb-3">
             댓글 ({post.comments.length})
           </h2>
           {post.comments.length === 0 ? (
@@ -106,7 +104,7 @@ const CommunityPostPage = () => {
               {post.comments.map((comment) => (
                 <li
                   key={comment.id}
-                  className="bg-gray-50 rounded px-3 py-2 text-sm"
+                  className="bg-neutral-light rounded px-3 py-2 text-sm"
                 >
                   <div className="flex justify-between mb-1 text-gray-600">
                     <span className="font-semibold">{comment.author}</span>
@@ -121,7 +119,6 @@ const CommunityPostPage = () => {
           )}
         </div>
       </div>
-      <BottomNav activePage="community" setActivePage={()=>{}}/>
     </main>
   );
 };

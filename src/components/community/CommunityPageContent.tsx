@@ -1,12 +1,13 @@
+'use client';
+
 import React, { useState } from 'react';
 import PageHeader from '@/components/common/PageHeader';
 import { CommunityPost } from '@/types';
 import CommunityPosts from './CommunityPosts';
 
 interface CommunityPageContentProps {
-    posts: CommunityPost[];
-  }
-  
+  posts: CommunityPost[];
+}
 
 const CommunityPageContent: React.FC<CommunityPageContentProps> = ({ posts }) => {
   const [selectedCategory, setSelectedCategory] = useState<'전체' | '후기' | '질문' | '정보'>('전체');
@@ -20,14 +21,13 @@ const CommunityPageContent: React.FC<CommunityPageContentProps> = ({ posts }) =>
 
   return (
     <div className="space-y-6 px-4 sm:px-6 md:px-8">
-      <br/>
+      <br />
       <PageHeader
         title="커뮤니티"
-        description="SPIN 회원들과 소통하고 정보를 공유하며 새로운 경험을 나누세요!"
+        description="DIFF-SPO 회원들과 소통하고 정보를 공유하며 새로운 경험을 나누세요!"
         titleColor="text-white"
         descriptionColor="text-white/80"
       />
-
 
       {/* 카테고리 필터 */}
       <div className="flex flex-wrap gap-2">
@@ -38,8 +38,8 @@ const CommunityPageContent: React.FC<CommunityPageContentProps> = ({ posts }) =>
             className={`px-4 py-1.5 text-sm rounded-full border transition-all
               ${
                 selectedCategory === category
-                  ? 'bg-orange-500 text-white border-orange-500'
-                  : 'bg-white text-gray-600 border-gray-300 hover:bg-gray-100'
+                  ? 'bg-primary text-white border-primary'
+                  : 'bg-white text-neutral-dark border-neutral hover:bg-neutral-light'
               }`}
           >
             {category}

@@ -15,7 +15,7 @@ const RecommendedSports: React.FC<RecommendedSportsProps> = ({ sports, onExplore
 
     return (
         <section className="mb-8 mx-auto max-w-[512px]">
-            <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4">추천 스포츠</h2>
+            <h2 className="text-xl sm:text-2xl font-bold text-black mb-4">추천 스포츠</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
                 {sports.map((sport) => (
                     <div
@@ -30,8 +30,8 @@ const RecommendedSports: React.FC<RecommendedSportsProps> = ({ sports, onExplore
                             height={400}
                             className="w-full h-32 object-cover rounded-md mb-2"
                         />
-                        <h3 className="text-lg font-semibold text-gray-800">{sport.name}</h3>
-                        <p className="text-gray-600 text-sm">{sport.description}</p>
+                        <h3 className="text-lg font-semibold text-black">{sport.name}</h3>
+                        <p className="text-neutral-dark text-sm">{sport.description}</p>
                     </div>
                 ))}
             </div>
@@ -39,7 +39,7 @@ const RecommendedSports: React.FC<RecommendedSportsProps> = ({ sports, onExplore
             <div className="flex justify-center">
                 <button
                     onClick={onExploreClick}
-                    className="px-6 py-3 bg-orange-500 text-white font-semibold rounded-lg hover:bg-orange-600 transition active:scale-95"
+                    className="px-6 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary-dark transition active:scale-95"
                 >
                     + 더 많은 스포츠 탐색하기
                 </button>

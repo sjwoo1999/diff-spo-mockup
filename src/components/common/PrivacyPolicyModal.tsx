@@ -1,94 +1,128 @@
-// src/components/common/PrivacyPolicyModal.tsx
 'use client';
 
 import React from 'react';
-import { IoCloseSharp } from 'react-icons/io5'; // 닫기 아이콘 임포트
+import { IoCloseSharp } from 'react-icons/io5';
 
 interface PrivacyPolicyModalProps {
-    isOpen: boolean;
-    onClose: () => void; // onClose 함수는 모달을 닫을 때 사용됨
+  isOpen: boolean;
+  onClose: () => void;
 }
 
 const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ isOpen, onClose }) => {
-    if (!isOpen) return null;
+  if (!isOpen) return null;
 
-    return (
-        <div
-            className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center p-4 z-50"
-            onClick={onClose} // ✨ 오버레이 클릭 시 모달 닫기
+  return (
+    <div
+      className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center p-4 z-50"
+      onClick={onClose}
+    >
+      <div
+        className="bg-white rounded-lg shadow-xl p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto relative"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          onClick={onClose}
+          className="absolute top-3 right-3 text-black/50 hover:text-black text-2xl"
+          aria-label="모달 닫기"
         >
-            <div
-                className="bg-white rounded-lg shadow-xl p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto relative"
-                onClick={(e) => e.stopPropagation()} // 모달 내부 클릭 시 닫히지 않도록 이벤트 버블링 방지
-            >
-                <button
-                    onClick={onClose} // ✨ 닫기 버튼 클릭 시 모달 닫기
-                    className="absolute top-3 right-3 text-gray-500 hover:text-gray-700 text-2xl"
-                    aria-label="모달 닫기"
-                >
-                    <IoCloseSharp />
-                </button>
-                <h2 className="text-2xl font-bold mb-4 text-gray-800">개인정보 처리방침</h2>
-                <div className="text-gray-700 text-sm leading-relaxed space-y-3">
-                    <p>
-                        SPIN (이하 &quot;회사&quot; 또는 &quot;SPIN&quot;)은(는) 「개인정보보호법」 제30조에 따라 정보주체의 개인정보를 보호하고 이와 관련한 고충을 신속하고 원활하게 처리할 수 있도록 다음과 같이 개인정보 처리방침을 수립&middot;공개합니다.
-                    </p>
-                    <p>
-                        본 개인정보 처리방침은 2025년 5월 27일부터 적용됩니다.
-                    </p>
+          <IoCloseSharp />
+        </button>
+        <h2 className="text-2xl font-bold mb-4 text-black">개인정보 처리방침</h2>
 
-                    <h3>제1조(개인정보의 처리 목적)</h3>
-                    <p>SPIN은(는) 다음의 목적을 위하여 개인정보를 처리합니다. 처리하고 있는 개인정보는 다음의 목적 이외의 용도로는 이용되지 않으며, 이용 목적이 변경되는 경우에는 「개인정보보호법」 제18조에 따라 별도의 동의를 받는 등 필요한 조치를 이행할 예정입니다.</p>
-                    <ol className="list-decimal list-inside pl-4 space-y-1">
-                        <li>서비스 제공</li>
-                        <li>회원 관리</li>
-                        <li>마케팅 및 광고</li>
-                        <li>고충 처리</li>
-                    </ol>
+        <div className="text-black/80 text-sm leading-relaxed space-y-4">
+          <p>
+            Diff-Spo(이하 &quot;서비스&quot;)는 이용자의 개인정보를 중요시하며,
+            「개인정보 보호법」 등 관련 법령에 따라 이용자의 개인정보를 보호하고 있습니다.
+            본 방침은 다음과 같은 내용을 담고 있습니다.
+          </p>
 
-                    <h3>제2조(개인정보의 처리 및 보유 기간)</h3>
-                    <p>
-                        ① SPIN은(는) 법령에 따른 개인정보 보유&middot;이용기간 또는 정보주체로부터 개인정보를 수집 시에 동의 받은 개인정보 보유&middot;이용기간 내에서 개인정보를 처리&middot;보유합니다.
-                    </p>
-                    <p>
-                        ② 각각의 개인정보 처리 및 보유 기간은 다음과 같습니다.
-                        <ul className="list-disc list-inside pl-4 space-y-1">
-                            <li>서비스 제공: 서비스 종료 시까지</li>
-                            <li>회원 관리: 회원 탈퇴 시까지</li>
-                            <li>마케팅 및 광고: 동의 철회 시까지</li>
-                        </ul>
-                    </p>
+          <div>
+            <h3 className="font-semibold text-black">1. 수집하는 개인정보 항목</h3>
+            <p>
+              현재 Diff-Spo는 이용자의 개인정보를 직접 수집하지 않습니다.
+              <br />
+              단, 서비스 품질 개선 및 버그 추적 등을 위한 목적으로 서버 로그를 통해 일부 정보가 수집될 수 있습니다.
+            </p>
+          </div>
 
-                    <h3>제3조(정보주체와 법정대리인의 권리&middot;의무 및 그 행사방법)</h3>
-                    <p>
-                        ① 정보주체는 SPIN에 대해 언제든지 개인정보 열람&middot;정정&middot;삭제&middot;처리정지 요구 등의 권리를 행사할 수 있습니다.
-                    </p>
-                    <p>
-                        ② 제1항에 따른 권리 행사는 SPIN에 대해 「개인정보보호법」 시행령 제41조 제1항에 따라 서면, 전자우편, 모사전송(FAX) 등을 통하여 하실 수 있으며, SPIN은(는) 이에 대해 지체 없이 조치하겠습니다.
-                    </p>
-                    <p>
-                        ③ 제1항에 따른 권리 행사는 정보주체의 법정대리인이나 위임을 받은 자 등 대리인을 통하여 하실 수 있습니다. 이 경우 「개인정보보호법」 시행규칙 별지 제11호 서식에 따른 위임장을 제출하셔야 합니다.
-                    </p>
-                    <p>
-                        ④ 개인정보 열람 및 처리정지 요구는 「개인정보보호법」 제35조 제4항, 제37조 제2항에 의하여 정보주체의 권리가 제한될 수 있습니다.
-                    </p>
-                    <p>
-                        ⑤ 개인정보의 정정 및 삭제 요구는 다른 법령에서 그 개인정보가 수집 대상으로 명시되어 있는 경우에는 그 삭제를 요구할 수 없습니다.
-                    </p>
-                    <p>
-                        ⑥ SPIN은(는) 정보주체 권리에 따른 열람의 요구, 정정&middot;삭제의 요구, 처리정지의 요구 시 열람 등 요구를 한 자가 본인이거나 정당한 대리인인지를 확인합니다.
-                    </p>
+          <div>
+            <h3 className="font-semibold text-black">2. 개인정보 수집 및 이용 목적</h3>
+            <p>
+              수집된 정보는 서비스 품질 개선 및 버그 추적을 위해 사용됩니다.
+            </p>
+          </div>
 
-                    {/* 나머지 내용은 여기에 계속 추가 */}
-                    <p>
-                        본 개인정보 처리방침에 대한 자세한 내용은 회사 웹사이트에서 확인하실 수 있습니다.
-                        <br/>
-                        <a href="#" className="text-blue-600 hover:underline">회사 웹사이트 링크</a>
-                    </p>
-                </div>
-            </div>
+          <div>
+            <h3 className="font-semibold text-black">3. 개인정보 보유 및 이용 기간</h3>
+            <p>
+              서버 로그를 통해 수집된 정보는 서비스 종료 시까지 보관됩니다.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-black">4. 개인정보의 제3자 제공</h3>
+            <p>현재 이용자의 개인정보를 외부에 제공하지 않습니다.</p>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-black">5. 개인정보 처리 위탁</h3>
+            <p>현재 제3자에게 개인정보 처리를 위탁하지 않습니다.</p>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-black">6. 개인정보 보호를 위한 기술적·관리적 조치</h3>
+            <p>
+              개인정보를 직접 수집하지 않으므로 관련 조치는 제한적이나, 서버 보안 및 접근 제한 등을 통해 로그 정보의 안전성을 확보하고 있습니다.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-black">7. 정보주체의 권리와 행사 방법</h3>
+            <p>
+              이용자는 이메일 문의를 통해 본인의 정보 열람, 수정, 삭제 요청을 할 수 있습니다.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-black">8. 쿠키 사용 여부 및 관리 방법</h3>
+            <p>현재 서비스에서는 쿠키를 사용하지 않습니다.</p>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-black">9. 만 14세 미만 아동의 개인정보</h3>
+            <p>
+              현재 만 14세 미만 아동의 개인정보 수집에 대한 별도 절차는 마련되어 있지 않습니다.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-black">10. 개인정보 보호 책임자 및 문의처</h3>
+            <p>
+              개인정보 관련 문의는 이메일을 통해 접수하실 수 있으며, 관련된 책임자 정보는 추후 필요 시 명시될 수 있습니다.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-black">11. 법적 근거 및 관할권</h3>
+            <p>본 방침은 대한민국 「개인정보 보호법」을 준수합니다.</p>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-black">12. 방침 변경에 대한 고지</h3>
+            <p>
+              본 개인정보처리방침은 변경될 수 있으며, 변경 시 서비스 내 공지사항을 통해 고지됩니다.
+            </p>
+          </div>
+
+          <p className="text-right text-xs text-gray-500">시행일: 2025년 06월 10일</p>
+
+          <p className="pt-2">
+            <a href="#" className="text-primary hover:underline">자세한 내용은 회사 웹사이트에서 확인하실 수 있습니다.</a>
+          </p>
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default PrivacyPolicyModal;
