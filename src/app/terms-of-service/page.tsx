@@ -61,7 +61,7 @@ const TermsOfServicePage: React.FC = () => {
 
           <h2 className="font-semibold text-base">제8조. 책임의 제한</h2>
           <p>
-            회사는 콘텐츠의 정확성이나 서비스 안정성을 보장하지 않으며, "있는 그대로" 서비스를 제공합니다.
+            회사는 본 서비스를 &quot;있는 그대로(as is)&quot; 제공하며, 기술적 오류, 서비스 중단, 정보 유실 등에 대해서도 책임을 지지 않습니다.
           </p>
 
           <h2 className="font-semibold text-base">제9조. 사용자 콘텐츠</h2>
