@@ -1,5 +1,7 @@
-// src/components/classes/AllClasses.tsx
+'use client';
+
 import React from 'react';
+import { useRouter } from 'next/navigation';
 import { ClassItem } from '@/types';
 import Image from 'next/image';
 
@@ -8,11 +10,17 @@ interface AllClassesProps {
 }
 
 const AllClasses: React.FC<AllClassesProps> = ({ classes }) => {
+    const router = useRouter();
+
     return (
         <section className="mx-auto max-w-[512px]">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {classes.map((cls) => (
-                    <div key={cls.id} className="bg-white rounded-lg shadow-md p-4 flex flex-col">
+                    <div
+                        key={cls.id}
+                        onClick={() => router.push('/classes')}
+                        className="bg-white rounded-lg shadow-md p-4 flex flex-col cursor-pointer hover:shadow-lg transition"
+                    >
                         <Image
                             src={cls.imageUrl}
                             alt={cls.title}

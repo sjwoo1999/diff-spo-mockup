@@ -6,8 +6,8 @@ export async function generateStaticParams() {
     }));
 }
 
-export default function Page({ params }: { params: { id: string } }) {
-    const { id } = params;
+export default async function Page({ params }: { params: { id: string } }) {
+    const id = params.id;
 
     const sport = database.sports.find((sport) => sport.id === id);
 
@@ -26,13 +26,13 @@ export default function Page({ params }: { params: { id: string } }) {
     }
 
     return (
-        <main className="flex flex-col items-center justify-center min-h-screen text-center p-8">
-            <h1 className="text-3xl font-bold text-gray-800 mb-6">{sport.name}</h1>
-            <p className="text-gray-600 text-base mb-4">{sport.description}</p>
-            <p className="text-sm text-gray-500 mb-1">💪 강도: {sport.intensity}</p>
-            <p className="text-sm text-gray-500 mb-1">👥 선호도: {sport.preference}</p>
-            <p className="text-sm text-gray-500 mb-1">💰 비용: {sport.cost}</p>
-            <p className="text-sm text-gray-500 mb-1">🏠 장소: {sport.locationPreference}</p>
+        <main className="flex flex-col items-center justify-center min-h-screen text-center p-8 bg-black text-white">
+            <h1 className="text-3xl font-bold mb-6">{sport.name}</h1>
+            <p className="text-white/80 text-base mb-4">{sport.description}</p>
+            <p className="text-sm text-white/70 mb-1">💪 강도: {sport.intensity}</p>
+            <p className="text-sm text-white/70 mb-1">👥 선호도: {sport.preference}</p>
+            <p className="text-sm text-white/70 mb-1">💰 비용: {sport.cost}</p>
+            <p className="text-sm text-white/70 mb-1">🏠 장소: {sport.locationPreference}</p>
 
             <a
                 href="/classes"
