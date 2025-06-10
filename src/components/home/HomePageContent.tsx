@@ -24,36 +24,11 @@ const HomePageContent: React.FC<HomePageContentProps> = ({ recommendedSportsList
 
     return (
         <div className={`page active ${commonPadding} overflow-y-auto`}>
-            <div className="mb-6">
-                <div
-                    data-glitch="DIFF-SPO"
-                    className="glitch text-3xl sm:text-4xl font-extrabold tracking-widest select-none"
-                    style={{
-                    color: '#6B21A8', // 기본 보라 (차분한 톤)
-                    }}
-                >
-                    DIFF-SPO
-                    <style jsx>{`
-                    .glitch::before {
-                        color: #A78BFA !important;  /* 연보라 */
-                        opacity: 0.4 !important;
-                        animation: glitch-soft 1.5s infinite;
-                    }
-                    .glitch::after {
-                        color: #C4B5FD !important;  /* 아주 연한 보라 */
-                        opacity: 0.3 !important;
-                        animation: glitch-soft 1.5s infinite reverse;
-                    }
-
-                    @keyframes glitch-soft {
-                        0% { transform: translate(0); }
-                        25% { transform: translate(-0.5px, 0.5px); }
-                        50% { transform: translate(0.5px, -0.5px); }
-                        75% { transform: translate(-0.5px, -0.5px); }
-                        100% { transform: translate(0); }
-                    }
-                    `}</style>
-                </div>
+            <div
+                className="text-4xl sm:text-4xl font-extrabold tracking-[0.1em] text-purple-800 uppercase select-none"
+                style={{ fontFamily: 'var(--font-inter)' }}
+            >
+                DIFF-SPO
             </div>
             <p className="text-neutral-dark text-sm sm:text-base mb-6 sm:mb-8">
                 {userOnboardingChoices.preference === '개인' && '혼자서 즐기기 좋은'}

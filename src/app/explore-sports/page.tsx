@@ -47,7 +47,7 @@ const ExploreSportsPage = () => {
 
       {/* 🧭 Title */}
       <div className="text-center mb-6">
-        <h1 className="text-2xl font-extrabold mb-2">이색 스포츠 탐색</h1>
+        <h1 className="text-2xl text-white font-extrabold mb-2">이색 스포츠 탐색</h1>
         <p className="text-white text-sm sm:text-base">
           카드를 넘기며 다양한 스포츠를 만나보세요!
         </p>
