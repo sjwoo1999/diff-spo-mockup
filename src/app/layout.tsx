@@ -14,7 +14,6 @@ const inter = Inter({
   variable: '--font-inter',
 });
 
-// GA 측정 ID는 환경변수에서 불러오기
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
 export const metadata: Metadata = {
@@ -50,6 +49,18 @@ export const metadata: Metadata = {
     title: 'DIFF-SPO | 이색 스포츠 큐레이션',
     description: '내게 맞는 특별한 스포츠 경험, 지금 DIFF-SPO에서 시작하세요!',
     images: ['/images/logo/logo.png'],
+  },
+  icons: {
+    icon: [
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon.ico' },
+    ],
+    apple: '/apple-touch-icon.png',
+    other: [
+      { rel: 'android-chrome', url: '/android-chrome-192x192.png' },
+      { rel: 'android-chrome', url: '/android-chrome-512x512.png' },
+    ],
   },
 };
 
