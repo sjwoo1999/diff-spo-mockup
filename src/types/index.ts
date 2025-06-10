@@ -40,6 +40,7 @@ export type OnboardingChoiceKey = keyof OnboardingChoices;
 export interface Comment {
     id: string;
     author: string;
+    authorAvatar?: string;
     content: string;
     createdAt: string;
 }
@@ -49,6 +50,7 @@ export interface CommunityPost {
     title: string;
     content: string;
     author: string;
+    authorAvatar?: string;
     createdAt: string;
     comments: Comment[];
     externalLink?: string;

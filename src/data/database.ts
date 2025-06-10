@@ -750,17 +750,20 @@ export const database: Database = {
             title: '이번 주말 패러글라이딩 후기!',
             content: '처음 해봤는데 너무 재밌었어요~ 강사님도 친절하시고 추천드립니다 :)',
             author: '스포츠러버',
+            authorAvatar: '/images/default/default_profile.jpg',
             createdAt: '2025-06-07 14:20:00',
             comments: [
                 {
                     id: 'comment1',
                     author: '클라이머99',
+                    authorAvatar: '/images/default/default_profile.jpg',
                     content: '우와! 저도 해보고 싶어요 🔥',
                     createdAt: '2025-06-07 15:00:00',
                 },
                 {
                     id: 'comment2',
                     author: '운동초보',
+                    authorAvatar: '/images/default/default_profile.jpg',
                     content: '가격대는 어느 정도였나요?',
                     createdAt: '2025-06-07 16:10:00',
                 },
@@ -773,11 +776,13 @@ export const database: Database = {
             title: '클라이밍 입문 장비 추천 부탁드려요!',
             content: '처음 클라이밍 배우려는데 어떤 장비부터 준비하면 좋을까요? 추천 부탁드립니다 🙏',
             author: '초보클라이머',
+            authorAvatar: '/images/default/default_profile.jpg',
             createdAt: '2025-06-06 09:35:00',
             comments: [
                 {
                     id: 'comment3',
                     author: '짬클',
+                    authorAvatar: '/images/default/default_profile.jpg',
                     content: '암벽화랑 초크백부터 준비하세요!',
                     createdAt: '2025-06-06 10:00:00',
                 },
@@ -790,6 +795,7 @@ export const database: Database = {
             title: '서울 근교에서 ATV 탈 만한 곳 있나요?',
             content: '이번 여름에 친구들이랑 ATV 타고 싶은데 추천 장소 있을까요?',
             author: '익스트림러버',
+            authorAvatar: '/images/default/default_profile.jpg',
             createdAt: '2025-06-05 19:00:00',
             comments: [],
             category: '질문',
@@ -800,11 +806,13 @@ export const database: Database = {
             title: '서핑 용어 간단 정리 🌊',
             content: '초보 분들 참고하시라고 기본 서핑 용어 정리해봅니다! Pop-up, Duck dive, Point break 등등...',
             author: '파도타는여자',
+            authorAvatar: '/images/default/default_profile.jpg',
             createdAt: '2025-06-04 11:45:00',
             comments: [
                 {
                     id: 'comment4',
                     author: '서핑꿈나무',
+                    authorAvatar: '/images/default/default_profile.jpg',
                     content: '좋은 정보 감사합니다 🙏',
                     createdAt: '2025-06-04 12:20:00',
                 },
@@ -818,11 +826,13 @@ export const database: Database = {
             title: '이번 달 스핀 정모 언제 하나요?',
             content: '다들 이번 달 번개 모임 계획 있으신가요? 같이 운동하고 싶어요!',
             author: '운동메이트찾아요',
+            authorAvatar: '/images/default/default_profile.jpg',
             createdAt: '2025-06-03 08:30:00',
             comments: [
                 {
                     id: 'comment5',
                     author: '동네운동러',
+                    authorAvatar: '/images/default/default_profile.jpg',
                     content: '좋아요! 저도 참석하고 싶어요 🙋',
                     createdAt: '2025-06-03 09:10:00',
                 },
@@ -867,7 +877,7 @@ export const database: Database = {
 
     user: {
         id: 'user1',
-        name: '김이용',
+        name: '김디프스포',
         email: 'user@example.com',
         gender: 'male',
         dateOfBirth: '1995-03-15',
