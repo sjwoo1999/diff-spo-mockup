@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { database } from '@/data/database';
 import { CommunityPost } from '@/types';
+import BottomNav from '@/components/common/BottomNav';
 
 const CommunityPostPage = () => {
   const router = useRouter();
@@ -120,6 +121,7 @@ const CommunityPostPage = () => {
           )}
         </div>
       </div>
+      <BottomNav activePage="community" setActivePage={()=>{}}/>
     </main>
   );
 };
