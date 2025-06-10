@@ -1,11 +1,12 @@
 import React from 'react';
 import Link from 'next/link';
-import { CommunityPostWithLikes } from '@/types';
 import Image from 'next/image';
+import { CommunityPost } from '@/types';
 
 interface CommunityPostsProps {
-  posts: CommunityPostWithLikes[];
-}
+    posts: CommunityPost[];
+  }
+  
 
 const CommunityPosts: React.FC<CommunityPostsProps> = ({ posts }) => {
   if (posts.length === 0) {

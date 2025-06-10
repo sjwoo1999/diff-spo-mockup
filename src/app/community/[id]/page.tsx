@@ -3,11 +3,13 @@
 import React, { useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { database } from '@/data/database';
+import { CommunityPost } from '@/types';
 
 const CommunityPostPage = () => {
   const router = useRouter();
   const { id } = useParams<{ id: string }>();
-  const post = database.community.find((p) => p.id === id);
+
+  const post = database.community.find((p) => p.id === id) as CommunityPost | undefined;
 
   const [likes, setLikes] = useState(post?.likes ?? 0);
   const [liked, setLiked] = useState(false);
@@ -43,7 +45,6 @@ const CommunityPostPage = () => {
       </button>
 
       <div className="bg-white rounded-lg shadow-md p-6 border border-gray-100">
-        {/* 카테고리 + 날짜 */}
         <div className="flex justify-between items-center mb-2">
           <span
             className={`text-xs font-semibold px-2 py-1 rounded-full
@@ -59,10 +60,8 @@ const CommunityPostPage = () => {
           <span className="text-gray-500 text-xs">{post.createdAt.split(' ')[0]}</span>
         </div>
 
-        {/* 제목 */}
         <h1 className="text-2xl font-bold text-gray-800 mb-2">{post.title}</h1>
 
-        {/* 공감 영역 */}
         <div className="flex items-center justify-between mb-4">
           <span className="text-sm text-gray-600">
             ❤️ {likes}명이 이 글에 공감했어요
@@ -80,12 +79,10 @@ const CommunityPostPage = () => {
           </button>
         </div>
 
-        {/* 본문 전체 */}
         <p className="text-gray-700 text-base mb-6 whitespace-pre-line">
           {post.content}
         </p>
 
-        {/* 외부 링크 */}
         {post.externalLink && (
           <a
             href={post.externalLink}
@@ -97,7 +94,6 @@ const CommunityPostPage = () => {
           </a>
         )}
 
-        {/* 댓글 */}
         <div className="border-t pt-4">
           <h2 className="text-lg font-semibold text-gray-800 mb-3">
             댓글 ({post.comments.length})

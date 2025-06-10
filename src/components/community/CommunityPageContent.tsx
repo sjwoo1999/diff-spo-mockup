@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import PageHeader from '@/components/common/PageHeader';
+import { CommunityPost } from '@/types';
 import CommunityPosts from './CommunityPosts';
-import { CommunityPostWithLikes } from '@/types'; // 변경된 타입 import
 
 interface CommunityPageContentProps {
-  posts: CommunityPostWithLikes[];
-}
+    posts: CommunityPost[];
+  }
+  
 
 const CommunityPageContent: React.FC<CommunityPageContentProps> = ({ posts }) => {
   const [selectedCategory, setSelectedCategory] = useState<'전체' | '후기' | '질문' | '정보'>('전체');

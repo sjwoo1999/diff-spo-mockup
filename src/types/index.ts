@@ -37,27 +37,23 @@ export type OnboardingChoiceKey = keyof OnboardingChoices;
 // 커뮤니티 관련 타입
 // ----------------------------------------------------
 
-export interface CommunityPost {
-    id: string;
-    title: string;
-    content: string;
-    author: string;
-    createdAt: string; // "YYYY-MM-DD HH:MM:SS"
-    comments: Comment[];
-    externalLink?: string;
-    category: string; // 후기 / 질문 / 정보 / 자유
-}
-
-// 임시 UI 확장용 타입
-export type CommunityPostWithLikes = CommunityPost & {
-    likes: number;
-};
-
 export interface Comment {
     id: string;
     author: string;
     content: string;
     createdAt: string;
+}
+  
+export interface CommunityPost {
+    id: string;
+    title: string;
+    content: string;
+    author: string;
+    createdAt: string;
+    comments: Comment[];
+    externalLink?: string;
+    category: '후기' | '질문' | '정보' | '자유';
+    likes: number;
 }
 
 // ----------------------------------------------------

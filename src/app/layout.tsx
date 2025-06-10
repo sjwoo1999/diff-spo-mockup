@@ -25,7 +25,16 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="ko">
-            <body className={`${notoSansKr.variable} ${inter.variable} flex flex-col min-h-screen w-full`}>
+            <body
+                className={[
+                    notoSansKr.variable,
+                    inter.variable,
+                    'flex',
+                    'flex-col',
+                    'min-h-screen',
+                    'w-full',
+                ].join(' ')}
+            >
                 {children}
             </body>
         </html>
