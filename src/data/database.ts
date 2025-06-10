@@ -1,6 +1,6 @@
 // src/data/database.ts
 
-import { Sport, ClassItem, CommunityPost, StoreItem, User, CommunityPostWithLikes } from '@/types';
+import { Sport, ClassItem, CommunityPost, StoreItem, User } from '@/types';
 
 interface Database {
     sports: Sport[];
@@ -875,6 +875,4 @@ export const database: Database = {
         hasCompletedOnboarding: true,
         hasAgreedToTerms: true,
     },
-} satisfies {
-    community: CommunityPostWithLikes[];
-};
+}
