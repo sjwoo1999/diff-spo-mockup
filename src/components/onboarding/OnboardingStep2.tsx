@@ -96,20 +96,20 @@ const OnboardingStep2: React.FC<OnboardingStepWithPrevNextProps> = ({
           주로 어떤 연령대와 함께 운동하시나요? (복수 선택 가능)
         </h3>
         <div className="flex flex-wrap gap-3">
-          {ageGroups.map((age) => (
+        {ageGroups.map((age) => (
             <button
-              key={age}
-              className={getButtonClass(currentChoices.ageGroup?.includes(age))}
-              onClick={() => {
+                key={age}
+                className={getButtonClass(Boolean(currentChoices.ageGroup?.includes(age)))}
+                onClick={() => {
                 const newAgeGroups = currentChoices.ageGroup?.includes(age)
-                  ? currentChoices.ageGroup.filter((a) => a !== age)
-                  : [...(currentChoices.ageGroup || []), age];
+                    ? currentChoices.ageGroup.filter((a) => a !== age)
+                    : [...(currentChoices.ageGroup || []), age];
                 saveChoice('ageGroup', newAgeGroups);
-              }}
+                }}
             >
-              {age}
+                {age}
             </button>
-          ))}
+            ))}
         </div>
       </div>
 
@@ -140,7 +140,7 @@ const OnboardingStep2: React.FC<OnboardingStepWithPrevNextProps> = ({
           {availableTimes.map((time) => (
             <button
               key={time}
-              className={getButtonClass(currentChoices.availableTime?.includes(time))}
+              className={getButtonClass(Boolean(currentChoices.availableTime?.includes(time)))}
               onClick={() => {
                 const newTimes = currentChoices.availableTime?.includes(time)
                   ? currentChoices.availableTime.filter((t) => t !== time)
@@ -163,7 +163,7 @@ const OnboardingStep2: React.FC<OnboardingStepWithPrevNextProps> = ({
           {physicalLimitations.map((limitation) => (
             <button
               key={limitation}
-              className={getButtonClass(currentChoices.physicalLimitations?.includes(limitation))}
+              className={getButtonClass(Boolean(currentChoices.physicalLimitations?.includes(limitation)))}
               onClick={() => {
                 const newLimitations = currentChoices.physicalLimitations?.includes(limitation)
                   ? currentChoices.physicalLimitations.filter((l) => l !== limitation)
