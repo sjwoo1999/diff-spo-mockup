@@ -63,6 +63,10 @@ const LoginPage: React.FC = () => {
           >
             로그인
           </button>
+          {/* ✅ 테스트 계정 안내 문구 추가 */}
+          <p className="mt-4 text-sm text-gray-500">
+            테스트 계정으로 먼저 체험해보세요!
+          </p>
         </form>
 
         <div className="mt-6 text-sm text-gray-600 space-x-2">
