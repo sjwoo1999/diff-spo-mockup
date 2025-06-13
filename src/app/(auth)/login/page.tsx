@@ -65,7 +65,7 @@ const LoginPage: React.FC = () => {
           </button>
           {/* ✅ 테스트 계정 안내 문구 추가 */}
           <p className="mt-4 text-sm text-gray-500">
-            테스트 계정으로 먼저 체험해보세요!
+            이메일과 비밀번호 입력 없이<br/>'로그인' 버튼을 눌러 바로 서비스를 경험해보세요!
           </p>
         </form>
 
