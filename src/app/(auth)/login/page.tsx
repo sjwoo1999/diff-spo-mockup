@@ -37,7 +37,7 @@ const LoginPage: React.FC = () => {
       {/* 로그인 카드 */}
       <div className="bg-white rounded-2xl shadow-2xl p-8 sm:p-10 max-w-sm w-full text-center">
         <p className="text-gray-700 text-base sm:text-lg mb-6">
-          로그인하여 특별한 스포츠 경험을 시작하세요!
+          특별한 스포츠 경험을 시작하세요!
         </p>
 
         <form onSubmit={handleLogin} className="space-y-5">
