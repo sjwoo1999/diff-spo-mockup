@@ -2,6 +2,16 @@
 
 > 스포츠로 연결되는 새로운 라이프스타일 플랫폼
 
+## 📝 프로젝트 개요
+- **프로젝트명**: Diff-SPO-Mockup
+- **개발 기간**: 2024.03.18 ~ 2024.03.19
+- **개발 인원**: 1명
+- **개발 환경**: 
+  - Next.js 14
+  - TypeScript
+  - Tailwind CSS
+  - Shadcn UI
+
 ## 📱 서비스 소개
 
 | 구분 | 설명 |
@@ -547,12 +557,59 @@
    - **가치 제안**: 개인화된 경험 제공으로 만족도 55% 향상
 
 ## 🛠 기술 스택
+- **프론트엔드**
+  - Next.js 14
+  - TypeScript
+  - Tailwind CSS
+  - Shadcn UI
 
-| 구분 | 기술 | 용도 |
-|------|------|------|
-| 🌐 프론트엔드 | Next.js 14, TypeScript<br>Tailwind CSS, Shadcn/ui | • 반응형 UI<br>• 컴포넌트 개발 |
-| ⚙️ 백엔드 | Node.js, Python<br>PostgreSQL, Redis | • API 서버<br>• 데이터 처리 |
-| 🤖 AI/ML | BERT, GPT API<br>VADER, TF-IDF | • 추천 시스템<br>• 자연어 처리 |
+## 📦 설치 및 실행
+```bash
+# 저장소 클론
+git clone https://github.com/your-username/diff-spo-mockup.git
+
+# 프로젝트 디렉토리로 이동
+cd diff-spo-mockup
+
+# 의존성 설치
+npm install
+
+# 개발 서버 실행
+npm run dev
+```
+
+## 📁 프로젝트 구조
+```
+diff-spo-mockup/
+├── app/
+│   ├── layout.tsx
+│   └── page.tsx
+├── components/
+│   ├── ui/
+│   └── sections/
+├── public/
+│   └── images/
+├── styles/
+│   └── globals.css
+├── tailwind.config.js
+└── package.json
+```
+
+## 🔄 개발 이력
+### 2024.03.19
+- [x] 메인 페이지 레이아웃 구현
+- [x] 서비스 소개 섹션 추가
+- [x] 리뷰 섹션 구현
+- [x] 반응형 디자인 적용
+
+### 2024.03.18
+- [x] 프로젝트 초기 설정
+- [x] 기본 디렉토리 구조 생성
+- [x] Tailwind CSS 설정
+- [x] Shadcn UI 컴포넌트 설치
+
+## 📝 라이선스
+이 프로젝트는 MIT 라이선스를 따릅니다.
 
 ## 🚀 시작하기
 
@@ -576,10 +633,6 @@ NEXT_PUBLIC_API_URL=your_api_url
 OPENAI_API_KEY=your_openai_api_key
 DATABASE_URL=your_database_url
 ```
-
-## 📄 라이선스
-
-MIT License
 
 ## 🤝 기여하기
 
