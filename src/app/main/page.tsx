@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { PageType, OnboardingChoices, Sport, User } from '@/types';
 import { database } from '@/data/database';
@@ -12,7 +12,7 @@ import MyPageContent from '@/components/my/MyPageContent';
 import StorePageContent from '@/components/store/StorePageContent';
 import BottomNav from '@/components/common/BottomNav';
 
-const MainPage: React.FC = () => {
+function MainPageInner() {
     const [activePage, setActivePage] = useState<PageType>('home');
     const [userOnboardingChoices, setUserOnboardingChoices] = useState<OnboardingChoices>({
         purpose: [],
@@ -128,6 +128,12 @@ const MainPage: React.FC = () => {
             </div>
         </div>
     );
-};
+}
 
-export default MainPage;
+export default function MainPage() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <MainPageInner />
+        </Suspense>
+    );
+}
