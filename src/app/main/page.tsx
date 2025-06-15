@@ -117,7 +117,7 @@ function MainPageInner() {
     };
 
     return (
-        <div className="w-full min-h-screen flex justify-center bg-black">
+        <div className="w-full min-h-screen flex justify-center bg-black pt-[56px]">
             <div className="relative w-full max-w-xl min-h-screen flex flex-col bg-white">
                 <main className="flex-1 flex flex-col w-full max-w-xl mx-auto bg-white px-2 pb-24">
                     <div className="w-full max-w-xl mx-auto">
