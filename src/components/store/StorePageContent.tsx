@@ -47,15 +47,11 @@ const StorePage: React.FC<StorePageProps> = ({ database }) => {
     }, [database.storeItems]);
 
     return (
-        <section id="page-store" className="page active p-4">
-            <PageHeader
-                title="DIFF-SPO 상점"
-                description="이색 스포츠 장비, 의류 및 관련 상품을 만나보세요. 파트너십을 통해 엄선된 상품을 제공합니다."
-            />
-            <div className="mt-4 p-4 bg-blue-50 rounded-lg text-blue-700 text-sm animate-fade-in px-4">
+        <section id="page-store" className="w-full max-w-xl mx-auto px-4 pt-6">
+            <div className="mt-0 p-4 bg-blue-50 rounded-lg text-blue-700 text-sm animate-fade-in w-full mb-4">
                 구매와 관련한 책임은 각 판매 업체에 있습니다.
             </div>
-            <div id="store-items" className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+            <div id="store-items" className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6 w-full">
                 {renderStoreItems()}
             </div>
             <button className="w-full mt-6 py-3 bg-neutral-light text-neutral-dark font-semibold rounded-lg hover:bg-neutral transition active:scale-98">

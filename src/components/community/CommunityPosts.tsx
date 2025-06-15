@@ -22,30 +22,29 @@ const CommunityPosts: React.FC<CommunityPostsProps> = ({ posts }) => {
       {posts.map((post) => (
         <Link href={`/community/${post.id}`} key={post.id}>
           <div
-            className="bg-white rounded-xl p-4 sm:p-5 shadow-md hover:shadow-lg transition cursor-pointer
-              border border-gray-100"
+            className="bg-card rounded-card p-5 shadow-md hover:shadow-lg transition cursor-pointer border border-gray-100"
           >
             {/* 상단 정보 */}
             <div className="flex items-center gap-3 mb-3">
               <Image
-                src="/images/default/default_profile.jpg"
+                src={post.authorAvatar || "/images/default/default_profile.jpg"}
                 alt="작성자"
                 width={36}
                 height={36}
                 className="w-9 h-9 rounded-full object-cover"
               />
               <div>
-                <p className="text-sm font-semibold text-gray-800">{post.author}</p>
-                <p className="text-xs text-gray-400">{post.createdAt.split(' ')[0]} · {post.category}</p>
+                <p className="text-sm font-semibold text-gray-900">{post.author}</p>
+                <p className="text-xs text-gray-600">{post.createdAt.split(' ')[0]} · {post.category}</p>
               </div>
             </div>
 
             {/* 제목 & 내용 */}
-            <h2 className="text-base sm:text-lg font-bold text-gray-800 line-clamp-2">{post.title}</h2>
-            <p className="text-sm text-gray-600 mt-1 line-clamp-3">{post.content}</p>
+            <h2 className="text-lg font-bold text-gray-900 line-clamp-2">{post.title}</h2>
+            <p className="text-sm text-gray-800 mt-1 line-clamp-3">{post.content}</p>
 
             {/* 하단 정보 */}
-            <div className="flex justify-between items-center mt-4 text-xs text-gray-500">
+            <div className="flex justify-between items-center mt-4 text-xs text-gray-700">
               <span>❤️ {post.likes} 공감</span>
               <span>💬 {post.comments.length} 댓글</span>
             </div>

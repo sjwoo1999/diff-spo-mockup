@@ -1,16 +1,16 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { PageType, OnboardingChoices, Sport, User } from '@/types';
 import { database } from '@/data/database';
-import { Sport, OnboardingChoices } from '@/types';
-import BottomNav from '@/components/common/BottomNav';
+import { getPersonalizedRecommendations, recommendClasses, findMatchingClasses } from '@/utils/algorithms';
 import HomePageContent from '@/components/home/HomePageContent';
 import ClassesPageContent from '@/components/classes/ClassesPageContent';
 import CommunityPageContent from '@/components/community/CommunityPageContent';
 import MyPageContent from '@/components/my/MyPageContent';
 import StorePageContent from '@/components/store/StorePageContent';
-
-type PageType = 'home' | 'classes' | 'community' | 'my' | 'store';
+import BottomNav from '@/components/common/BottomNav';
 
 const MainPage: React.FC = () => {
     const [activePage, setActivePage] = useState<PageType>('home');
@@ -25,6 +25,29 @@ const MainPage: React.FC = () => {
         locationPreference: undefined,
     });
     const [recommendedSportsList, setRecommendedSportsList] = useState<Sport[]>([]);
+    const [recommendedClasses, setRecommendedClasses] = useState(database.classes);
+    const [matchingClasses, setMatchingClasses] = useState(database.classes);
+
+    const searchParams = useSearchParams();
+
+    // 목업 사용자 데이터
+    const mockUser: User = {
+        id: '1',
+        name: '테스트 사용자',
+        email: 'test@example.com',
+        fitnessLevel: '중급',
+        skillLevel: '초급',
+        preferredLocation: '실내',
+        equipment: ['테니스 라켓', '운동화'],
+        activities: [],
+        preferences: {
+            preferredSports: ['테니스', '수영'],
+            preferredTime: ['주말 오전'],
+            preferredDays: ['토', '일'],
+            preferredIntensity: '보통',
+            preferredGroupSize: '소그룹'
+        }
+    };
 
     useEffect(() => {
         const savedChoices = localStorage.getItem('onboardingChoices');
@@ -34,47 +57,31 @@ const MainPage: React.FC = () => {
     }, []);
 
     useEffect(() => {
-        const filtered = database.sports.filter((sport) => {
-            let matches = true;
-    
-            if (userOnboardingChoices.intensity && sport.intensity !== userOnboardingChoices.intensity) {
-                matches = false;
-            }
-            if (userOnboardingChoices.preference && sport.preference !== userOnboardingChoices.preference) {
-                matches = false;
-            }
-    
-            // 요기! purpose 체크 부분! ✨ 수정 필요
-            const safePurpose = userOnboardingChoices.purpose ?? [];
-            if (safePurpose.length > 0) {
-                matches = sport.purpose?.some(p => safePurpose.includes(p)) ?? false;
-            }
-    
-            if (userOnboardingChoices.cost && sport.cost !== userOnboardingChoices.cost) {
-                matches = false;
-            }
-    
-            const safeAgeGroup = userOnboardingChoices.ageGroup ?? [];
-            if (safeAgeGroup.length > 0) {
-                matches = sport.ageGroup?.some(a => safeAgeGroup.includes(a)) ?? false;
-            }
-    
-            if (userOnboardingChoices.locationPreference &&
-                sport.locationPreference !== userOnboardingChoices.locationPreference &&
-                userOnboardingChoices.locationPreference !== '상관 없음') {
-                matches = false;
-            }
-    
-            const safeAvailableTime = userOnboardingChoices.availableTime ?? [];
-            if (safeAvailableTime.length > 0 && !safeAvailableTime.includes('언제든')) {
-                matches = sport.availableTime?.some(t => safeAvailableTime.includes(t)) ?? false;
-            }
-    
-            return matches;
-        });
-    
-        setRecommendedSportsList(filtered);
-    }, [userOnboardingChoices]);    
+        // 개인화된 스포츠 추천
+        const context = {
+            weather: '맑음',
+            time: '오후 2시',
+            location: '강남구'
+        };
+        const recommendedSports = getPersonalizedRecommendations(mockUser, database.sports, context);
+        setRecommendedSportsList(recommendedSports);
+
+        // 클래스 추천
+        const recommended = recommendClasses(mockUser, database.classes);
+        setRecommendedClasses(recommended);
+
+        // 스케줄 기반 클래스 매칭
+        const matched = findMatchingClasses(mockUser, database.classes);
+        setMatchingClasses(matched);
+    }, [userOnboardingChoices]);
+
+    useEffect(() => {
+        // 쿼리스트링(tab=...)으로 진입 시 해당 탭 활성화
+        const tab = searchParams.get('tab');
+        if (tab && ['home','classes','community','my','store'].includes(tab)) {
+            setActivePage(tab as PageType);
+        }
+    }, [searchParams]);
 
     const renderPageContent = () => {
         switch (activePage) {
@@ -87,7 +94,10 @@ const MainPage: React.FC = () => {
                 );
             case 'classes':
                 return (
-                    <ClassesPageContent classes={database.classes} />
+                    <ClassesPageContent 
+                        classes={recommendedClasses}
+                        matchingClasses={matchingClasses}
+                    />
                 );
             case 'community':
                 return (
@@ -107,12 +117,16 @@ const MainPage: React.FC = () => {
     };
 
     return (
-        <>
-            <main className="flex flex-col flex-grow min-h-screen w-full max-w-[512px] mx-auto overflow-y-auto">
-                {renderPageContent()}
-            </main>
-            <BottomNav activePage={activePage} setActivePage={setActivePage} />
-        </>
+        <div className="w-full min-h-screen flex justify-center bg-black">
+            <div className="relative w-full max-w-xl min-h-screen flex flex-col bg-white">
+                <main className="flex-1 flex flex-col w-full max-w-xl mx-auto bg-white px-2 pb-24">
+                    <div className="w-full max-w-xl mx-auto">
+                        {renderPageContent()}
+                    </div>
+                </main>
+                <BottomNav activePage={activePage} setActivePage={setActivePage} />
+            </div>
+        </div>
     );
 };
 

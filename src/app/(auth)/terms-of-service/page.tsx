@@ -9,11 +9,11 @@ const TermsOfServicePage: React.FC = () => {
 
   const handleAgree = () => {
     localStorage.setItem('agreedToTerms', 'true');
-    router.replace('/login/onboarding');
+    router.replace('/onboarding');
   };
 
   return (
-    <div className="min-h-screen p-4 flex flex-col items-center justify-center bg-gradient-to-br from-primary-light to-primary">
+    <div className="w-full p-4 flex flex-col items-center justify-center">
       <div className="bg-white rounded-xl shadow-lg p-6 w-full max-w-3xl">
         <h1 className="text-2xl font-bold text-black mb-4 text-center">이용약관</h1>
         <p className="text-gray-600 text-sm text-center mb-6">
@@ -23,9 +23,9 @@ const TermsOfServicePage: React.FC = () => {
         <div className="h-[500px] overflow-y-auto border border-gray-200 p-4 rounded-md text-black text-sm leading-relaxed mb-4 space-y-4">
           <h2 className="font-semibold text-base">제1조. 정의</h2>
           <p>
-            “회사”란 Diff-Spo라는 명칭으로 서비스를 제공하는 사업자를 말합니다.
-            “서비스”란 회사가 운영하는 웹사이트 및 관련 콘텐츠 큐레이션 기능 전반을 의미합니다.
-            “이용자”란 본 약관에 따라 서비스를 이용하는 자를 말합니다.
+            "회사"란 Diff-Spo라는 명칭으로 서비스를 제공하는 사업자를 말합니다.
+            "서비스"란 회사가 운영하는 웹사이트 및 관련 콘텐츠 큐레이션 기능 전반을 의미합니다.
+            "이용자"란 본 약관에 따라 서비스를 이용하는 자를 말합니다.
           </p>
 
           <h2 className="font-semibold text-base">제2조. 이용자 자격</h2>
@@ -61,7 +61,7 @@ const TermsOfServicePage: React.FC = () => {
 
           <h2 className="font-semibold text-base">제8조. 책임의 제한</h2>
           <p>
-            회사는 본 서비스를 &quot;있는 그대로(as is)&quot; 제공하며, 기술적 오류, 서비스 중단, 정보 유실 등에 대해서도 책임을 지지 않습니다.
+            회사는 본 서비스를 "있는 그대로(as is)" 제공하며, 기술적 오류, 서비스 중단, 정보 유실 등에 대해서도 책임을 지지 않습니다.
           </p>
 
           <h2 className="font-semibold text-base">제9조. 사용자 콘텐츠</h2>

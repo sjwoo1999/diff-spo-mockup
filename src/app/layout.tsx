@@ -2,6 +2,8 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Noto_Sans_KR, Inter } from 'next/font/google';
 import Script from 'next/script';
+import SafeAreaWrapper from '@/components/common/SafeAreaWrapper';
+import BottomNav from '@/components/common/BottomNav';
 
 const notoSansKr = Noto_Sans_KR({
   subsets: ['latin'],
@@ -92,17 +94,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </>
         )}
       </head>
-      <body
-        className={[
-          notoSansKr.variable,
-          inter.variable,
-          'flex',
-          'flex-col',
-          'min-h-screen',
-          'w-full',
-        ].join(' ')}
-      >
-        {children}
+      <body className={[notoSansKr.variable, inter.variable, 'bg-white'].join(' ')}>
+        <SafeAreaWrapper>
+          {children}
+        </SafeAreaWrapper>
       </body>
     </html>
   );

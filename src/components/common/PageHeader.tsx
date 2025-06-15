@@ -14,13 +14,13 @@ const PageHeader: React.FC<PageHeaderProps> = ({
     description,
     className,
     as = 'h2',
-    titleColor = 'text-black', // 변경됨
-    descriptionColor = 'text-neutral-dark', // 변경됨
+    titleColor = 'text-primary',
+    descriptionColor = 'text-primary',
 }) => {
     const HeadingTag = as;
 
     return (
-        <div className={`text-center max-w-xl mx-auto ${className}`}>
+        <div className={`text-center max-w-xl mx-auto px-4 ${className}`}>
             <HeadingTag className={`text-3xl font-bold mb-2 ${titleColor}`}>{title}</HeadingTag>
             <p className={`text-lg ${descriptionColor}`}>{description}</p>
         </div>

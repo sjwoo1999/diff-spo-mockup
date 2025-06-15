@@ -1,6 +1,7 @@
 // src/components/common/BottomNav.tsx
 'use client';
 import React from 'react';
+import { useRouter } from 'next/navigation';
 
 type PageType = 'home' | 'classes' | 'community' | 'my' | 'store';
 
@@ -10,16 +11,22 @@ interface BottomNavProps {
 }
 
 const BottomNav: React.FC<BottomNavProps> = ({ activePage, setActivePage }) => {
+  const router = useRouter();
   const getTextColor = (page: PageType) =>
     activePage === page ? 'text-primary' : 'text-gray-500 hover:text-primary';
 
+  const handleNav = (page: PageType) => {
+    router.push(`/main?tab=${page}`);
+    setActivePage(page); // 상태도 즉시 변경
+  };
+
   return (
-    <nav className="fixed bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-lg bg-white shadow-lg border-t border-gray-100 z-50">
+    <nav className="fixed bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-xl mx-auto bg-white shadow-lg border-t border-gray-100 z-50 pb-[env(safe-area-inset-bottom)]">
       <ul className="flex justify-around items-center h-14 sm:h-16">
         <li>
           <button
             className={`flex flex-col items-center p-1 sm:p-2 text-xs sm:text-sm font-medium ${getTextColor('home')}`}
-            onClick={() => setActivePage('home')}
+            onClick={() => handleNav('home')}
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor"
               className="w-5 h-5 sm:w-6 sm:h-6 mb-1">
@@ -34,7 +41,7 @@ const BottomNav: React.FC<BottomNavProps> = ({ activePage, setActivePage }) => {
         <li>
           <button
             className={`flex flex-col items-center p-1 sm:p-2 text-xs sm:text-sm font-medium ${getTextColor('classes')}`}
-            onClick={() => setActivePage('classes')}
+            onClick={() => handleNav('classes')}
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor"
               className="w-5 h-5 sm:w-6 sm:h-6 mb-1">
@@ -48,7 +55,7 @@ const BottomNav: React.FC<BottomNavProps> = ({ activePage, setActivePage }) => {
         <li>
           <button
             className={`flex flex-col items-center p-1 sm:p-2 text-xs sm:text-sm font-medium ${getTextColor('community')}`}
-            onClick={() => setActivePage('community')}
+            onClick={() => handleNav('community')}
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor"
               className="w-5 h-5 sm:w-6 sm:h-6 mb-1">
@@ -62,7 +69,7 @@ const BottomNav: React.FC<BottomNavProps> = ({ activePage, setActivePage }) => {
         <li>
           <button
             className={`flex flex-col items-center p-1 sm:p-2 text-xs sm:text-sm font-medium ${getTextColor('store')}`}
-            onClick={() => setActivePage('store')}
+            onClick={() => handleNav('store')}
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor"
               className="w-5 h-5 sm:w-6 sm:h-6 mb-1">
@@ -76,7 +83,7 @@ const BottomNav: React.FC<BottomNavProps> = ({ activePage, setActivePage }) => {
         <li>
           <button
             className={`flex flex-col items-center p-1 sm:p-2 text-xs sm:text-sm font-medium ${getTextColor('my')}`}
-            onClick={() => setActivePage('my')}
+            onClick={() => handleNav('my')}
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor"
               className="w-5 h-5 sm:w-6 sm:h-6 mb-1">

@@ -62,17 +62,54 @@ export interface CommunityPost {
 // 마이페이지 및 사용자 관련 타입
 // ----------------------------------------------------
 
-export interface User {
-    id: string; // 사용자 고유 ID
+export interface Badge {
+    id: string;
     name: string;
-    email: string; // 로그인에 사용될 수 있는 이메일
-    gender: 'male' | 'female' | 'other';
-    dateOfBirth: string; // 예: "1990-01-01"
-    phoneNumber: string; // 예: "010-1234-5678"
-    profilePicture?: string; // 프로필 이미지 URL (선택 사항)
-    hasCompletedOnboarding?: boolean;
-    hasAgreedToTerms?: boolean;
-    // ... 기타 사용자 정보
+    description: string;
+    imageUrl: string;
+    acquiredAt?: string; // 획득일
+}
+
+export interface Ranking {
+    tier: 'Bronze' | 'Silver' | 'Gold' | 'Platinum';
+    rank: number;
+    total: number;
+    week: string; // 예: '2024-W23'
+}
+
+export interface User {
+    id: string;
+    name: string;
+    email: string;
+    fitnessLevel: '초급' | '중급' | '고급';
+    skillLevel: '초급' | '중급' | '고급';
+    preferredLocation: '실내' | '실외' | '상관 없음';
+    equipment: string[];
+    activities: Activity[];
+    preferences: UserPreferences;
+    badges?: Badge[];
+    ranking?: Ranking;
+    followers?: string[]; // 나를 팔로우하는 유저 id 배열
+    following?: string[]; // 내가 팔로우하는 유저 id 배열
+    profileImage?: string; // 프로필 이미지 경로
+    bio?: string; // 한 줄 소개
+}
+
+export interface Activity {
+    id: string;
+    type: string;
+    date: string;
+    duration: number;
+    intensity: '낮음' | '보통' | '높음';
+    location: string;
+}
+
+export interface UserPreferences {
+    preferredSports: string[];
+    preferredTime: string[];
+    preferredDays: string[];
+    preferredIntensity: '낮음' | '보통' | '높음';
+    preferredGroupSize: '개인' | '소그룹' | '대그룹';
 }
 
 // 데이터베이스의 전체 구조를 나타내는 타입
@@ -92,15 +129,17 @@ export interface Database {
 export interface Sport {
     id: string;
     name: string;
+    description: string;
+    intensity: '낮음' | '보통' | '높음';
+    preference: '개인' | '그룹';
+    cost: '저렴' | '보통' | '비쌈';
+    ageGroup: string[];
+    locationPreference: '실내' | '실외';
+    availableTime: string[];
     imageUrl: string;
-    description?: string;
-    intensity?: IntensityLevel;
-    preference?: PreferenceType;
-    purpose?: Purpose[];
-    cost?: CostLevel;
-    ageGroup?: AgeGroup[];
-    locationPreference?: LocationPreference;
-    availableTime?: AvailableTime[];
+    requiredEquipment?: string[];
+    requiredSkillLevel?: '초급' | '중급' | '고급';
+    recommendationScore?: number;
 }
 
 export type ClassType = '클라이밍' | '요가' | '필라테스' | '러닝' | '수영' | '헬스' | '축구' | '농구' | '테니스' | '기타';
@@ -108,7 +147,7 @@ export type ClassType = '클라이밍' | '요가' | '필라테스' | '러닝' | 
 export interface ClassItem {
     id: string;
     title: string;
-    type: ClassType;
+    type: string;
     instructor: string;
     price: number;
     duration: string;
@@ -116,15 +155,45 @@ export interface ClassItem {
     rating?: number;
     reviews?: number;
     location?: string;
+    recommendationScore?: number;
+    matchingScore?: number;
 }
 
 export interface StoreItem {
     id: string;
     name: string;
     description: string;
-    image: string;
     price: string;
-    vendorName?: string;
+    image: string;
+    vendorName: string;
     externalPurchaseLink: string;
-    isAffiliateLink?: boolean;
+    isAffiliateLink: boolean;
+    recommendationScore?: number;
+}
+
+export type PageType = 'home' | 'classes' | 'community' | 'my' | 'store';
+
+export interface Report {
+    id: string;
+    userId: string;
+    title: string;
+    createdAt: string;
+    status: 'pending' | 'processing' | 'completed' | 'failed';
+    type: 'activity' | 'performance' | 'recommendation';
+    content?: {
+        summary: string;
+        details: {
+            category: string;
+            value: string | number;
+            description: string;
+        }[];
+        recommendations?: {
+            title: string;
+            description: string;
+            priority: 'high' | 'medium' | 'low';
+        }[];
+        badgesEarned?: Badge[];
+        ranking?: Ranking;
+    };
+    error?: string;
 }

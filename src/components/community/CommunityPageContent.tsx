@@ -20,35 +20,35 @@ const CommunityPageContent: React.FC<CommunityPageContentProps> = ({ posts }) =>
   const categoryList: Array<'전체' | '후기' | '질문' | '정보'> = ['전체', '후기', '질문', '정보'];
 
   return (
-    <div className="space-y-6 px-4 sm:px-6 md:px-8">
-      <br />
-      <PageHeader
-        title="커뮤니티"
-        description="DIFF-SPO 회원들과 소통하고 정보를 공유하며 새로운 경험을 나누세요!"
-        titleColor="text-white"
-        descriptionColor="text-white/80"
-      />
+    <div className="w-full bg-white">
+      <div className="space-y-6 px-4 w-full max-w-xl mx-auto pt-6 text-gray-900">
+        {/* 카테고리 필터 */}
+        <div className="flex flex-wrap gap-2 mb-4">
+          {categoryList.map((category) => (
+            <button
+              key={category}
+              onClick={() => setSelectedCategory(category)}
+              className={`px-4 py-1.5 text-sm rounded-full border transition-all
+                ${
+                  selectedCategory === category
+                    ? 'bg-primary text-white border-primary'
+                    : 'bg-card text-black border-muted hover:bg-secondary'
+                }`}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
 
-      {/* 카테고리 필터 */}
-      <div className="flex flex-wrap gap-2">
-        {categoryList.map((category) => (
-          <button
-            key={category}
-            onClick={() => setSelectedCategory(category)}
-            className={`px-4 py-1.5 text-sm rounded-full border transition-all
-              ${
-                selectedCategory === category
-                  ? 'bg-primary text-white border-primary'
-                  : 'bg-white text-neutral-dark border-neutral hover:bg-neutral-light'
-              }`}
-          >
-            {category}
-          </button>
-        ))}
+        {/* 게시글 리스트 */}
+        <CommunityPosts posts={filteredPosts} />
+
+        {filteredPosts.length === 0 && (
+          <p className="text-center text-gray-700 text-sm py-12">
+            해당 카테고리에 게시글이 없습니다.
+          </p>
+        )}
       </div>
-
-      {/* 게시글 리스트 */}
-      <CommunityPosts posts={filteredPosts} />
     </div>
   );
 };

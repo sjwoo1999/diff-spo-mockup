@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { database } from '@/data/database';
 import { CommunityPost } from '@/types';
+import BottomNav from '@/components/common/BottomNav';
 
 const CommunityPostPage = () => {
   const router = useRouter();
@@ -35,91 +36,96 @@ const CommunityPostPage = () => {
   }
 
   return (
-    <main className="max-w-[512px] mx-auto p-6">
-      <button
-        onClick={() => router.back()}
-        className="text-sm text-primary mb-4 hover:underline"
-      >
-        ← 커뮤니티 목록으로
-      </button>
-
-      <div className="bg-white rounded-lg shadow-md p-6 border border-neutral">
-        <div className="flex justify-between items-center mb-2">
-          <span
-            className={`text-xs font-semibold px-2 py-1 rounded-full
-              ${
-                post.category === '후기' ? 'text-primary bg-primary/10' :
-                post.category === '질문' ? 'text-blue-600 bg-blue-100' :
-                post.category === '정보' ? 'text-green-600 bg-green-100' :
-                'text-gray-600 bg-gray-100'
-              }`}
-          >
-            {post.category}
-          </span>
-          <span className="text-gray-500 text-xs">{post.createdAt.split(' ')[0]}</span>
-        </div>
-
-        <h1 className="text-2xl font-bold text-black mb-2">{post.title}</h1>
-
-        <div className="flex items-center justify-between mb-4">
-          <span className="text-sm text-gray-600">
-            💜 {likes}명이 이 글에 공감했어요
-          </span>
+    <div className="w-full min-h-screen flex justify-center bg-black">
+      <div className="relative w-full max-w-xl min-h-screen flex flex-col bg-white">
+        <main className="flex-1 flex flex-col w-full max-w-xl mx-auto bg-white p-6 pb-24">
           <button
-            onClick={handleLike}
-            disabled={liked}
-            className={`text-sm ${
-              liked
-                ? 'text-gray-400 cursor-default'
-                : 'text-primary hover:underline'
-            }`}
+            onClick={() => router.back()}
+            className="text-sm text-primary mb-4 hover:underline"
           >
-            {liked ? '공감 완료' : '공감하기'}
+            ← 커뮤니티 목록으로
           </button>
-        </div>
 
-        <p className="text-gray-700 text-base mb-6 whitespace-pre-line">
-          {post.content}
-        </p>
+          <div className="bg-card rounded-card shadow-md p-6 border border-gray-100">
+            <div className="flex justify-between items-center mb-2">
+              <span
+                className={`text-xs font-semibold px-2 py-1 rounded-full
+                  ${
+                    post.category === '후기' ? 'text-primary bg-primary/10' :
+                    post.category === '질문' ? 'text-blue-600 bg-blue-100' :
+                    post.category === '정보' ? 'text-green-600 bg-green-100' :
+                    'text-gray-700 bg-secondary'
+                  }`}
+              >
+                {post.category}
+              </span>
+              <span className="text-gray-600 text-xs">{post.createdAt.split(' ')[0]}</span>
+            </div>
 
-        {post.externalLink && (
-          <a
-            href={post.externalLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-primary hover:underline text-sm block mb-6"
-          >
-            원문 보기
-          </a>
-        )}
+            <h1 className="text-2xl font-bold text-gray-900 mb-2">{post.title}</h1>
 
-        <div className="border-t pt-4">
-          <h2 className="text-lg font-semibold text-black mb-3">
-            댓글 ({post.comments.length})
-          </h2>
-          {post.comments.length === 0 ? (
-            <p className="text-gray-500 text-sm">댓글이 없습니다.</p>
-          ) : (
-            <ul className="space-y-3">
-              {post.comments.map((comment) => (
-                <li
-                  key={comment.id}
-                  className="bg-neutral-light rounded px-3 py-2 text-sm"
-                >
-                  <div className="flex justify-between mb-1 text-gray-600">
-                    <span className="font-semibold">{comment.author}</span>
-                    <span className="text-xs">
-                      {comment.createdAt.split(' ')[0]}
-                    </span>
-                  </div>
-                  <p className="text-gray-700">{comment.content}</p>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
+            <div className="flex items-center justify-between mb-4">
+              <span className="text-sm text-gray-700">
+                💜 {likes}명이 이 글에 공감했어요
+              </span>
+              <button
+                onClick={handleLike}
+                disabled={liked}
+                className={`text-sm ${
+                  liked
+                    ? 'text-gray-400 cursor-default'
+                    : 'text-primary hover:underline'
+                }`}
+              >
+                {liked ? '공감 완료' : '공감하기'}
+              </button>
+            </div>
+
+            <p className="text-gray-800 text-base mb-6 whitespace-pre-line">
+              {post.content}
+            </p>
+
+            {post.externalLink && (
+              <a
+                href={post.externalLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:underline text-sm block mb-6"
+              >
+                원문 보기
+              </a>
+            )}
+
+            <div className="border-t pt-4">
+              <h2 className="text-lg font-semibold text-gray-900 mb-3">
+                댓글 ({post.comments.length})
+              </h2>
+              {post.comments.length === 0 ? (
+                <p className="text-gray-500 text-sm">댓글이 없습니다.</p>
+              ) : (
+                <ul className="space-y-3">
+                  {post.comments.map((comment) => (
+                    <li
+                      key={comment.id}
+                      className="bg-secondary rounded px-3 py-2 text-sm"
+                    >
+                      <div className="flex justify-between mb-1 text-gray-600">
+                        <span className="font-semibold text-gray-900">{comment.author}</span>
+                        <span className="text-xs text-gray-500">
+                          {comment.createdAt.split(' ')[0]}
+                        </span>
+                      </div>
+                      <p className="text-gray-800">{comment.content}</p>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </div>
+        </main>
+        <BottomNav activePage="community" setActivePage={() => {}} />
       </div>
-    </main>
+    </div>
   );
 };
 

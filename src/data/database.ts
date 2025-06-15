@@ -7,18 +7,158 @@ interface Database {
     classes: ClassItem[];
     community: CommunityPost[];
     storeItems: StoreItem[];
+    users: User[];
     user: User;
 }
+
+export const users = [
+    {
+        id: 'diffspo_kim',
+        name: '김디프스포',
+        email: 'kimds@example.com',
+        fitnessLevel: '중급' as '중급',
+        skillLevel: '초급' as '초급',
+        preferredLocation: '실내' as '실내',
+        equipment: ['테니스 라켓', '수영복'],
+        activities: [
+            {
+                id: 'a1',
+                type: '테니스',
+                date: '2024-06-01',
+                duration: 120,
+                intensity: '높음' as '높음',
+                location: '강남 테니스장',
+            },
+            {
+                id: 'a2',
+                type: '수영',
+                date: '2024-06-03',
+                duration: 60,
+                intensity: '보통' as '보통',
+                location: '송파 수영장',
+            },
+            {
+                id: 'a3',
+                type: '요가',
+                date: '2024-06-05',
+                duration: 45,
+                intensity: '낮음' as '낮음',
+                location: '홍대 요가 스튜디오',
+            },
+        ],
+        preferences: {
+            preferredSports: ['테니스', '수영'],
+            preferredTime: ['주말 오전'],
+            preferredDays: ['토', '일'],
+            preferredIntensity: '보통' as '보통',
+            preferredGroupSize: '소그룹' as '소그룹',
+        },
+        badges: [
+            {
+                id: 'badge1',
+                name: '꾸준함의 아이콘',
+                description: '3주 연속 운동 달성! 꾸준함이 멋져요!',
+                imageUrl: '/images/badge/steady.png',
+                acquiredAt: '2024-06-01',
+            },
+            {
+                id: 'badge2',
+                name: '도전왕',
+                description: '새로운 스포츠 5종목 도전!',
+                imageUrl: '/images/badge/challenge.png',
+                acquiredAt: '2024-05-20',
+            },
+        ],
+        ranking: {
+            tier: 'Silver' as 'Silver',
+            rank: 7,
+            total: 120,
+            week: '2024-W23',
+        },
+        followers: ['runner_lee', 'yogi_park'],
+        following: ['climber_choi'],
+        profileImage: '/images/default/default_profile.jpg',
+        bio: '운동으로 삶의 밸런스를 찾는 스포츠 러버!'
+    },
+    {
+        id: 'runner_lee',
+        name: '이주자',
+        email: 'lee.runner@example.com',
+        fitnessLevel: '초급' as '초급',
+        skillLevel: '초급' as '초급',
+        preferredLocation: '실외' as '실외',
+        equipment: ['러닝화'],
+        activities: [],
+        preferences: {
+            preferredSports: ['러닝'],
+            preferredTime: ['주말 오전'],
+            preferredDays: ['토'],
+            preferredIntensity: '보통' as '보통',
+            preferredGroupSize: '개인' as '개인',
+        },
+        badges: [],
+        ranking: undefined,
+        followers: [],
+        following: ['diffspo_kim'],
+        profileImage: '/images/default/default_profile.jpg',
+        bio: '매일 아침 러닝으로 하루를 시작!'
+    },
+    {
+        id: 'yogi_park',
+        name: '박요기',
+        email: 'park.yogi@example.com',
+        fitnessLevel: '중급' as '중급',
+        skillLevel: '중급' as '중급',
+        preferredLocation: '실내' as '실내',
+        equipment: ['요가매트'],
+        activities: [],
+        preferences: {
+            preferredSports: ['요가'],
+            preferredTime: ['평일 오후'],
+            preferredDays: ['수'],
+            preferredIntensity: '낮음' as '낮음',
+            preferredGroupSize: '소그룹' as '소그룹',
+        },
+        badges: [],
+        ranking: undefined,
+        followers: [],
+        following: ['diffspo_kim'],
+        profileImage: '/images/default/default_profile.jpg',
+        bio: '요가와 명상으로 힐링하는 삶을 추구합니다.'
+    },
+    {
+        id: 'climber_choi',
+        name: '최클라이머',
+        email: 'choi.climb@example.com',
+        fitnessLevel: '고급' as '고급',
+        skillLevel: '고급' as '고급',
+        preferredLocation: '실내' as '실내',
+        equipment: ['클라이밍 슈즈'],
+        activities: [],
+        preferences: {
+            preferredSports: ['클라이밍'],
+            preferredTime: ['주말 오후'],
+            preferredDays: ['일'],
+            preferredIntensity: '높음' as '높음',
+            preferredGroupSize: '소그룹' as '소그룹',
+        },
+        badges: [],
+        ranking: undefined,
+        followers: ['diffspo_kim'],
+        following: [],
+        profileImage: '/images/default/default_profile.jpg',
+        bio: '암벽을 오르며 한계를 넘는 도전가!'
+    },
+];
 
 export const database: Database = {
     sports: [
         {
             id: '1',
             name: '패러글라이딩',
-            purpose: ['여행', '힐링'],
             intensity: '보통',
             preference: '개인',
-            cost: '고가',
+            cost: '비쌈',
             ageGroup: ['20대', '30대', '40대'],
             locationPreference: '실외',
             availableTime: ['주말'],
@@ -28,7 +168,6 @@ export const database: Database = {
         {
             id: '2',
             name: '루지',
-            purpose: ['여행', '힐링'],
             intensity: '낮음',
             preference: '그룹',
             cost: '저렴',
@@ -41,7 +180,6 @@ export const database: Database = {
         {
             id: '3',
             name: '실내/실외 클라이밍',
-            purpose: ['취미', '다이어트'],
             intensity: '높음',
             preference: '개인',
             cost: '보통',
@@ -54,7 +192,6 @@ export const database: Database = {
         {
             id: '4',
             name: '카트 레이싱',
-            purpose: ['취미', '힐링'],
             intensity: '보통',
             preference: '그룹',
             cost: '보통',
@@ -67,7 +204,6 @@ export const database: Database = {
         {
             id: '5',
             name: 'ATV 사륜 오토바이',
-            purpose: ['여행', '힐링'],
             intensity: '보통',
             preference: '그룹',
             cost: '보통',
@@ -80,10 +216,9 @@ export const database: Database = {
         {
             id: '6',
             name: '열기구 체험',
-            purpose: ['여행', '힐링'],
             intensity: '낮음',
             preference: '그룹',
-            cost: '고가',
+            cost: '비쌈',
             ageGroup: ['30대', '40대', '50대 이상'],
             locationPreference: '실외',
             availableTime: ['주말'],
@@ -93,7 +228,6 @@ export const database: Database = {
         {
             id: '7',
             name: '서바이벌(페인트볼)',
-            purpose: ['취미'],
             intensity: '보통',
             preference: '그룹',
             cost: '보통',
@@ -106,7 +240,6 @@ export const database: Database = {
         {
             id: '8',
             name: '짚라인(Zipline)',
-            purpose: ['여행', '힐링'],
             intensity: '보통',
             preference: '그룹',
             cost: '보통',
@@ -119,10 +252,9 @@ export const database: Database = {
         {
             id: '9',
             name: '서핑',
-            purpose: ['여행', '힐링', '취미'],
             intensity: '높음',
             preference: '그룹',
-            cost: '고가',
+            cost: '비쌈',
             ageGroup: ['20대', '30대', '40대'],
             locationPreference: '실외',
             availableTime: ['주말'],
@@ -132,7 +264,6 @@ export const database: Database = {
         {
             id: '10',
             name: '디스크 골프',
-            purpose: ['취미', '힐링'],
             intensity: '낮음',
             preference: '그룹',
             cost: '저렴',
@@ -146,7 +277,6 @@ export const database: Database = {
         {
             id: '11',
             name: '피클볼',
-            purpose: ['취미'],
             intensity: '낮음',
             preference: '그룹',
             cost: '저렴',
@@ -160,7 +290,6 @@ export const database: Database = {
         {
             id: '12',
             name: '빠델',
-            purpose: ['취미'],
             intensity: '보통',
             preference: '그룹',
             cost: '보통',
@@ -174,7 +303,6 @@ export const database: Database = {
         {
             id: '13',
             name: '인공 암벽장',
-            purpose: ['다이어트'],
             intensity: '높음',
             preference: '개인',
             cost: '보통',
@@ -188,7 +316,6 @@ export const database: Database = {
         {
             id: '14',
             name: '카약/카누',
-            purpose: ['힐링', '여행'],
             intensity: '낮음',
             preference: '개인',
             cost: '보통',
@@ -202,7 +329,6 @@ export const database: Database = {
         {
             id: '15',
             name: 'SUP (스탠드업 패들보드)',
-            purpose: ['힐링', '여행'],
             intensity: '보통',
             preference: '개인',
             cost: '보통',
@@ -216,10 +342,9 @@ export const database: Database = {
         {
             id: '16',
             name: '웨이크보드',
-            purpose: ['여행'],
             intensity: '높음',
             preference: '그룹',
-            cost: '고가',
+            cost: '비쌈',
             ageGroup: ['20대', '30대'],
             locationPreference: '실외',
             availableTime: ['주말'],
@@ -230,7 +355,6 @@ export const database: Database = {
         {
             id: '17',
             name: '스케이트보드',
-            purpose: ['취미'],
             intensity: '보통',
             preference: '개인',
             cost: '저렴',
@@ -244,7 +368,6 @@ export const database: Database = {
         {
             id: '18',
             name: '인라인롤러',
-            purpose: ['취미'],
             intensity: '낮음',
             preference: '개인',
             cost: '저렴',
@@ -258,7 +381,6 @@ export const database: Database = {
         {
             id: '19',
             name: '세팍타크로',
-            purpose: [],
             intensity: '높음',
             preference: '그룹',
             cost: '저렴',
@@ -272,7 +394,6 @@ export const database: Database = {
         {
             id: '20',
             name: '주짓수',
-            purpose: ['다이어트'],
             intensity: '높음',
             preference: '개인',
             cost: '보통',
@@ -286,7 +407,6 @@ export const database: Database = {
         {
             id: '21',
             name: '크라쉬',
-            purpose: [],
             intensity: '높음',
             preference: '개인',
             cost: '보통',
@@ -300,7 +420,6 @@ export const database: Database = {
         {
             id: '22',
             name: '우슈',
-            purpose: [],
             intensity: '보통',
             preference: '개인',
             cost: '보통',
@@ -314,7 +433,6 @@ export const database: Database = {
         {
             id: '23',
             name: '드래곤보트',
-            purpose: [],
             intensity: '보통',
             preference: '그룹',
             cost: '보통',
@@ -328,7 +446,6 @@ export const database: Database = {
         {
             id: '24',
             name: '씨름',
-            purpose: [],
             intensity: '보통',
             preference: '개인',
             cost: '저렴',
@@ -342,7 +459,6 @@ export const database: Database = {
         {
             id: '25',
             name: '펜싱',
-            purpose: [],
             intensity: '보통',
             preference: '개인',
             cost: '보통',
@@ -356,7 +472,6 @@ export const database: Database = {
         {
             id: '26',
             name: '추크볼',
-            purpose: ['취미'],
             intensity: '낮음',
             preference: '그룹',
             cost: '저렴',
@@ -370,7 +485,6 @@ export const database: Database = {
         {
             id: '27',
             name: '킥복싱',
-            purpose: ['다이어트'],
             intensity: '높음',
             preference: '개인',
             cost: '보통',
@@ -384,7 +498,6 @@ export const database: Database = {
         {
             id: '28',
             name: '팔씨름',
-            purpose: ['취미'],
             intensity: '낮음',
             preference: '개인',
             cost: '저렴',
@@ -398,7 +511,6 @@ export const database: Database = {
         {
             id: '29',
             name: '궁도 (국궁)',
-            purpose: ['취미'],
             intensity: '보통',
             preference: '개인',
             cost: '보통',
@@ -412,7 +524,6 @@ export const database: Database = {
         {
             id: '30',
             name: '한궁',
-            purpose: ['취미'],
             intensity: '낮음',
             preference: '그룹',
             cost: '저렴',
@@ -426,7 +537,6 @@ export const database: Database = {
         {
             id: '31',
             name: '패드민턴',
-            purpose: ['취미'],
             intensity: '낮음',
             preference: '그룹',
             cost: '저렴',
@@ -440,7 +550,6 @@ export const database: Database = {
         {
             id: '32',
             name: '플라잉요가',
-            purpose: ['다이어트', '힐링'],
             intensity: '보통',
             preference: '개인',
             cost: '보통',
@@ -454,7 +563,6 @@ export const database: Database = {
         {
             id: '33',
             name: '번지 피트니스',
-            purpose: ['다이어트', '힐링'],
             intensity: '보통',
             preference: '그룹',
             cost: '보통',
@@ -468,7 +576,6 @@ export const database: Database = {
         {
             id: '34',
             name: '아쿠아바이크',
-            purpose: ['다이어트', '힐링'],
             intensity: '보통',
             preference: '그룹',
             cost: '보통',
@@ -482,7 +589,6 @@ export const database: Database = {
         {
             id: '35',
             name: '슬랙라인',
-            purpose: ['취미'],
             intensity: '보통',
             preference: '개인',
             cost: '저렴',
@@ -496,7 +602,6 @@ export const database: Database = {
         {
             id: '36',
             name: '트램폴린 점프',
-            purpose: ['다이어트', '취미'],
             intensity: '보통',
             preference: '그룹',
             cost: '보통',
@@ -510,10 +615,9 @@ export const database: Database = {
         {
             id: '37',
             name: '실내 스카이다이빙',
-            purpose: [],
             intensity: '보통',
             preference: '개인',
-            cost: '고가',
+            cost: '비쌈',
             ageGroup: ['20대', '30대'],
             locationPreference: '실내',
             availableTime: ['주말'],
@@ -524,7 +628,6 @@ export const database: Database = {
         {
             id: '38',
             name: '실내 양궁/사격 카페',
-            purpose: ['취미'],
             intensity: '낮음',
             preference: '개인',
             cost: '보통',
@@ -538,7 +641,6 @@ export const database: Database = {
         {
             id: '39',
             name: '실내 스크린 스포츠',
-            purpose: ['취미'],
             intensity: '낮음',
             preference: '그룹',
             cost: '보통',
@@ -552,7 +654,6 @@ export const database: Database = {
         {
             id: '40',
             name: '실내 컬링',
-            purpose: ['취미'],
             intensity: '낮음',
             preference: '그룹',
             cost: '보통',
@@ -566,7 +667,6 @@ export const database: Database = {
         {
             id: '41',
             name: '실내 승마(로데오 머신)',
-            purpose: ['취미'],
             intensity: '낮음',
             preference: '개인',
             cost: '보통',
@@ -580,10 +680,9 @@ export const database: Database = {
         {
             id: '42',
             name: '실내 스키/스노보드',
-            purpose: [],
             intensity: '보통',
             preference: '개인',
-            cost: '고가',
+            cost: '비쌈',
             ageGroup: ['10대', '20대', '30대'],
             locationPreference: '실내',
             availableTime: ['주말'],
@@ -594,7 +693,6 @@ export const database: Database = {
         {
             id: '43',
             name: '워터 레슬링',
-            purpose: [],
             intensity: '낮음',
             preference: '그룹',
             cost: '저렴',
@@ -608,7 +706,6 @@ export const database: Database = {
         {
             id: '44',
             name: '미끄러운 기둥 건너기',
-            purpose: [],
             intensity: '낮음',
             preference: '그룹',
             cost: '저렴',
@@ -622,7 +719,6 @@ export const database: Database = {
         {
             id: '45',
             name: '보물찾기(드론 이벤트)',
-            purpose: [],
             intensity: '낮음',
             preference: '그룹',
             cost: '저렴',
@@ -636,7 +732,6 @@ export const database: Database = {
         {
             id: '46',
             name: '플라잉디스크(얼티밋)',
-            purpose: [],
             intensity: '보통',
             preference: '그룹',
             cost: '저렴',
@@ -650,7 +745,6 @@ export const database: Database = {
         {
             id: '47',
             name: '에어로빅/줌바/댄스 스포츠',
-            purpose: ['다이어트', '힐링'],
             intensity: '보통',
             preference: '그룹',
             cost: '보통',
@@ -664,7 +758,6 @@ export const database: Database = {
         {
             id: '48',
             name: 'e스포츠',
-            purpose: ['취미'],
             intensity: '낮음',
             preference: '개인',
             cost: '저렴',
@@ -678,7 +771,6 @@ export const database: Database = {
         {
             id: '49',
             name: '실내 볼링',
-            purpose: ['취미'],
             intensity: '보통',
             preference: '그룹',
             cost: '보통',
@@ -692,7 +784,6 @@ export const database: Database = {
         {
             id: '50',
             name: '실내 탁구/배드민턴',
-            purpose: ['취미'],
             intensity: '보통',
             preference: '그룹',
             cost: '저렴',
@@ -747,9 +838,9 @@ export const database: Database = {
     community: [
         {
             id: 'post1',
-            title: '이번 주말 패러글라이딩 후기!',
-            content: '처음 해봤는데 너무 재밌었어요~ 강사님도 친절하시고 추천드립니다 :)',
-            author: '스포츠러버',
+            title: '이번 주말 패러글라이딩 후기!'
+            ,content: '와, 진짜 하늘을 나는 기분이 이런 거구나 싶었어요! 처음엔 살짝 무서웠는데, 막상 뛰어내리니까 경치가 너무 멋지고 바람도 시원해서 완전 힐링이었어요. 강사님이 계속 옆에서 응원해주셔서 더 안심됐고요. 혹시 고민 중이신 분들 꼭 한 번 도전해보세요!'
+            ,author: '스포츠러버',
             authorAvatar: '/images/default/default_profile.jpg',
             createdAt: '2025-06-07 14:20:00',
             comments: [
@@ -757,15 +848,15 @@ export const database: Database = {
                     id: 'comment1',
                     author: '클라이머99',
                     authorAvatar: '/images/default/default_profile.jpg',
-                    content: '우와! 저도 해보고 싶어요 🔥',
-                    createdAt: '2025-06-07 15:00:00',
+                    content: '우와! 후기 보니까 저도 꼭 해보고 싶네요. 혹시 고소공포증 있어도 할 만한가요?'
+                    ,createdAt: '2025-06-07 15:00:00',
                 },
                 {
                     id: 'comment2',
                     author: '운동초보',
                     authorAvatar: '/images/default/default_profile.jpg',
-                    content: '가격대는 어느 정도였나요?',
-                    createdAt: '2025-06-07 16:10:00',
+                    content: '혹시 비용이랑 소요 시간도 알려주실 수 있나요? 친구들이랑 가볼까 고민 중이에요!'
+                    ,createdAt: '2025-06-07 16:10:00',
                 },
             ],
             category: '후기',
@@ -773,9 +864,9 @@ export const database: Database = {
         },
         {
             id: 'post2',
-            title: '클라이밍 입문 장비 추천 부탁드려요!',
-            content: '처음 클라이밍 배우려는데 어떤 장비부터 준비하면 좋을까요? 추천 부탁드립니다 🙏',
-            author: '초보클라이머',
+            title: '클라이밍 입문 장비 추천 부탁드려요!'
+            ,content: '클라이밍 처음 시작하려고 하는데, 장비 뭐부터 사야 할지 너무 고민돼요. 암벽화, 초크백, 하네스 중에 뭐가 제일 필수인가요? 그리고 브랜드 추천도 해주시면 감사하겠습니다!'
+            ,author: '초보클라이머',
             authorAvatar: '/images/default/default_profile.jpg',
             createdAt: '2025-06-06 09:35:00',
             comments: [
@@ -783,8 +874,8 @@ export const database: Database = {
                     id: 'comment3',
                     author: '짬클',
                     authorAvatar: '/images/default/default_profile.jpg',
-                    content: '암벽화랑 초크백부터 준비하세요!',
-                    createdAt: '2025-06-06 10:00:00',
+                    content: '저도 입문 때 암벽화랑 초크백 먼저 샀어요! 하네스는 센터에서 대여해주는 곳도 많으니 참고하세요. 브랜드는 라스포르티바나 스카라파 많이 씁니다 :)'
+                    ,createdAt: '2025-06-06 10:00:00',
                 },
             ],
             category: '질문',
@@ -792,9 +883,9 @@ export const database: Database = {
         },
         {
             id: 'post3',
-            title: '서울 근교에서 ATV 탈 만한 곳 있나요?',
-            content: '이번 여름에 친구들이랑 ATV 타고 싶은데 추천 장소 있을까요?',
-            author: '익스트림러버',
+            title: '서울 근교에서 ATV 탈 만한 곳 있나요?'
+            ,content: '여름에 친구들이랑 색다른 액티비티 해보고 싶어서요! 서울 근처에서 ATV 타기 좋은 코스나 업체 있으면 추천 부탁드려요. 후기나 꿀팁도 환영합니다 :)'
+            ,author: '익스트림러버',
             authorAvatar: '/images/default/default_profile.jpg',
             createdAt: '2025-06-05 19:00:00',
             comments: [],
@@ -803,9 +894,9 @@ export const database: Database = {
         },
         {
             id: 'post4',
-            title: '서핑 용어 간단 정리 🌊',
-            content: '초보 분들 참고하시라고 기본 서핑 용어 정리해봅니다! Pop-up, Duck dive, Point break 등등...',
-            author: '파도타는여자',
+            title: '서핑 용어 간단 정리 🌊'
+            ,content: '서핑 처음 시작할 때 용어가 너무 어려워서 정리해봤어요! Pop-up은 보드 위에 일어나는 동작이고, Duck dive는 파도 밑으로 잠수하는 기술이에요. Point break는 파도가 부서지는 지형을 말합니다. 궁금한 용어 있으면 댓글로 남겨주세요!'
+            ,author: '파도타는여자',
             authorAvatar: '/images/default/default_profile.jpg',
             createdAt: '2025-06-04 11:45:00',
             comments: [
@@ -813,8 +904,8 @@ export const database: Database = {
                     id: 'comment4',
                     author: '서핑꿈나무',
                     authorAvatar: '/images/default/default_profile.jpg',
-                    content: '좋은 정보 감사합니다 🙏',
-                    createdAt: '2025-06-04 12:20:00',
+                    content: '정리 너무 좋아요! 덕분에 용어 헷갈렸던 거 한 번에 이해됐어요. 혹시 입문자한테 추천하는 보드도 있을까요?'
+                    ,createdAt: '2025-06-04 12:20:00',
                 },
             ],
             externalLink: 'https://example.com/surfing-terms',
@@ -823,9 +914,9 @@ export const database: Database = {
         },
         {
             id: 'post5',
-            title: '이번 달 스핀 정모 언제 하나요?',
-            content: '다들 이번 달 번개 모임 계획 있으신가요? 같이 운동하고 싶어요!',
-            author: '운동메이트찾아요',
+            title: '이번 달 스핀 정모 언제 하나요?'
+            ,content: '요즘 날씨도 좋고 운동하기 딱 좋은데, 혹시 이번 달에 스핀 모임이나 번개 계획 있으신 분 계신가요? 다 같이 모여서 운동하면 더 재밌을 것 같아요!'
+            ,author: '운동메이트찾아요',
             authorAvatar: '/images/default/default_profile.jpg',
             createdAt: '2025-06-03 08:30:00',
             comments: [
@@ -833,8 +924,8 @@ export const database: Database = {
                     id: 'comment5',
                     author: '동네운동러',
                     authorAvatar: '/images/default/default_profile.jpg',
-                    content: '좋아요! 저도 참석하고 싶어요 🙋',
-                    createdAt: '2025-06-03 09:10:00',
+                    content: '저도 모임 있으면 꼭 참석하고 싶어요! 단톡방 있으면 초대해주실 수 있나요?'
+                    ,createdAt: '2025-06-03 09:10:00',
                 },
             ],
             category: '자유',
@@ -875,14 +966,6 @@ export const database: Database = {
         },        
     ],
 
-    user: {
-        id: 'user1',
-        name: '김디프스포',
-        email: 'user@example.com',
-        gender: 'male',
-        dateOfBirth: '1995-03-15',
-        phoneNumber: '010-1234-5678',
-        hasCompletedOnboarding: true,
-        hasAgreedToTerms: true,
-    },
+    users,
+    user: users[0],
 }

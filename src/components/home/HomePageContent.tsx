@@ -23,23 +23,12 @@ const HomePageContent: React.FC<HomePageContentProps> = ({ recommendedSportsList
     };
 
     return (
-        <div className={`page active ${commonPadding} overflow-y-auto`}>
-            <div
-                className="text-4xl sm:text-4xl font-extrabold tracking-[0.1em] text-purple-800 uppercase select-none"
-                style={{ fontFamily: 'var(--font-inter)' }}
-            >
-                DIFF-SPO
-            </div>
-            <p className="text-neutral-dark text-sm sm:text-base mb-6 sm:mb-8">
-                {userOnboardingChoices.preference === '개인' && '혼자서 즐기기 좋은'}
-                {userOnboardingChoices.preference === '그룹' && '함께 즐기기 좋은'}
-                {userOnboardingChoices.preference === '상관 없음' && '다양한'} 스포츠를 추천해 드려요!
-            </p>
-    
-            <RecommendedSports sports={recommendedSportsList} onExploreClick={handleExploreClick} />
-    
-            <div className="mt-8">
-                <PopularClasses classes={database.classes} />
+        <div className="w-full bg-white">
+            <div className="w-full max-w-xl mx-auto px-4 pt-6">
+                <RecommendedSports sports={recommendedSportsList} onExploreClick={handleExploreClick} />
+                <div className="mt-8 w-full">
+                    <PopularClasses classes={database.classes} />
+                </div>
             </div>
         </div>
     );
